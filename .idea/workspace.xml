@@ -4,32 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Dxnxex.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidencePojistenychController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojistenychDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidencePojistenychEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidencePojistenychMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/repository/EvidencePojistenychRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidencePojistenychService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/styles/styleFooter.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/styles/styleNav.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/styles/stylePojistenciForm.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/styles/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/home/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/index.html" afterDir="false" />
+    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="- Zobrazení pojištěných z databáze&#10;- Vytvoření pojištěného&#10;- Propojení DB&#10;- Smazání pojištěného&#10;- Základí kostra stránky">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/PojistovnaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidencePojisteniController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidencePojisteniController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidencePojistenychController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidencePojistenychController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidencePojisteniService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidencePojisteniService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/home/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Dxnxex"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Dxnxex/ITnetworkKurz_EvidencePojisteni.git",
+    "accountId": "ed875e01-8049-4b31-85e1-daa751896855"
+  }
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -95,9 +92,9 @@
       <recent name="D:\GitHub\EvidencePojisteni\src\main\resources\templates\pages\home" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cz.dxnxex.evidencepojisteni.controller" />
       <recent name="cz.dxnxex.evidencepojisteni.service" />
       <recent name="cz.dxnxex.evidencepojisteni.repository" />
-      <recent name="cz.dxnxex.evidencepojisteni.controller" />
       <recent name="cz.dxnxex.evidencepojisteni.mapper" />
       <recent name="cz.dxnxex.evidencepojisteni.entity" />
     </key>
@@ -159,18 +156,27 @@
       <option name="presentableId" value="Default" />
       <updated>1730710023695</updated>
     </task>
+    <task id="LOCAL-00001" summary="- Zobrazení pojištěných z databáze&#10;- Vytvoření pojištěného&#10;- Propojení DB&#10;- Smazání pojištěného&#10;- Základí kostra stránky">
+      <option name="closed" value="true" />
+      <created>1732100151273</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732100151273</updated>
+    </task>
+    <task id="LOCAL-00002" summary="- Zobrazení pojištěných z databáze&#10;- Vytvoření pojištěného&#10;- Propojení DB&#10;- Smazání pojištěného&#10;- Základí kostra stránky">
+      <option name="closed" value="true" />
+      <created>1732100243670</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732100243670</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojistenychDTO.java</url>
-          <line>14</line>
-          <properties field="psc" class="cz.dxnxex.evidencepojisteni.dto.EvidencePojistenychDTO" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Zobrazení pojištěných z databáze&#10;- Vytvoření pojištěného&#10;- Propojení DB&#10;- Smazání pojištěného&#10;- Základí kostra stránky" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Zobrazení pojištěných z databáze&#10;- Vytvoření pojištěného&#10;- Propojení DB&#10;- Smazání pojištěného&#10;- Základí kostra stránky" />
   </component>
 </project>

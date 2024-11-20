@@ -18,30 +18,22 @@ public class EvidencePojisteniService {
     @Autowired
     private EvidencePojisteniMapper mapper;
 
-    public EvidencePojisteniDTO create(EvidencePojisteniDTO data) {
 
-        EvidencePojisteniEntity entity = mapper.toEntity(data);
-        repository.saveAndFlush(entity);
-        return mapper.toDTO(entity);
-    }
-
-    public EvidencePojisteniDTO createUser(EvidencePojisteniDTO data) {
-
-        EvidencePojisteniEntity entity = mapper.toEntity(data);
-        repository.saveAndFlush(entity);
-        return mapper.toDTO(entity);
-
-    }
-
-    public void createUser2(EvidencePojisteniDTO data) {
-        EvidencePojisteniEntity newUser = mapper.toEntity(data);
-        repository.saveAndFlush(newUser);
+    //Vytvoření uživatele
+    public void createItem(EvidencePojisteniDTO data) {
+        EvidencePojisteniEntity newItem = mapper.toEntity(data);
+        repository.saveAndFlush(newItem);
     }
 
 
-    //Metody
+    //List uživatelů
     public List<EvidencePojisteniDTO> getAllStream() {
         return repository.findAll().stream().map(entita -> mapper.toDTO(entita)).toList();
+    }
+
+    //Smazání uživatele
+    public void itemDelete(Long id) {
+        repository.deleteById(id);
     }
 
 }

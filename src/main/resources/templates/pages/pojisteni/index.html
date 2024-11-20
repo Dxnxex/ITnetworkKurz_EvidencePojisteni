@@ -9,6 +9,33 @@
     <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
 
 
+    <section class="container px-2 my-5">
+
+        <!-- Vytvořit pojištění-->
+        <div class="my-5 px-2 justify-content-end align-items-center text-center">
+            <a th:href="@{/pojisteni/create}" ><button class="btn btn-success">Vytvořit pojištění</button> </a>
+        </div>
+
+
+        <!--Tabulka pojištění-->
+        <table class="pojistenciTable mb-5">
+            <thead>
+            <tr>
+                <th>Předmět</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${pojisteni}">
+                <td th:text="${item.predmet}"></td>
+                <td>
+                    SMAZAT
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
 
 </div>
 </body>

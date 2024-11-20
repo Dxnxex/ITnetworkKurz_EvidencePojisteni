@@ -11,16 +11,30 @@
 
 
 
-    <form th:object="${PojisteniDTO}">
+    <section class="container px-2">
+        <article class="container | borders ">
 
-        <div>
-            <label>Jméno</label>
-            <input th:field="*{jmeno}" placeholder="Jan"/>
-            <small></small>
-        </div>
+            <h4 class="my-4 PojistenciFont">Nový pojištěnec</h4>
 
-    </form>
+            <form th:object="${evidencePojisteniDTO}" action="/pojisteni/create" method="post">
+                <div class="row mb-3">
 
+                        <div class="col-md-12">
+                            <label for="predmet">Předmět:</label>
+                            <input type="text" id="predmet" th:field="*{predmet}" class="form-control" placeholder="Jan"/>
+                        </div>
+
+                    <button class="my-3" type="submit">Uložit</button>
+
+                </div>
+            </form>
+
+
+
+
+
+        </article>
+    </section>
 
 
 

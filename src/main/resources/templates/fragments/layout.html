@@ -22,8 +22,7 @@
 
                 <!--Název-->
                 <div>
-                    <a class="nav-link" th:href="@{/uzivatele}"><span class="fw-bold fs-4">Modrá pojišťovna</span></a>
-
+                    <a class="nav-link" th:href="@{/}"><span class="fw-bold fs-4">Modrá pojišťovna</span></a>
                 </div>
 
                 <!--Tlačítko-->
@@ -31,18 +30,24 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+
                 <!--Menu-->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pojištěnci</a>
+                            <a class="nav-link" th:href="@{/uzivatele}">Pojištěnci</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="#">O aplikaci..</a>
+                            <a class="nav-link" th:href="@{/pojisteni}">Pojištění</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/uzivatele/create}">Nové pojištění</a>
+                            <a class="nav-link" href="#">O aplikaci...</a>
                         </li>
+
+
                     </ul>
                 </div>
 

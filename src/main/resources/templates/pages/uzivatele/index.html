@@ -6,13 +6,19 @@
     <body>
     <div class="main-content">
 
+        <!--HEADER-->
         <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
-
-
 
 
         <section class="container px-2 my-5">
 
+            <!--Vytvořit pojištěného-->
+            <div class="my-5 px-2 justify-content-end align-items-center text-center">
+                <a th:href="@{/uzivatele/create}" ><button class="btn btn-success">Vytvořit pojištěného</button> </a>
+            </div>
+
+
+            <!--Tabulka pojištěných-->
             <table class="pojistenciTable mb-5">
                 <thead>
                 <tr>
@@ -49,6 +55,7 @@
     </body>
 
 
+    <!--Footer-->
     <footer th:replace="~{fragments/layout.html :: fragmentFooter}"></footer>
 
     <!--Scripty-->

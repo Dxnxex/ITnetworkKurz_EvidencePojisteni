@@ -24,7 +24,6 @@ public class EvidencePojistenychController {
     public String renderIndex(Model model) {
         List<EvidencePojistenychDTO> uzivatele = service.getAllStream();
         model.addAttribute("uzivatele", uzivatele);
-
         return "pages/uzivatele/index";
     }
 
@@ -44,12 +43,13 @@ public class EvidencePojistenychController {
 
     }
 
-
+    //Zobrazení vytvoření uživatele
     @GetMapping("/create")
     public String renderCreateForm(@ModelAttribute EvidencePojistenychDTO evidence) {
         return "pages/uzivatele/create";
     }
 
+    //Odeslání vytvoření uživatele
     @PostMapping("/create")
     public String createArticle(@Valid @ModelAttribute EvidencePojistenychDTO evidence, BindingResult result) {
 
@@ -66,6 +66,7 @@ public class EvidencePojistenychController {
 
     }
 
+    //Smazání uživatele
     @PostMapping("/delete/{id}")
     public String userDelete(@PathVariable Long id){
         service.userDelete(id);
