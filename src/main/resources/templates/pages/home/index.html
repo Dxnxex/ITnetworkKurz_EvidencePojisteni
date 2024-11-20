@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{fragments/layout.html :: fragmentHead}"></head>
+
+    <body>
+    <div class="main-content">
+
+        <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
+
+
+        <section class="container px-2">
+
+                <!--Výpis pojištěných-->
+                <div id = "PojistenciBig" class="PojistenciFont"></div>
+                <table class="pojistenciTable mb-5">
+                    <thead id="pojistenciUkazCele"></thead>
+                    <tbody id = "pojistenciUkaz"></tbody>
+                </table>
+
+            <article class="container | borders ">
+
+                <h4 class="my-4 PojistenciFont">Nový pojištěnec</h4>
+
+                <form th:object="${evidencePojisteniDTO}" action="/create" method="post">
+
+                    <label for="predmet">Předmět:</label>
+                    <input type="text" id="predmet" th:field="*{predmet}" class="form-control"/>
+
+                    <button type="submit">Uložit</button>
+                </form>
+
+
+
+
+
+
+
+
+
+            </article>
+        </section>
+
+    </div>
+    </body>
+
+
+    <footer th:replace="~{fragments/layout.html :: fragmentFooter}"></footer>
+
+    <!--Scripty-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</html>

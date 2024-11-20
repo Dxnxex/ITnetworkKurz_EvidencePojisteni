@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{fragments/layout.html :: fragmentHead}"></head>
+
+    <body>
+    <div class="main-content">
+
+        <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
+
+
+        <section class="container px-2">
+
+            <article class="container | borders ">
+
+                <h4 class="my-4 PojistenciFont">Nový pojištěnec</h4>
+
+                <form th:object="${evidencePojistenychDTO}" action="/uzivatele/create" method="post">
+
+                    <div class="row mb-3">
+
+                        <div class="col-md-6">
+                            <label for="jmeno">Jméno:</label>
+                            <input type="text" id="jmeno" th:field="*{jmeno}" class="form-control" placeholder="Jan"/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="prijmeni">Příjmení:</label>
+                            <input type="text" id="prijmeni" th:field="*{prijmeni}" class="form-control" placeholder="Novák"/>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+
+                        <div class="col-md-6">
+                            <label for="email">Email:</label>
+                            <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="jannovak68@gmail.com"/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="telefon">Telefon:</label>
+                            <input type="text" id="telefon" th:field="*{telefon}" class="form-control" placeholder="731 584 972"/>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+
+                        <div class="col-md-6">
+                            <label for="uliceACislo">Ulice a číslo popisné:</label>
+                            <input type="text" id="uliceACislo" th:field="*{uliceACislo}" class="form-control" placeholder="Ve Svahu 3"/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="mesto">Město:</label>
+                            <input type="text" id="mesto" th:field="*{mesto}" class="form-control" placeholder="Praha 1"/>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row mb-3 justify-content-end">
+
+                        <div class="col-md-6 ">
+                            <label for="psc">PSČ:</label>
+                            <input type="text" id="psc" th:field="*{psc}" class="form-control" placeholder="100 00"/>
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit">Uložit</button>
+                </form>
+
+
+
+
+
+
+
+
+
+            </article>
+        </section>
+
+    </div>
+    </body>
+
+
+    <footer th:replace="~{fragments/layout.html :: fragmentFooter}"></footer>
+
+    <!--Scripty-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</html>

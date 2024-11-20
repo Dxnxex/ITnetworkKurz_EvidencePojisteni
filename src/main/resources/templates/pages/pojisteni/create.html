@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout.html :: fragmentHead}"><title>Jooooo</title></head>
+
+<body>
+<div class="main-content">
+
+    <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
+
+
+
+
+    <form th:object="${PojisteniDTO}">
+
+        <div>
+            <label>Jméno</label>
+            <input th:field="*{jmeno}" placeholder="Jan"/>
+            <small></small>
+        </div>
+
+    </form>
+
+
+
+
+
+
+
+
+</div>
+</body>
+
+
+<footer th:replace="~{fragments/layout.html :: fragmentFooter}"></footer>
+
+<!--Scripty-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</html>

@@ -1,0 +1,17 @@
+
+.myFooter{
+
+    /* Barvy */
+    background-color: var(--mainBackgroundColorDark);
+    color: white;
+
+}
+
+.myFooter a{
+    /* Barvy */
+    color: var(--mainColorDark);
+    text-decoration: none;
+}
+
+
+

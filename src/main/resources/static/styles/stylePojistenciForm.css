@@ -1,0 +1,95 @@
+
+.pojistenciTable {
+
+    width: 100%;
+
+     /*  Barvy */
+     background-color: var(--mainBackgroundColorDark);
+     color: var(--mainColorDark);
+
+     font-size: 0.rem;
+
+}
+
+
+.pojistenciTable td
+{
+
+    /* Barvy */
+    background-color: var(--mainBackgroundColorWhite);
+    color: var(--mainColorBlack);
+
+    /* Ohraničení */
+    border: 2px solid var(--mainColorLight) ;
+
+}
+
+.pojistenciSubmitButton {
+
+    /* Ohraničení */
+    border: 0px;
+    border-radius: 5px;
+
+    /* Barvy */
+    background-color: var(--mainBackgroundColorDark);
+    color: var(--mainBackgroundColorLight);
+
+    /* Velikosti & Pozice */
+    width: 200px;
+
+    /* Fonty & Text */
+    font-weight: 700;
+
+}
+
+.pojistenciSubmitButton:hover {
+
+    /* Ohraničení */
+    border: 0px;
+    border-radius: 5px;
+
+    /* Barvy */
+    background-color: var(--mainBackgroundColorLight);
+    color: var(--mainColorBlack);
+
+    /* Velikosti & Pozice */
+    width: 200px;
+
+    /* Fonty & Text */
+    font-weight: 700;
+
+}
+
+
+.pojistenciIkona {
+
+    /* Velikost & pozice */
+    margin-right: 15px;
+    width: 150px;
+    height: auto;
+
+}
+
+.pojistenciIkonaDiv{
+
+    /* Flex & pozice */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+@media (min-width: 768px) {.pojistenciIkona         {float: left;}}
+@media (min-width: 768px) {.pojistenciIkonaDiv      {justify-content: center; display: block;}}
+
+
+.pojistenciFormError {
+
+    font-size: smaller;
+    color: red;
+}
+
+
+
+
+

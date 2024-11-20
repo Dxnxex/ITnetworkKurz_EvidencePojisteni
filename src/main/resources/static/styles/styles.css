@@ -1,0 +1,44 @@
+
+@import url('/styles/styleNav.css');
+@import url('/styles/styleFooter.css');
+@import url('/styles/stylePojistenciForm.css');
+
+:root{
+
+    --mainColorDark: #0378ff;
+    --mainColorLight: rgb(183, 183, 183);
+    --mainColorBlack: rgb(0, 0, 0);
+
+    --mainBackgroundColorDark: rgb(56, 56, 56);
+    --mainBackgroundColorLight: #0077ff;
+    --mainBackgroundColorWhite: #ffffff;
+
+    --borders: 0px;
+}
+
+
+html, body {
+
+    /* Flex */
+    display: flex;
+    flex-direction: column;
+
+    /* Velikosti a pozice */
+    height: 100%;
+    margin: 0;
+
+}
+
+.main-content {
+    flex: 1;
+
+    font-family: 'Courier New';
+    font-size: medium;
+}
+
+
+.borders{
+    border: var(--borders) solid red;
+}
+
+

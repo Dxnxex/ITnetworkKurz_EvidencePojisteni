@@ -1,0 +1,46 @@
+
+/*NAVIGACE*/
+.navigace{
+
+    /*  Barvy */
+    background-color: var(--mainBackgroundColorDark);
+    color: var(--mainColorDark);
+}
+
+    .navigace nav {
+
+    font-size: medium;
+
+    /* Velikosti */
+    height: 60px;
+    }
+
+   .navigace ul {
+       /* Dekorační změny */
+       list-style-type: none;
+   }
+
+   .navigace a{
+       /* Dekorační změny */
+       text-decoration: none;
+
+       /*  Barvy */
+       color: inherit;
+   }
+
+
+/*NAVIGACE - BOOTSTRAP*/
+.navbar-nav .nav-link {
+    background-color: var(--mainBackgroundColorDark);
+    padding-left: 5px;
+}
+
+    .navbar-nav .nav-link:hover {
+        background-color: #00ff11;
+        color: var(--mainColorBlack);
+    }
+
+    .navbar-nav .nav-link.active {
+        background-color: #00ff11;
+        color: var(--mainColorBlack);
+    }
