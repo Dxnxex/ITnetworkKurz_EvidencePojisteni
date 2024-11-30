@@ -1,13 +1,17 @@
 package cz.dxnxex.evidencepojisteni.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class EvidencePojistenychEntity {
+public class EvidenceUzivatelEntity {
 
+
+    @OneToMany(mappedBy = "uzivatel")
+    private List<EvidenceUzivatelPojisteniEntity> items = new ArrayList<>();
 
     //region Proměnné
 
@@ -49,5 +53,10 @@ public class EvidencePojistenychEntity {
     public void     setPsc(String psc)                      { this.psc = psc; }
 
     //endregion
+
+
+
+
+
 
 }

@@ -2,6 +2,7 @@ package cz.dxnxex.evidencepojisteni.service;
 
 import cz.dxnxex.evidencepojisteni.dto.EvidencePojisteniDTO;
 import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
+import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelMapper;
 import cz.dxnxex.evidencepojisteni.repository.EvidencePojisteniRepository;
 import cz.dxnxex.evidencepojisteni.mapper.EvidencePojisteniMapper;
 import org.springframework.beans.factory.annotation.Autowired;

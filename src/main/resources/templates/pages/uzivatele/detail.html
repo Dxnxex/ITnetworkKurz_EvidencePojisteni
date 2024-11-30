@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{fragments/layout.html :: fragmentHead}"></head>
+
+    <body>
+    <div class="main-content">
+
+        <!--HEADER-->
+        <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
+
+        <section class="container px-2 my-5">
+
+
+
+
+            <div class="container mt-4">
+                <table class="table ">
+
+                    <thead>
+                    <tr>
+                        <th class="tableBorders">
+                            <div th:text="${uzivatel.jmeno} +' '+ ${uzivatel.prijmeni}"></div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td class="tableBorders"><div th:text="${uzivatel.mesto}"></div></td>
+                        <td class="tableBorders"><div th:text="${uzivatel.email}"></div></td>
+                    </tr>
+
+                    <tr>
+                        <td  class="tableBorders"><div th:text="${uzivatel.uliceACislo}"></div></td>
+                        <td  class="tableBorders"><div th:text="${uzivatel.telefon}"></div></td>
+                    </tr>
+
+                    <tr>
+                        <td  class="tableBorders"><div th:text="${uzivatel.psc}"></div></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <div>
+                <h3>Přidat nové pojištění</h3>
+                <form th:action="@{/pojisteni/priradit}" method="post">
+                    <input type="hidden" name="uzivatelId" th:value="${uzivatel.id}" />
+
+                    <div class="mb-3">
+                        <label for="pojisteniId">Typ pojištění:</label>
+                        <select id="pojisteniId" name="pojisteniId" class="form-control" required>
+                            <option th:each="pojisteni : ${pojisteni}"
+                                    th:value="${pojisteni.id}"
+                                    th:text="${pojisteni.predmet}"></option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="castka">Částka:</label>
+                        <input type="number" id="castka" name="castka" class="form-control" placeholder="Např. 5000" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Přiřadit pojištění</button>
+                </form>
+            </div>
+
+
+        </section>
+
+
+
+
+    </div>
+    </body>
+
+
+    <!--Footer-->
+    <footer th:replace="~{fragments/layout.html :: fragmentFooter}"></footer>
+
+    <!--Scripty-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</html>

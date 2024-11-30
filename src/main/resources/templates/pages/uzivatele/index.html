@@ -23,29 +23,35 @@
                 <thead>
                 <tr>
                     <th>Jméno</th>
-                    <th>Příjmení</th>
-                    <th>Email</th>
-                    <th>Telefon</th>
-                    <th>Ulice a číslo popisné</th>
-                    <th>Město</th>
-                    <th>PSČ</th>
+                    <th>Bydliště</th>
+                    <th></th>
                 </tr>
                 </thead>
+
                 <tbody>
+
                 <tr th:each="uzivatel : ${uzivatele}">
-                    <td th:text="${uzivatel.jmeno}"></td>
-                    <td th:text="${uzivatel.prijmeni}"></td>
-                    <td th:text="${uzivatel.email}"></td>
-                    <td th:text="${uzivatel.telefon}"></td>
-                    <td th:text="${uzivatel.uliceACislo}"></td>
-                    <td th:text="${uzivatel.mesto}"></td>
-                    <td th:text="${uzivatel.psc}"></td>
+                    <td th:text="${uzivatel.jmeno} + ' ' + ${uzivatel.prijmeni}"></td>
+                    <td th:text="${uzivatel.uliceACislo} + ',' + ${uzivatel.mesto}"></td>
+
                     <td>
-                        <form th:action="@{/uzivatele/delete/{id}(id=${uzivatel.id})}" method="post">
-                            <button type="submit" class="btn btn-danger">Smazat</button>
-                        </form>
+                        <div class="d-flex">
+                            <form th:action="@{/uzivatele/delete/{id}(id=${uzivatel.id})}" method="post" class="px-1">
+                                <button type="submit" class="btn btn-danger">Smazat</button>
+                            </form>
+                            <form th:action="@{/uzivatele/{id}(id=${uzivatel.id})}" method="get" class="px-1">
+                                <button type="submit" class="btn btn-warning">Detail</button>
+                            </form>
+                            <form th:action="@{/uzivatele/edit/{id}(id=${uzivatel.id})}" method="get" class="px-1">
+                                <button type="submit" class="btn btn-info">Editovat</button>
+                            </form>
+                        </div>
                     </td>
+
                 </tr>
+
+
+
                 </tbody>
             </table>
 

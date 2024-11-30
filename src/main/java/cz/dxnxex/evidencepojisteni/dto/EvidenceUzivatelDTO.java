@@ -1,6 +1,6 @@
 package cz.dxnxex.evidencepojisteni.dto;
 
-public class EvidencePojistenychDTO {
+public class EvidenceUzivatelDTO {
 
 
         //region Proměnné

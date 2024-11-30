@@ -13,9 +13,9 @@
 
             <article class="container | borders ">
 
-                <h4 class="my-4 PojistenciFont">Nový pojištěnec</h4>
+                <h4 class="my-4 PojistenciFont">Úprava hodnot</h4>
 
-                <form th:object="${evidenceUzivatelDTO}" action="/uzivatele/create" method="post">
+                <form th:action="@{/uzivatele}" method="post" th:object="${uzivatel}">
 
                     <div class="row mb-3">
 
@@ -72,9 +72,6 @@
 
                     <button type="submit">Uložit</button>
                 </form>
-
-
-
 
 
 

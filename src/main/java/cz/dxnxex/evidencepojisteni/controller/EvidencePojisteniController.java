@@ -2,7 +2,6 @@ package cz.dxnxex.evidencepojisteni.controller;
 
 
 import cz.dxnxex.evidencepojisteni.dto.EvidencePojisteniDTO;
-import cz.dxnxex.evidencepojisteni.dto.EvidencePojistenychDTO;
 import cz.dxnxex.evidencepojisteni.service.EvidencePojisteniService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

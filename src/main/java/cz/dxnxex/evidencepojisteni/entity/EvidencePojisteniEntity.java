@@ -3,17 +3,18 @@ package cz.dxnxex.evidencepojisteni.entity;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class EvidencePojisteniEntity {
 
+    @OneToMany(mappedBy = "pojisteni")
+    private List<EvidenceUzivatelPojisteniEntity> items = new ArrayList<>();
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String predmet;
-    private BigDecimal castka;
-    private LocalDate odData;
-    private LocalDate doData;
-
 
     public Long getId() {
         return id;
@@ -31,27 +32,6 @@ public class EvidencePojisteniEntity {
         this.predmet = predmet;
     }
 
-    public BigDecimal getCastka() {
-        return castka;
-    }
 
-    public void setCastka(BigDecimal castka) {
-        this.castka = castka;
-    }
 
-    public LocalDate getOdData() {
-        return odData;
-    }
-
-    public void setOdData(LocalDate odData) {
-        this.odData = odData;
-    }
-
-    public LocalDate getDoData() {
-        return doData;
-    }
-
-    public void setDoData(LocalDate doData) {
-        this.doData = doData;
-    }
 }

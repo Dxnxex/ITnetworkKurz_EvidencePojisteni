@@ -41,4 +41,7 @@ html, body {
     border: var(--borders) solid red;
 }
 
-
+.tableBorders{
+    border: 0px solid red;
+    border-bottom: 0px;
+}
