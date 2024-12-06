@@ -45,3 +45,32 @@ html, body {
     border: 0px solid red;
     border-bottom: 0px;
 }
+
+
+.flash-message {
+    padding: 10px 15px;
+    margin: 2px 0;
+    border-radius: 10px;
+    font-size: 14px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.message-success {
+    background-color: #6ec783;
+    color: #020202;
+    border: 3px solid #00000030;
+}
+
+.message-delete {
+    background-color: #929292;
+    color: #020202;
+    border: 3px solid #00000030;
+}
+
+
+.message-error {
+    background-color: #db6b6b;
+    color: #020202;
+    border: 3px solid #00000030;
+}

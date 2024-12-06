@@ -1,20 +1,19 @@
 package cz.dxnxex.evidencepojisteni.entity;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class EvidencePojisteniEntity {
 
-    @OneToMany(mappedBy = "pojisteni")
-    private List<EvidenceUzivatelPojisteniEntity> items = new ArrayList<>();
+
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String predmet;
+    private String popis;
 
     public Long getId() {
         return id;
@@ -32,6 +31,14 @@ public class EvidencePojisteniEntity {
         this.predmet = predmet;
     }
 
+    public String getPopis() {return popis;}
 
+    public void setPopis(String popis) {this.popis = popis;}
 
 }
+
+/*
+
+    @OneToMany(mappedBy = "pojisteni")
+    private List<EvidenceUzivatelPojisteniEntity> items = new ArrayList<>();
+ */

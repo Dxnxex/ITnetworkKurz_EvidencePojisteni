@@ -24,8 +24,12 @@ public class EvidenceUzivatelService {
     @Autowired
     private EvidenceUzivatelMapper mapper;
 
+    /**
+     * Vytvoření uživatele na základě DAT, které přijme z formuláře
+     * @param data
+     */
     //Vytvoření uživatele
-    public void createUser(EvidenceUzivatelDTO data) {
+    public void userCreate(EvidenceUzivatelDTO data) {
 
         EvidenceUzivatelEntity uzivatel = mapper.toEntity(data);
 
@@ -39,14 +43,18 @@ public class EvidenceUzivatelService {
         repository.saveAndFlush(uzivatel);
     }
 
-    //List uživatelů
+    /**
+     * Vrátí výpiš všech uživatelů z databázate (entity), která je převede do DTO objektu a následně do listu
+     * @return uživatele v DTO objektu
+     */
+    //Výpis všech uživatelů
     public List<EvidenceUzivatelDTO> userGetAll() {
 
         List<EvidenceUzivatelDTO> uzivatele = repository.findAll().stream().map(entita -> mapper.toDTO(entita)).toList();
 
             //region Vypsání všech uživatelů do konzole
             System.out.println();
-            System.out.println("Výpis uživatelů:");
+            System.out.println("Výpis všech uživatelů:");
             for(EvidenceUzivatelDTO vypis : uzivatele){
                 System.out.println("ID:" + vypis.getId() + " '" + vypis.getJmeno() + " " + vypis.getPrijmeni()+"' - " + vypis);
             }
@@ -71,7 +79,7 @@ public class EvidenceUzivatelService {
     }
 
     //Detail uživatele
-    public EvidenceUzivatelEntity userGet(Long uzivatel) {
+    public EvidenceUzivatelEntity userGetID(Long uzivatel) {
 
             //region Vypsání zobrazení detailu uživatele do konzole
 
@@ -81,6 +89,23 @@ public class EvidenceUzivatelService {
             //endregion
 
         return repository.findById(uzivatel).orElse(null);
+
+    }
+
+    //Detail uživatele #2
+    public EvidenceUzivatelDTO userGetID2(Long uzivatel) {
+
+        //region Vypsání zobrazení detailu uživatele do konzole
+        System.out.println();
+        System.out.println("Zobrazení detailu uživatele ID: (#2) " + uzivatel);
+
+        //endregion
+
+        EvidenceUzivatelEntity pojisteniDleID = repository
+                .findById(uzivatel)
+                .orElseThrow();
+        return mapper.toDTO(pojisteniDleID);
+
     }
 
     //Získat výpis všech pojištění
@@ -112,5 +137,38 @@ public class EvidenceUzivatelService {
     }
 
 
+    public void updateUser(EvidenceUzivatelDTO data) {
+
+        //Stream - Najdi podle ID
+        EvidenceUzivatelEntity fetchedArticle = repository
+                .findById(data.getId())
+                .orElseThrow();
+
+        mapper.updateEvidenceEntity(data, fetchedArticle);
+        repository.save(fetchedArticle);
+
+    }
+
+
+    public EvidencePojisteniEntity pojisteniFindById(Long id) {
+        return repositoryPojisteni.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pojištění nenalezeno."));
+    }
+
+    public void saveUzivatel(EvidenceUzivatelEntity uzivatel) {
+        repository.save(uzivatel);
+    }
+
+
 
 }
+
+
+
+
+
+
+
+
+
+

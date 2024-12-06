@@ -25,11 +25,23 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="item : ${pojisteni}">
-                <td th:text="${item.predmet}"></td>
+            <tr th:each="pojisteni : ${vypsatVsechnyPojisteni}">
+                <td th:text="${pojisteni.predmet}"></td>
+
                 <td>
-                    SMAZAT
+                    <div class="d-flex">
+                        <form th:action="@{/pojisteni/delete/{id}(id=${pojisteni.id})}" method="post" class="px-1">
+                            <button type="submit" class="btn btn-danger">Smazat</button>
+                        </form>
+                        <form th:action="@{/pojisteni/{id}(id=${pojisteni.id})}" method="get" class="px-1">
+                            <button type="submit" class="btn btn-warning">Detail</button>
+                        </form>
+                        <form th:action="@{/pojisteni/edit/{id}(id=${pojisteni.id})}" method="get" class="px-1">
+                            <button type="submit" class="btn btn-info">Editovat</button>
+                        </form>
+                    </div>
                 </td>
+
             </tr>
             </tbody>
         </table>

@@ -1,7 +1,9 @@
 package cz.dxnxex.evidencepojisteni.controller;
 
 
+import cz.dxnxex.evidencepojisteni.EvidencePojisteniRedirect;
 import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelDTO;
+import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelPojisteniDTO;
 import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
 import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelMapper;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -19,107 +22,101 @@ import java.util.List;
 @RequestMapping("uzivatele")
 public class EvidenceUzivatelController {
 
+    private final EvidencePojisteniRedirect redirect = new EvidencePojisteniRedirect();
+
     @Autowired
     private EvidenceUzivatelService service;
 
     @Autowired
     private EvidenceUzivatelMapper mapper;
 
-    //Zobrazení uživatelů
-    @GetMapping("")
-    public String userIndex(Model model) {
 
-        List<EvidenceUzivatelDTO> uzivatele = service.userGetAll();
-        model.addAttribute("uzivatele", uzivatele);
+        //Zobrazení [Index & vypsání uživatelů]
+        @GetMapping("")
+        public String renderUzivatele(Model model) {
 
-        return "pages/uzivatele/index";
-    }
+            model.addAttribute("vypsatVsechnyUzivatele", service.userGetAll());
+            return "pages/uzivatele/index";
+        }
 
-    @PostMapping("")
-    public String renderUsers(@Valid @ModelAttribute EvidenceUzivatelDTO evidence, BindingResult result) {
+        //Zobrazení [Vytvoření uživatele]
+        @GetMapping("/create")
+        public String renderCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO uzivatel) {
 
-        if (result.hasErrors()) {
-            System.out.println("Chyba:" + result.getFieldError());
-            return userCreateForm(evidence);
+            return "pages/uzivatele/create";
+        }
 
-        } else {
+        //Odeslání [Vytvoření uživatele]
+        @PostMapping("/create")
+        public String postCreate(@Valid @ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
 
-            return "redirect:/uzivatele";
+            if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
+
+                redirectAttributes.addFlashAttribute("vytvoreniUzivatele", evidence);
+                return "redirect:/uzivatele/create";
+
+            } else {
+
+                service.userCreate(evidence);
+                redirectAttributes.addFlashAttribute("success", "Uživatel vytvořen.");
+                return "redirect:/uzivatele";
+            }
+
 
         }
 
-    }
-
-    //Zobrazení vytvoření uživatele
-    @GetMapping("/create")
-    public String userCreateForm(@ModelAttribute EvidenceUzivatelDTO evidence) {
-        return "pages/uzivatele/create";
-    }
-
-    //Odeslání vytvoření uživatele
-    @PostMapping("/create")
-    public String createArticle(@Valid @ModelAttribute EvidenceUzivatelDTO evidence, BindingResult result) {
-
-        if (result.hasErrors()) {
-            System.out.println("Chyba:" + result.getFieldError());
-            return userCreateForm(evidence);
-
-        } else {
-
-            service.createUser(evidence);
-            return "redirect:/uzivatele";
-
-        }
-
-    }
-
-    //Zobrazení detailu uživatele
+    //Zobrazení [Detail uživatele]
     @GetMapping("/{id}")
-    public String userShowDetail(@PathVariable Long id, Model model) {
+    public String renderDetail(@PathVariable Long id, Model model) {
 
-        EvidenceUzivatelEntity uzivatel = service.userGet(id);
-        if (uzivatel == null) {throw new IllegalArgumentException("Uživatel s ID " + id + " neexistuje.");}
-        model.addAttribute("uzivatel", uzivatel);
-
-
+        // Získání uživatele a seznamu pojištění
+        EvidenceUzivatelEntity uzivatel = service.userGetID(id);
         List<EvidencePojisteniEntity> pojisteni = service.pojisteniFindAll();
+
+        model.addAttribute("uzivatel", uzivatel);
         model.addAttribute("pojisteni", pojisteni);
 
         return "pages/uzivatele/detail";
     }
 
 
-    //Zobrazení editace uživatele
-    @GetMapping("/edit/{id}")
-    public String userEdit(@PathVariable Long id, Model model, EvidenceUzivatelDTO pojisteni) {
+        //Zobrazení [Upravit uživatele]
+        @GetMapping("edit/{id}")
+        public String renderEdit(@PathVariable Long id, Model model) {
+
+            model.addAttribute("uzivatel", service.userGetID(id));
+            return "pages/uzivatele/edit";
+
+        }
+
+        //Odeslání [Upravit uživatele]
+        @PostMapping("edit/{id}")
+        public String editArticle(@PathVariable long id,@Valid EvidenceUzivatelDTO evidence,BindingResult result, RedirectAttributes redirectAttributes) {
+
+            if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
+
+                redirectAttributes.addFlashAttribute("uzivatel", evidence);
+                return "redirect:/uzivatele/edit/{id}";
+
+            } else {
+
+                service.userCreate(evidence);
+                redirectAttributes.addFlashAttribute("success", "Uživatel upraven.");
+                return "redirect:/uzivatele";
+            }
 
 
-        EvidenceUzivatelEntity uzivatel = service.userGet(id);
+        }
 
-        if (uzivatel == null) {throw new IllegalArgumentException("Uživatel s ID " + id + " neexistuje.");}
+        //Odeslání [Smazání uživatele]
+        @PostMapping("/delete/{id}")
+        public String userDelete(@PathVariable Long id, RedirectAttributes redirectAttributes){
 
-        model.addAttribute("uzivatel", uzivatel);
+            service.userDelete(id);
+            redirectAttributes.addFlashAttribute("delete", "Uživatel smazán.");
+            return "redirect:/uzivatele";
 
-        return "pages/uzivatele/edit";
-    }
-
-
-
-    //Smazání uživatele
-    @PostMapping("/delete/{id}")
-    public String userDelete(@PathVariable Long id){
-        service.userDelete(id);
-        return "redirect:/uzivatele";
-    }
-
-
-
-
-
-
-
-
-
+        }
 
 
 
@@ -129,3 +126,12 @@ public class EvidenceUzivatelController {
 
 
 }
+
+
+
+/*
+
+ */
+
+
+
