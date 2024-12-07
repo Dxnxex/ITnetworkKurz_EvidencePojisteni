@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="- Lombok / Version - Merge">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_12_2024_17_25__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_12_2024_17_25__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojisteniDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojisteniDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {

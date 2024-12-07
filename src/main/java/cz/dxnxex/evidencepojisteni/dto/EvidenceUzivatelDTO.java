@@ -21,7 +21,5 @@ public class EvidenceUzivatelDTO {
 
         //endregion
 
-        //TEST 2
-
 
 }
