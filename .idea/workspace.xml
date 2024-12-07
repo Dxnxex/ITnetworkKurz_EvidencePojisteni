@@ -23,34 +23,21 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {}
-}]]></component>
-  <component name="GitHubPullRequestState"><![CDATA[{
-  "prStates": [
-    {
-      "id": {
-        "id": "PR_kwDONSJnJM6Eah4w",
-        "number": 1
-      },
-      "lastSeen": 1733589977982
-    }
-  ]
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Dxnxex/ITnetworkKurz_EvidencePojisteni.git",
-    "accountId": "ad51b8ec-657e-4c7a-8c14-6a1bf7ae02cf"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Dxnxex&quot;
   }
-}]]></component>
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Dxnxex/ITnetworkKurz_EvidencePojisteni.git&quot;,
+    &quot;accountId&quot;: &quot;ed875e01-8049-4b31-85e1-daa751896855&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -68,26 +55,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.EvidencePojisteniMain.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.TodoAppApplication.executor": "Run",
-    "Maven.evidencepojisteni [clean].executor": "Run",
-    "Maven.evidencepojisteni [install].executor": "Run",
-    "Maven.todoapp [clean].executor": "Run",
-    "Maven.todoapp [install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "notebook",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/GitHub/EvidencePojisteni/src/main/resources/templates/pages/uzivatele",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.EvidencePojisteniMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TodoAppApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.evidencepojisteni [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.evidencepojisteni [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.todoapp [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.todoapp [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GitHub/EvidencePojisteni/src/main/resources/templates/pages/uzivatele&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\GitHub\EvidencePojisteni\src\main\resources\templates\pages\uzivatele" />
@@ -149,8 +136,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TodoAppApplication" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.EvidencePojisteniMain" />
         <item itemvalue="Application.TodoAppApplication" />
         <item itemvalue="Application.Main" />

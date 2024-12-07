@@ -9,7 +9,7 @@ import java.util.Set;
 @Getter
 public class EvidencePojisteniDTO {
 
-    //TESTOVÁNÍ #6 - Bea
+    //TESTOVÁNÍ #7 - Bea
 
     private Long id;               // Unikátní identifikátor
     private String predmet;        // Předmět pojištění
