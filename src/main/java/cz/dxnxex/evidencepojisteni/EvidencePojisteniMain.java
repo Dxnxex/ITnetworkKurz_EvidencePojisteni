@@ -10,5 +10,6 @@ public class EvidencePojisteniMain {
 
     public static void main(String[] args) {
         SpringApplication.run(EvidencePojisteniMain.class, args);
+
     }
 }

@@ -4,10 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="- TEST #4">
+    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="Spojovací databáze.">
+      <change afterPath="$PROJECT_DIR$/generated/cz/dxnxex/evidencepojisteni/mapper/EvidencePojisteniMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/generated/cz/dxnxex/evidencepojisteni/mapper/EvidenceUzivatelMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/generated/cz/dxnxex/evidencepojisteni/mapper/EvidenceUzivatelPojisteniMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelPojisteniEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceUzivatelPojisteniMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/repository/EvidenceUzivatelPojisteniRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/das" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/EvidencePojisteniMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/EvidencePojisteniMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUzivatelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUzivatelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/PojistovnaController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojisteniDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojisteniDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelPojisteniDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelPojisteniDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidencePojisteniEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidencePojisteniEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceUzivatelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceUzivatelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +67,9 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -55,26 +79,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.EvidencePojisteniMain.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TodoAppApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.evidencepojisteni [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.evidencepojisteni [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.todoapp [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.todoapp [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GitHub/EvidencePojisteni/src/main/resources/templates/pages/uzivatele&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.EvidencePojisteniMain.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.TodoAppApplication.executor": "Run",
+    "LombokPluginIS_LOMBOK_JPS_FIX_ENABLED": "false",
+    "Maven.evidencepojisteni [clean].executor": "Run",
+    "Maven.evidencepojisteni [install].executor": "Run",
+    "Maven.todoapp [clean].executor": "Run",
+    "Maven.todoapp [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/dxnxe/.m2/repository/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
+  <component name="QodanaHighlightedReportService">
+    <option name="localRunNotPublishedPersistedInfo">
+      <LocalReportPersistedInfo>
+        <option name="path" value="C:\Users\dxnxe\AppData\Local\Temp\qodana_output\qodana.sarif.json" />
+        <option name="reportGuid" value="c3723959-22a4-4479-be90-186bb4e67564" />
+        <option name="reportName" value="EvidencePojisteni/qodana/2024-12-07" />
+      </LocalReportPersistedInfo>
+    </option>
+  </component>
+  <component name="QodanaIsSelectedPersistenceService">
+    <option name="selectedOrLoading" value="true" />
+  </component>
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription localRun="true" path="C:\Users\dxnxe\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="c3723959-22a4-4479-be90-186bb4e67564" reportId="EvidencePojisteni/qodana/2024-12-07" />
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\GitHub\EvidencePojisteni\src\main\resources\templates\pages\uzivatele" />
@@ -87,11 +129,11 @@
       <recent name="D:\GitHub\EvidencePojisteni\src\main\resources\templates" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="cz.dxnxex.evidencepojisteni.dto" />
-      <recent name="cz.dxnxex.evidencepojisteni.entity" />
       <recent name="cz.dxnxex.evidencepojisteni.controller" />
-      <recent name="cz.dxnxex.evidencepojisteni.service" />
+      <recent name="cz.dxnxex.evidencepojisteni.mapper" />
+      <recent name="cz.dxnxex.evidencepojisteni.entity" />
       <recent name="cz.dxnxex.evidencepojisteni.repository" />
+      <recent name="cz.dxnxex.evidencepojisteni.dto" />
     </key>
   </component>
   <component name="RunManager" selected="Application.EvidencePojisteniMain">
@@ -207,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733589280849</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="TEST #7">
+      <option name="closed" value="true" />
+      <created>1733590340852</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733590340852</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,6 +290,8 @@
     <MESSAGE value="-Rename and indexes / Lombok" />
     <MESSAGE value="- Lombok / Version - Merge" />
     <MESSAGE value="- TEST #4" />
-    <option name="LAST_COMMIT_MESSAGE" value="- TEST #4" />
+    <MESSAGE value="TEST #7" />
+    <MESSAGE value="Spojovací databáze." />
+    <option name="LAST_COMMIT_MESSAGE" value="Spojovací databáze." />
   </component>
 </project>

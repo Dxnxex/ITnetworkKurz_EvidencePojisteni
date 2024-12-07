@@ -3,7 +3,6 @@ package cz.dxnxex.evidencepojisteni.controller;
 
 import cz.dxnxex.evidencepojisteni.EvidencePojisteniRedirect;
 import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelDTO;
-import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelPojisteniDTO;
 import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
 import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelMapper;
@@ -20,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("uzivatele")
-public class EvidenceUzivatelController {
+public class EvidenceUzivatelController  {
 
     private final EvidencePojisteniRedirect redirect = new EvidencePojisteniRedirect();
 
@@ -37,6 +36,7 @@ public class EvidenceUzivatelController {
 
             model.addAttribute("vypsatVsechnyUzivatele", service.userGetAll());
             return "pages/uzivatele/index";
+
         }
 
         //Zobrazení [Vytvoření uživatele]
@@ -46,9 +46,11 @@ public class EvidenceUzivatelController {
             return "pages/uzivatele/create";
         }
 
+
+
         //Odeslání [Vytvoření uživatele]
         @PostMapping("/create")
-        public String postCreate(@Valid @ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
+        public String postCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
 
             if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
@@ -67,7 +69,7 @@ public class EvidenceUzivatelController {
 
     //Zobrazení [Detail uživatele]
     @GetMapping("/{id}")
-    public String renderDetail(@PathVariable Long id, Model model) {
+    public String renderDetail(@PathVariable Long id, Model model, EvidenceUzivatelDTO uzivatelData) {
 
         // Získání uživatele a seznamu pojištění
         EvidenceUzivatelEntity uzivatel = service.userGetID(id);
@@ -76,7 +78,19 @@ public class EvidenceUzivatelController {
         model.addAttribute("uzivatel", uzivatel);
         model.addAttribute("pojisteni", pojisteni);
 
+
         return "pages/uzivatele/detail";
+    }
+
+    //Odeslání [Přiřazení pojištění]
+    @PostMapping("/{id}")
+    public String pridatPojisteni(@PathVariable Long id, @RequestParam Long pojisteniId) {
+
+
+        service.pridatPojisteniUzivateli(id, pojisteniId);
+
+
+        return "redirect:/uzivatele/" + id;
     }
 
 

@@ -18,9 +18,7 @@
 
                 <form th:object="${vytvoreniUzivatele}" th:action="@{/uzivatele/create}" method="post">
 
-
                         <div th:replace="~{fragments/layout.html :: fragmentFormCreate}"></div>
-
 
                     <button type="submit">Uložit</button>
                 </form>

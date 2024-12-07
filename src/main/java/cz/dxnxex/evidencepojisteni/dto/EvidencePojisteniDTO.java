@@ -1,21 +1,49 @@
 package cz.dxnxex.evidencepojisteni.dto;
 
-import lombok.Getter;
-import lombok.Setter;
 
-import java.util.Set;
-
-@Setter
-@Getter
 public class EvidencePojisteniDTO {
 
-    //TESTOVÁNÍ #7 - Bea
 
     private Long id;               // Unikátní identifikátor
     private String predmet;        // Předmět pojištění
-    private String popis;           // Text pojištění
+    private String popis;          // Text pojištění
+    private String castka;           // Text pojištění
 
-    private Set<Long> uzivatelIDs;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPredmet() {
+        return predmet;
+    }
+
+    public void setPredmet(String predmet) {
+        this.predmet = predmet;
+    }
+
+    public String getPopis() {
+        return popis;
+    }
+
+    public void setPopis(String popis) {this.popis = popis;}
 
 
+    public String getCastka() {
+        return castka;
+    }
+
+    public void setCastka(String castka) {
+        this.castka = castka;
+    }
 }
+
+
+/*
+
+
+ */

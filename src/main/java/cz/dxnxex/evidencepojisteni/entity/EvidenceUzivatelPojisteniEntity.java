@@ -1,15 +1,24 @@
-package cz.dxnxex.evidencepojisteni.dto;
+package cz.dxnxex.evidencepojisteni.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class EvidenceUzivatelPojisteniEntity {
 
 
-import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
-import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-public class EvidenceUzivatelPojisteniDTO {
-
-
-    private Long id;                                // Unikátní identifikátor
+    @ManyToOne
+    @JoinColumn(name = "uzivatel_id")
     private EvidenceUzivatelEntity uzivatel;
+
+    @ManyToOne
+    @JoinColumn(name = "pojisteni_id")
     private EvidencePojisteniEntity pojisteni;
+
+    private Double castka;
 
 
     public Long getId() {
@@ -35,4 +44,14 @@ public class EvidenceUzivatelPojisteniDTO {
     public void setPojisteni(EvidencePojisteniEntity pojisteni) {
         this.pojisteni = pojisteni;
     }
+
+
+    public Double getCastka() {
+        return castka;
+    }
+
+    public void setCastka(Double castka) {
+        this.castka = castka;
+    }
 }
+
