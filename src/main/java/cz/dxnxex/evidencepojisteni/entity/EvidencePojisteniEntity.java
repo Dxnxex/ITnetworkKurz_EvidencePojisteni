@@ -1,10 +1,11 @@
 package cz.dxnxex.evidencepojisteni.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Setter
+@Getter
 @Entity
 public class EvidencePojisteniEntity {
 
@@ -14,26 +15,6 @@ public class EvidencePojisteniEntity {
     private Long id;
     private String predmet;
     private String popis;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPredmet() {
-        return predmet;
-    }
-
-    public void setPredmet(String predmet) {
-        this.predmet = predmet;
-    }
-
-    public String getPopis() {return popis;}
-
-    public void setPopis(String popis) {this.popis = popis;}
 
 }
 

@@ -1,14 +1,11 @@
 package cz.dxnxex.evidencepojisteni.entity;
 
-import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+@Setter
+@Getter
 @Entity
 public class EvidenceUzivatelEntity {
 
@@ -27,81 +24,7 @@ public class EvidenceUzivatelEntity {
     private String psc;            // Poštovní směrovací číslo (PSČ)
 
 
-
     //endregion
-
-    //region Gettery & Settery
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getJmeno() {
-        return jmeno;
-    }
-
-    public void setJmeno(String jmeno) {
-        this.jmeno = jmeno;
-    }
-
-    public String getPrijmeni() {
-        return prijmeni;
-    }
-
-    public void setPrijmeni(String prijmeni) {
-        this.prijmeni = prijmeni;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefon() {
-        return telefon;
-    }
-
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
-    }
-
-    public String getUliceACislo() {
-        return uliceACislo;
-    }
-
-    public void setUliceACislo(String uliceACislo) {
-        this.uliceACislo = uliceACislo;
-    }
-
-    public String getMesto() {
-        return mesto;
-    }
-
-    public void setMesto(String mesto) {
-        this.mesto = mesto;
-    }
-
-    public String getPsc() {
-        return psc;
-    }
-
-    public void setPsc(String psc) {
-        this.psc = psc;
-    }
-
-
-
-    //endregion
-
 
 
 

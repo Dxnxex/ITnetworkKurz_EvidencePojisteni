@@ -4,32 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="-Rename and indexes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/EvidencePojisteniRedirect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/fade.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/edit.html" afterDir="false" />
+    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="- Lombok / Version - Merge">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidencePojisteniController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidencePojisteniController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUzivatelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUzivatelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojisteniDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojisteniDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelPojisteniDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelPojisteniDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidencePojisteniEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidencePojisteniEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelPojisteniEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidencePojisteniService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidencePojisteniService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceUzivatelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceUzivatelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/styles/styleNav.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/styles/styleNav.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,26 +56,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.EvidencePojisteniMain.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.TodoAppApplication.executor": "Run",
-    "Maven.evidencepojisteni [clean].executor": "Run",
-    "Maven.evidencepojisteni [install].executor": "Run",
-    "Maven.todoapp [clean].executor": "Run",
-    "Maven.todoapp [install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/GitHub/EvidencePojisteni/src/main/resources/templates/pages/uzivatele",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.EvidencePojisteniMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TodoAppApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.evidencepojisteni [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.evidencepojisteni [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.todoapp [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.todoapp [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GitHub/EvidencePojisteni/src/main/resources/templates/pages/uzivatele&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\GitHub\EvidencePojisteni\src\main\resources\templates\pages\uzivatele" />
@@ -204,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732960190857</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="-Rename and indexes / Lombok">
+      <option name="closed" value="true" />
+      <created>1733512904583</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733512904583</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,6 +210,8 @@
     <MESSAGE value="- Zobrazení pojištěných z databáze&#10;- Vytvoření pojištěného&#10;- Propojení DB&#10;- Smazání pojištěného&#10;- Základí kostra stránky" />
     <MESSAGE value="-Indexování&#10;-Zobrazení pojištění @ pojištěných" />
     <MESSAGE value="-Rename and indexes" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Rename and indexes" />
+    <MESSAGE value="-Rename and indexes / Lombok" />
+    <MESSAGE value="- Lombok / Version - Merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Lombok / Version - Merge" />
   </component>
 </project>

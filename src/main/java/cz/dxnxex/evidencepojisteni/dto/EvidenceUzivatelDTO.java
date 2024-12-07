@@ -1,5 +1,10 @@
 package cz.dxnxex.evidencepojisteni.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class EvidenceUzivatelDTO {
 
 
@@ -16,32 +21,5 @@ public class EvidenceUzivatelDTO {
 
         //endregion
 
-        //region Gettery & Settery
-
-                public Long     getId()                                 {return id;}
-                public void     setId(Long id)                          {this.id = id;}
-
-                public String   getJmeno()                              { return jmeno; }
-                public void     setJmeno(String jmeno)                  { this.jmeno = jmeno; }
-
-                public String   getPrijmeni()                           { return prijmeni; }
-                public void     setPrijmeni(String prijmeni)            { this.prijmeni = prijmeni; }
-
-                public String   getEmail()                              { return email; }
-                public void     setEmail(String email)                  { this.email = email; }
-
-                public String   getTelefon()                            { return telefon; }
-                public void     setTelefon(String telefon)              { this.telefon = telefon; }
-
-                public String   getUliceACislo()                        { return uliceACislo; }
-                public void     setUliceACislo(String uliceACislo)      { this.uliceACislo = uliceACislo; }
-
-                public String   getMesto()                              { return mesto; }
-                public void     setMesto(String mesto)                  { this.mesto = mesto; }
-
-                public String   getPsc()                                { return psc; }
-                public void     setPsc(String psc)                      { this.psc = psc; }
-
-        //endregion
 
 }
