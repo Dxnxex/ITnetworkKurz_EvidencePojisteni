@@ -1,5 +1,9 @@
 package cz.dxnxex.evidencepojisteni.dto;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
 public class EvidenceUzivatelDTO {
 
 

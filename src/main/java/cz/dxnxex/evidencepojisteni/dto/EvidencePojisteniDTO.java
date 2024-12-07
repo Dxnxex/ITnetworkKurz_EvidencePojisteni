@@ -5,6 +5,8 @@ import java.time.LocalDate;
 public class EvidencePojisteniDTO {
 
 
+
+
     private Long id;               // Unikátní identifikátor
     private String predmet;        // Předmět pojištění
 
