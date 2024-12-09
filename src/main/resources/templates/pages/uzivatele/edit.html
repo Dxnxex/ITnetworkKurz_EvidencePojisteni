@@ -20,6 +20,7 @@
 
                 <form th:action="@{'/uzivatele/edit/' + ${id}}" method="post" th:object="${uzivatel}">
 
+
                     <div th:replace="~{fragments/layout.html :: fragmentFormCreate}"></div>
 
                     <button type="submit">Uložit</button>

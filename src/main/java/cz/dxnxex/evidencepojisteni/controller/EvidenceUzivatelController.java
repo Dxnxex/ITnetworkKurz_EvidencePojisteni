@@ -5,6 +5,7 @@ import cz.dxnxex.evidencepojisteni.EvidencePojisteniRedirect;
 import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelDTO;
 import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelPojisteniEntity;
 import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelMapper;
 import cz.dxnxex.evidencepojisteni.service.EvidenceUzivatelService;
 import jakarta.validation.Valid;
@@ -75,8 +76,10 @@ public class EvidenceUzivatelController  {
         EvidenceUzivatelEntity uzivatel = service.userGetID(id);
         List<EvidencePojisteniEntity> pojisteni = service.pojisteniFindAll();
 
-        model.addAttribute("uzivatel", uzivatel);
-        model.addAttribute("pojisteni", pojisteni);
+        model.addAttribute("uzivatel",              uzivatel);
+        model.addAttribute("pojisteni",             pojisteni);
+        model.addAttribute("castka",                null);
+        model.addAttribute("uzivatelovaPojisteni",  service.getPojisteniDleID(id));
 
 
         return "pages/uzivatele/detail";
@@ -84,17 +87,40 @@ public class EvidenceUzivatelController  {
 
     //Odeslání [Přiřazení pojištění]
     @PostMapping("/{id}")
-    public String pridatPojisteni(@PathVariable Long id, @RequestParam Long pojisteniId) {
+    public String pridatPojisteni(@PathVariable Long id, @RequestParam Long pojisteniId, @RequestParam int castka) {
 
-
-        service.pridatPojisteniUzivateli(id, pojisteniId);
-
+        service.pridatPojisteniUzivateli(id, pojisteniId, castka);
 
         return "redirect:/uzivatele/" + id;
     }
 
+    //Zobrazení [Upravit uživatelovo pojištění]
+    @GetMapping("pojisteni/edit/{id}")
+    public String renderEditUzivatelPojisteni(@PathVariable Long id, Model model) {
 
-        //Zobrazení [Upravit uživatele]
+        // Získání uživatele a seznamu pojištění
+        EvidenceUzivatelPojisteniEntity uzivatel = service.userPojisteniGetID(id);
+        model.addAttribute("pojisteni",              uzivatel);
+
+
+        return "pages/uzivatele/pojisteniEdit";
+
+    }
+
+    //Odeslání [Upravit pojištění uživatele ]
+    @PostMapping("pojisteni/edit/{id}")
+    public String editUzivatelPojisteni(@PathVariable Long id, @RequestParam int castka)  {
+
+            Long uzivatelID = service.userPojisteniGetID(id).getUzivatel().getId();
+            Long pojisteniID = service.userPojisteniGetID(id).getId();
+
+            service.upravitPojisteniUzivateli(pojisteniID, castka);
+
+            return "redirect:/uzivatele/" + uzivatelID;
+    }
+
+
+    //Zobrazení [Upravit uživatele]
         @GetMapping("edit/{id}")
         public String renderEdit(@PathVariable Long id, Model model) {
 
@@ -102,6 +128,7 @@ public class EvidenceUzivatelController  {
             return "pages/uzivatele/edit";
 
         }
+
 
         //Odeslání [Upravit uživatele]
         @PostMapping("edit/{id}")
@@ -132,6 +159,19 @@ public class EvidenceUzivatelController  {
 
         }
 
+
+        //Odeslání [Smazání uživatele]
+        @PostMapping("/pojisteni/delete/{id}")
+        public String userDeletePojisteni(@PathVariable Long id, RedirectAttributes redirectAttributes){
+
+            service.userDeleteUzivatelPojisteni(id);
+            System.out.println(id);
+            redirectAttributes.addFlashAttribute("delete", "Uživatel smazán.");
+
+
+            return "redirect:/uzivatele";
+
+        }
 
 
 

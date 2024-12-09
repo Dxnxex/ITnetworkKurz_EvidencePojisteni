@@ -10,7 +10,7 @@ public class EvidenceUzivatelPojisteniDTO {
     private Long id;                                // Unikátní identifikátor
     private EvidenceUzivatelEntity uzivatel;
     private EvidencePojisteniEntity pojisteni;
-
+    private int castka;
 
     public Long getId() {
         return id;
@@ -34,5 +34,13 @@ public class EvidenceUzivatelPojisteniDTO {
 
     public void setPojisteni(EvidencePojisteniEntity pojisteni) {
         this.pojisteni = pojisteni;
+    }
+
+    public int getCastka() {
+        return castka;
+    }
+
+    public void setCastka(int castka) {
+        this.castka = castka;
     }
 }

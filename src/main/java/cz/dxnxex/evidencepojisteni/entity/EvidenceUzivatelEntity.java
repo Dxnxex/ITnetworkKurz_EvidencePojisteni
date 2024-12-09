@@ -12,8 +12,10 @@ public class EvidenceUzivatelEntity {
 
     //region Proměnné
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;               // Unikátní identifikátor
+
     private String jmeno;          // Jméno osoby
     private String prijmeni;       // Příjmení osoby
     private String email;          // Emailová adresa
@@ -23,13 +25,8 @@ public class EvidenceUzivatelEntity {
     private String psc;            // Poštovní směrovací číslo (PSČ)
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "evidence_uzivatel_pojisteni",
-            joinColumns = @JoinColumn(name = "uzivatel_id"),
-            inverseJoinColumns = @JoinColumn(name = "pojisteni_id")
-    )
-    private List<EvidencePojisteniEntity> pojisteni = new ArrayList<>();
+    @OneToMany(mappedBy = "uzivatel", cascade = CascadeType.ALL)
+    private List<EvidenceUzivatelPojisteniEntity> uzivatelovaPojisteni = new ArrayList<>();;
 
 
 
@@ -100,12 +97,12 @@ public class EvidenceUzivatelEntity {
         this.psc = psc;
     }
 
-    public List<EvidencePojisteniEntity> getPojisteni() {
-        return pojisteni;
+    public List<EvidenceUzivatelPojisteniEntity> getUzivatelovaPojisteni() {
+        return uzivatelovaPojisteni;
     }
 
-    public void setPojisteni(List<EvidencePojisteniEntity> pojisteni) {
-        this.pojisteni = pojisteni;
+    public void setUzivatelovaPojisteni(List<EvidenceUzivatelPojisteniEntity> uzivatelovaPojisteni) {
+        this.uzivatelovaPojisteni = uzivatelovaPojisteni;
     }
 }
 

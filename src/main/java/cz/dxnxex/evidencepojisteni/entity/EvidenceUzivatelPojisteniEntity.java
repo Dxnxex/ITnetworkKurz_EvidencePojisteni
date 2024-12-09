@@ -8,7 +8,7 @@ public class EvidenceUzivatelPojisteniEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;               // Unikátní identifikátor
 
     @ManyToOne
     @JoinColumn(name = "uzivatel_id")
@@ -18,7 +18,7 @@ public class EvidenceUzivatelPojisteniEntity {
     @JoinColumn(name = "pojisteni_id")
     private EvidencePojisteniEntity pojisteni;
 
-    private Double castka;
+    private int castka;
 
 
     public Long getId() {
@@ -46,11 +46,11 @@ public class EvidenceUzivatelPojisteniEntity {
     }
 
 
-    public Double getCastka() {
+    public int getCastka() {
         return castka;
     }
 
-    public void setCastka(Double castka) {
+    public void setCastka(int castka) {
         this.castka = castka;
     }
 }
