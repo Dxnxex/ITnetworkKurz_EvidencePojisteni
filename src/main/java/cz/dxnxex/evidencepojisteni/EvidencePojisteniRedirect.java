@@ -7,7 +7,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EvidencePojisteniRedirect {
 
 
-    //Vytvoření chybové hlášky
+    //Vytvoření chybové hlášky #OLD
     public boolean checkForErrors(BindingResult result) {
         if (result.hasErrors()) {
             System.out.println("Chyba: " + result.getFieldError());

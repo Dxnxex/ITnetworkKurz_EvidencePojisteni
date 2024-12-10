@@ -12,7 +12,10 @@
         <section class="container px-2 my-5">
 
 
+            <!--Flash messages-->
+            <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
 
+            <h5 class="nadpis">Detaily uživatele</h5>
 
             <div class="container mt-4">
                 <table class="table ">
@@ -44,14 +47,15 @@
                 </table>
             </div>
 
+            <br>
 
 
-            <h3>Pojištění uživatele:</h3>
+            <h5 class="nadpis my-2">Pojištění uživatele:</h5>
             <tr th:each="item : ${uzivatelovaPojisteni}">
                 <td th:text="${item.pojisteni.predmet} + ': ' +  ${item.castka} + ' Kč'"></td>
 
                 <td>
-                    <div class="d-flex">
+                    <div class="d-flex mb-4">
                         <form th:action="@{/uzivatele/pojisteni/delete/{id} (id=${item.id}) }" method="post" class="px-1">
                             <button type="submit" class="btn btn-danger">Smazat</button>
                         </form>
@@ -60,14 +64,11 @@
                         </form>
                     </div>
                 </td>
-
             </tr>
-
-
 
             <div>
                 <p></p>
-                <h3>Přidat nové pojištění</h3>
+                <h5 class="nadpis my-2">Přidat nové pojištění:</h5>
                 <form th:action="@{'/uzivatele/' + ${uzivatel.id}}" method="post">
                     <label for="pojisteni">Vyberte pojištění:</label>
                     <select id="pojisteni" name="pojisteniId" required>

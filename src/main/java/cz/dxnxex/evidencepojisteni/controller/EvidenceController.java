@@ -15,11 +15,18 @@ public class EvidenceController {
     @Autowired
     private EvidencePojisteniService service;
 
-
+    /**
+     * RENDEROVÁNÍ HLAVNÍ STRÁNKY
+     * @param model
+     * @return
+     */
     @GetMapping("")
     public String renderIndex(Model model) {
         return "pages/home/index";
     }
+
+
+
 
 
 

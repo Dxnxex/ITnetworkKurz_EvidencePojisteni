@@ -5,7 +5,6 @@ import cz.dxnxex.evidencepojisteni.EvidencePojisteniRedirect;
 import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelDTO;
 import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
-import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelPojisteniEntity;
 import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelMapper;
 import cz.dxnxex.evidencepojisteni.service.EvidenceUzivatelService;
 import jakarta.validation.Valid;
@@ -18,9 +17,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+
 @Controller
 @RequestMapping("uzivatele")
 public class EvidenceUzivatelController  {
+
+    private final String returnPage = "pages/uzivatele/";
+    private final String redirectPage = "redirect:/uzivatele";
 
     private final EvidencePojisteniRedirect redirect = new EvidencePojisteniRedirect();
 
@@ -31,147 +34,156 @@ public class EvidenceUzivatelController  {
     private EvidenceUzivatelMapper mapper;
 
 
-        //Zobrazení [Index & vypsání uživatelů]
-        @GetMapping("")
-        public String renderUzivatele(Model model) {
+    /**
+     * ZOBRAZENÍ HLAVNÍ STRÁNKY POJIŠTĚNCŮ
+     * @param model
+     * @return
+     */
+    @GetMapping("")
+        public String renderPerson(Model model) {
 
-            model.addAttribute("vypsatVsechnyUzivatele", service.userGetAll());
-            return "pages/uzivatele/index";
+            model.addAttribute("vypsatVsechnyUzivatele", service.userGetAllList());
+            return returnPage + "index";
 
         }
 
-        //Zobrazení [Vytvoření uživatele]
-        @GetMapping("/create")
-        public String renderCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO uzivatel) {
+    /**
+     * ZOBRAZENÍ VYTVOŘENÍ POJIŠTĚNCE
+     * @param uzivatel
+     * @return
+     */
+    @GetMapping("/create")
+        public String renderPersonCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO uzivatel) {
 
-            return "pages/uzivatele/create";
+        return returnPage + "create";
+
         }
 
 
-
-        //Odeslání [Vytvoření uživatele]
+    /**
+     * ZOBRAZENÍ FORMULÁŘE PRO VYTVOŘENÍ POJIŠTĚNCE
+     * @param evidence
+     * @param result
+     * @param redirectAttributes
+     * @return
+     */
         @PostMapping("/create")
-        public String postCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
+        public String createPerson(@Valid @ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
 
             if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
                 redirectAttributes.addFlashAttribute("vytvoreniUzivatele", evidence);
-                return "redirect:/uzivatele/create";
+                return redirectPage + "/" + "create";
+
 
             } else {
 
                 service.userCreate(evidence);
                 redirectAttributes.addFlashAttribute("success", "Uživatel vytvořen.");
-                return "redirect:/uzivatele";
+
+                return redirectPage + "";
             }
 
 
         }
 
-    //Zobrazení [Detail uživatele]
+    /**
+     * ZOBRAZENÍ DETAILU POJIŠTĚNCE
+     * @param id
+     * @param model
+     * @param uzivatelData
+     * @return
+     */
     @GetMapping("/{id}")
-    public String renderDetail(@PathVariable Long id, Model model, EvidenceUzivatelDTO uzivatelData) {
+    public String renderPersonDetail(@PathVariable Long id, Model model, EvidenceUzivatelDTO uzivatelData) {
 
         // Získání uživatele a seznamu pojištění
         EvidenceUzivatelEntity uzivatel = service.userGetID(id);
-        List<EvidencePojisteniEntity> pojisteni = service.pojisteniFindAll();
+        List<EvidencePojisteniEntity> pojisteni = service.insuranceFindAllList();
 
         model.addAttribute("uzivatel",              uzivatel);
         model.addAttribute("pojisteni",             pojisteni);
         model.addAttribute("castka",                null);
-        model.addAttribute("uzivatelovaPojisteni",  service.getPojisteniDleID(id));
+        model.addAttribute("uzivatelovaPojisteni",  service.userInsuranceGetIDList(id));
 
 
-        return "pages/uzivatele/detail";
+        return returnPage + "detail";
     }
 
-    //Odeslání [Přiřazení pojištění]
+    /**
+     * VYTVOŘENÍ POJIŠTĚNÍ A NÁSLEDNÉ PŘÍŘAZENÍ K POJIŠTĚNCI
+     * @param id
+     * @param pojisteniId
+     * @param castka
+     * @return
+     */
     @PostMapping("/{id}")
-    public String pridatPojisteni(@PathVariable Long id, @RequestParam Long pojisteniId, @RequestParam int castka) {
+    public String createPersonInsurance(@PathVariable Long id, @RequestParam Long pojisteniId, @RequestParam int castka, RedirectAttributes redirectAttributes) {
 
-        service.pridatPojisteniUzivateli(id, pojisteniId, castka);
-
-        return "redirect:/uzivatele/" + id;
-    }
-
-    //Zobrazení [Upravit uživatelovo pojištění]
-    @GetMapping("pojisteni/edit/{id}")
-    public String renderEditUzivatelPojisteni(@PathVariable Long id, Model model) {
-
-        // Získání uživatele a seznamu pojištění
-        EvidenceUzivatelPojisteniEntity uzivatel = service.userPojisteniGetID(id);
-        model.addAttribute("pojisteni",              uzivatel);
-
-
-        return "pages/uzivatele/pojisteniEdit";
-
-    }
-
-    //Odeslání [Upravit pojištění uživatele ]
-    @PostMapping("pojisteni/edit/{id}")
-    public String editUzivatelPojisteni(@PathVariable Long id, @RequestParam int castka)  {
-
-            Long uzivatelID = service.userPojisteniGetID(id).getUzivatel().getId();
-            Long pojisteniID = service.userPojisteniGetID(id).getId();
-
-            service.upravitPojisteniUzivateli(pojisteniID, castka);
-
-            return "redirect:/uzivatele/" + uzivatelID;
+        service.userAddInsurance(id, pojisteniId, castka);
+        redirectAttributes.addFlashAttribute("success", "Uživatelovo pojištění vytvořeno");
+        return redirectPage + "/" + id;
     }
 
 
-    //Zobrazení [Upravit uživatele]
+
+
+    /**
+     * ZOBRAZENÍ ÚPRAVY POJIŠTĚNÉHO
+     * @param id
+     * @param model
+     * @return
+     */
         @GetMapping("edit/{id}")
-        public String renderEdit(@PathVariable Long id, Model model) {
+        public String renderEditPerson(@PathVariable Long id, Model model) {
 
             model.addAttribute("uzivatel", service.userGetID(id));
-            return "pages/uzivatele/edit";
+            return returnPage + "edit";
 
         }
 
-
-        //Odeslání [Upravit uživatele]
+    /**
+     * ÚPRAVA POJIŠTĚNÉHO
+     * @param id
+     * @param evidence
+     * @param result
+     * @param redirectAttributes
+     * @return
+     */
         @PostMapping("edit/{id}")
-        public String editArticle(@PathVariable long id,@Valid EvidenceUzivatelDTO evidence,BindingResult result, RedirectAttributes redirectAttributes) {
+        public String editPerson(@PathVariable long id,@Valid EvidenceUzivatelDTO evidence,BindingResult result, RedirectAttributes redirectAttributes) {
 
             if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
                 redirectAttributes.addFlashAttribute("uzivatel", evidence);
-                return "redirect:/uzivatele/edit/{id}";
+                return redirectPage + "edit/{id}";
 
             } else {
 
                 service.userCreate(evidence);
-                redirectAttributes.addFlashAttribute("success", "Uživatel upraven.");
-                return "redirect:/uzivatele";
+                redirectAttributes.addFlashAttribute("success", "Uživatel upraven");
+                return redirectPage + "";
             }
 
 
         }
 
-        //Odeslání [Smazání uživatele]
+    /**
+     * SMAZÁNÍ POJIŠTĚNÉHO
+     * @param id
+     * @param redirectAttributes
+     * @return
+     */
         @PostMapping("/delete/{id}")
-        public String userDelete(@PathVariable Long id, RedirectAttributes redirectAttributes){
+        public String deletePerson(@PathVariable Long id, RedirectAttributes redirectAttributes){
 
             service.userDelete(id);
             redirectAttributes.addFlashAttribute("delete", "Uživatel smazán.");
-            return "redirect:/uzivatele";
+            return redirectPage + "";
+
 
         }
 
-
-        //Odeslání [Smazání uživatele]
-        @PostMapping("/pojisteni/delete/{id}")
-        public String userDeletePojisteni(@PathVariable Long id, RedirectAttributes redirectAttributes){
-
-            service.userDeleteUzivatelPojisteni(id);
-            System.out.println(id);
-            redirectAttributes.addFlashAttribute("delete", "Uživatel smazán.");
-
-
-            return "redirect:/uzivatele";
-
-        }
 
 
 
@@ -180,12 +192,4 @@ public class EvidenceUzivatelController  {
 
 
 }
-
-
-
-/*
-
- */
-
-
 

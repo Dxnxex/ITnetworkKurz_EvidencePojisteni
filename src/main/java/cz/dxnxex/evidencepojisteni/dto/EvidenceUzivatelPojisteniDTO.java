@@ -7,10 +7,12 @@ import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
 public class EvidenceUzivatelPojisteniDTO {
 
 
-    private Long id;                                // Unikátní identifikátor
-    private EvidenceUzivatelEntity uzivatel;
-    private EvidencePojisteniEntity pojisteni;
-    private int castka;
+    private Long id;                                    // Unikátní identifikátor
+    private EvidenceUzivatelEntity uzivatel;            // Entita uživatele
+    private EvidencePojisteniEntity pojisteni;          // Entita pojištění
+    private int castka;                                 // Částka pojištění
+
+    //region GETTERS & SETTERS
 
     public Long getId() {
         return id;
@@ -43,4 +45,8 @@ public class EvidenceUzivatelPojisteniDTO {
     public void setCastka(int castka) {
         this.castka = castka;
     }
+
+    //endregion
+
+
 }

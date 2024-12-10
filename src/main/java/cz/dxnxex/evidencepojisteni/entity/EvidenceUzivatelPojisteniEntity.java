@@ -21,6 +21,8 @@ public class EvidenceUzivatelPojisteniEntity {
     private int castka;
 
 
+    //region GETTERS & SETTERS
+
     public Long getId() {
         return id;
     }
@@ -53,5 +55,10 @@ public class EvidenceUzivatelPojisteniEntity {
     public void setCastka(int castka) {
         this.castka = castka;
     }
+
+    //endregion
+
+
+
 }
 

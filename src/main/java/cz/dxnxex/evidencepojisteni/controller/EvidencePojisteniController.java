@@ -11,100 +11,135 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("pojisteni")
 public class EvidencePojisteniController {
+
+    private final String returnPage = "pages/pojisteni/";
+    private final String redirectPage = "redirect:/pojisteni";
 
     private final EvidencePojisteniRedirect redirect = new EvidencePojisteniRedirect();
 
     @Autowired
     private EvidencePojisteniService service;
 
-        //Zobrazení [Index & vypsání uživatelů]
-        @GetMapping("")
-        public String renderPojisteni(Model model) {
+    /**
+     * ZOBRAZENÍ VŠECH POJIŠTĚNÍ
+     * @param model
+     * @return
+     */
+    @GetMapping("")
+        public String renderInsurance(Model model) {
 
-            model.addAttribute("vypsatVsechnyPojisteni", service.pojisteniGetAll());
-            return "pages/pojisteni/index";
-
-        }
-
-        //Zobrazení [Vytvoření pojíštění]
-        @GetMapping("/create")
-        public String renderCreateForm(@ModelAttribute EvidencePojisteniDTO evidence) {
-            return "pages/pojisteni/create";
-        }
-
-        //Odeslání [Vytvoření pojištění]
-        @PostMapping("/create")
-        public String postCreate(@Valid @ModelAttribute EvidencePojisteniDTO pojisteni, BindingResult result) {
-
-
-            if (redirect.checkForErrors(result)) {
-
-                return "redirect:/pojisteni";
-
-            } else {
-
-                service.createItem(pojisteni);
-                return "redirect:/pojisteni";
-            }
-
+            model.addAttribute("vypsatVsechnyPojisteni", service.insuranceGetAllList());
+            return returnPage + "index";
 
         }
 
-        //Zobrazení [Detail pojisteni]
-        @GetMapping("/{id}")
-        public String renderDetail(@PathVariable Long id, Model model) {
+    /**
+     * ZOBRAZENÍ FORMULÁŘE PRO VYTVOŘENÍ POJÍŠTĚNÍ
+     * @param evidence
+     * @return
+     */
+    @GetMapping("/create")
+        public String renderCreateInsurance(@ModelAttribute EvidencePojisteniDTO evidence) {
 
-            EvidencePojisteniEntity pojisteni = service.pojisteniGetID(id);
-
-            if (pojisteni == null) {throw new IllegalArgumentException("Pojištění s ID " + id + " neexistuje.");}
-
-            model.addAttribute("pojisteni", pojisteni);
-
-            return "pages/pojisteni/detail";
-        }
-
-        //Zobrazení [Upravit pojisteni]
-        @GetMapping("edit/{id}")
-        public String renderEdit(@PathVariable Long id, Model model) {
-
-            model.addAttribute("pojisteni", service.pojisteniGetID(id));
-            return "pages/pojisteni/edit";
+        return returnPage + "create";
 
         }
 
-        //Odeslání [Upravit pojištění]
-        @PostMapping("edit/{id}")
-        public String postEdit(@PathVariable long id, @Valid EvidencePojisteniDTO pojisteni, BindingResult result) {
+    /**
+     * VYTVOŘENÍ POJIŠTĚNÍ
+     * @param pojisteni
+     * @param result
+     * @param redirectAttributes
+     * @return
+     */
+    @PostMapping("/create")
+    public String createInsurance(@Valid @ModelAttribute EvidencePojisteniDTO pojisteni, BindingResult result, RedirectAttributes redirectAttributes) {
 
-            if (redirect.checkForErrors(result)) {
+        if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
-                return "redirect:/pojisteni";
+            return redirectPage + "/" + "create";
 
-            } else {
+        } else {
 
-                service.createItem(pojisteni);
-                return "redirect:/pojisteni";
-            }
-
-
+            service.insuranceCreate(pojisteni);
+            redirectAttributes.addFlashAttribute("success", "Pojištění upraveno");
+            return redirectPage + "";
         }
 
-        //Odeslání [Smazání pojisteni]
+    }
+
+    /**
+     * ZOBRAZENÍ DETAILU POJIŠTĚNÍ
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("/{id}")
+    public String renderDetailInsurance(@PathVariable Long id, Model model) {
+
+        EvidencePojisteniEntity pojisteni = service.insuranceGetID(id);
+        model.addAttribute("pojisteni", pojisteni);
+
+        return returnPage + "detail";
+    }
+
+    /**
+     * ZOBRAZENÍ ÚPRAVY POJIŠTĚNÍ
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("edit/{id}")
+    public String renderEditInsurance(@PathVariable Long id, Model model) {
+
+        model.addAttribute("pojisteni", service.insuranceGetID(id));
+        return returnPage + "edit";
+
+    }
+
+    /**
+     * ÚPRAVA POJIŠTĚNÍ
+     * @param id
+     * @param pojisteni
+     * @param result
+     * @return
+     */
+    @PostMapping("edit/{id}")
+    public String editInsurance(@PathVariable long id, @Valid EvidencePojisteniDTO pojisteni, BindingResult result, RedirectAttributes redirectAttributes) {
+
+        if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
+
+            return redirectPage + "/edit/" + id;
+
+        } else {
+
+            service.insuranceCreate(pojisteni);
+            redirectAttributes.addFlashAttribute("success", "Pojištění upraveno");
+            return redirectPage + "";
+        }
+
+    }
+
+
+    /**
+     * SMAZÁNÍ POJIŠTĚNÍ
+     * @param id
+     * @return
+     */
         @PostMapping("/delete/{id}")
-        public String postDelete(@PathVariable Long id){
-            service.pojisteniDelete(id);
-            return "redirect:/pojisteni";
+        public String deleteInsurance(@PathVariable Long id, RedirectAttributes redirectAttributes){
+
+            service.insuranceDelete(id);
+            redirectAttributes.addFlashAttribute("delete", "Pojištění smazáno");
+            return redirectPage + "";
+
         }
 
 
 
 }
-
-/*
-
-
- */

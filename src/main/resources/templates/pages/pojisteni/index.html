@@ -11,40 +11,51 @@
 
     <section class="container px-2 my-5">
 
+        <!--Flash messages-->
+        <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
+
+
         <!-- Vytvořit pojištění-->
         <div class="my-5 px-2 justify-content-end align-items-center text-center">
             <a th:href="@{/pojisteni/create}" ><button class="btn btn-success">Vytvořit pojištění</button> </a>
         </div>
 
 
-        <!--Tabulka pojištění-->
-        <table class="pojistenciTable mb-5">
-            <thead>
-            <tr>
-                <th>Předmět</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="pojisteni : ${vypsatVsechnyPojisteni}">
-                <td th:text="${pojisteni.predmet}"></td>
+        <!-- Tabulka pojištění -->
+        <div class="container mb-5">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
 
-                <td>
-                    <div class="d-flex">
-                        <form th:action="@{/pojisteni/delete/{id}(id=${pojisteni.id})}" method="post" class="px-1">
-                            <button type="submit" class="btn btn-danger">Smazat</button>
-                        </form>
-                        <form th:action="@{/pojisteni/{id}(id=${pojisteni.id})}" method="get" class="px-1">
-                            <button type="submit" class="btn btn-warning">Detail</button>
-                        </form>
-                        <form th:action="@{/pojisteni/edit/{id}(id=${pojisteni.id})}" method="get" class="px-1">
-                            <button type="submit" class="btn btn-info">Editovat</button>
-                        </form>
-                    </div>
-                </td>
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Předmět</th>
+                        <th>Akce</th>
+                    </tr>
+                    </thead>
 
-            </tr>
-            </tbody>
-        </table>
+                    <tbody>
+                    <tr th:each="pojisteni : ${vypsatVsechnyPojisteni}">
+                        <td th:text="${pojisteni.predmet}"></td>
+                        <td>
+                            <div class="d-flex flex-wrap gap-2">
+                                <form th:action="@{/pojisteni/delete/{id}(id=${pojisteni.id})}" method="post">
+                                    <button type="submit" class="btn btn-danger btn-sm">Smazat</button>
+                                </form>
+                                <form th:action="@{/pojisteni/{id}(id=${pojisteni.id})}" method="get">
+                                    <button type="submit" class="btn btn-warning btn-sm">Detail</button>
+                                </form>
+                                <form th:action="@{/pojisteni/edit/{id}(id=${pojisteni.id})}" method="get">
+                                    <button type="submit" class="btn btn-info btn-sm">Editovat</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
 
     </section>
 

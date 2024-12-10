@@ -9,9 +9,6 @@ import java.util.List;
 public class EvidenceUzivatelEntity {
 
 
-
-    //region Proměnné
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;               // Unikátní identifikátor
@@ -29,9 +26,7 @@ public class EvidenceUzivatelEntity {
     private List<EvidenceUzivatelPojisteniEntity> uzivatelovaPojisteni = new ArrayList<>();;
 
 
-
-//endregion
-
+    //region GETTERS & SETTERS
 
     public Long getId() {
         return id;
@@ -104,6 +99,10 @@ public class EvidenceUzivatelEntity {
     public void setUzivatelovaPojisteni(List<EvidenceUzivatelPojisteniEntity> uzivatelovaPojisteni) {
         this.uzivatelovaPojisteni = uzivatelovaPojisteni;
     }
+
+    //endregion
+
+
 }
 
 

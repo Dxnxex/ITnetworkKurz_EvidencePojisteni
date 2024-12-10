@@ -11,6 +11,7 @@
 
         <section class="container px-2">
 
+            <!--Flash messages-->
             <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
 
             <article class="container | borders ">
@@ -20,8 +21,8 @@
 
                 <form th:action="@{'/uzivatele/edit/' + ${id}}" method="post" th:object="${uzivatel}">
 
-
-                    <div th:replace="~{fragments/layout.html :: fragmentFormCreate}"></div>
+                    <!--FRAGMENT USER CREATE / EDIT FORM-->
+                    <div th:replace="~{fragments/fragmentFormUser.html :: fragmentFormCreate}"></div>
 
                     <button type="submit">Uložit</button>
                 </form>

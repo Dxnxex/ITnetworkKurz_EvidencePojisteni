@@ -11,14 +11,16 @@ public class EvidencePojisteniEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;               // Unikátní identifikátor
+    private Long id;
 
     private String predmet;
     private String popis;
 
-
     @OneToMany(mappedBy = "pojisteni", cascade = CascadeType.ALL)
     private List<EvidenceUzivatelPojisteniEntity> uzivatelovaPojisteni = new ArrayList<>();;
+
+
+    //region GETTERS & SETTERS
 
     public Long getId() {
         return id;
@@ -51,4 +53,7 @@ public class EvidencePojisteniEntity {
     public void setUzivatelovaPojisteni(List<EvidenceUzivatelPojisteniEntity> uzivatelovaPojisteni) {
         this.uzivatelovaPojisteni = uzivatelovaPojisteni;
     }
+
+    //endregion
+
 }

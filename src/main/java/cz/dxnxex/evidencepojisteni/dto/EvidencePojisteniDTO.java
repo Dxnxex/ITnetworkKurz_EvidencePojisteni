@@ -1,14 +1,22 @@
 package cz.dxnxex.evidencepojisteni.dto;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class EvidencePojisteniDTO {
 
-
     private Long id;               // Unikátní identifikátor
-    private String predmet;        // Předmět pojištění
-    private String popis;          // Text pojištění
-    private String castka;           // Text pojištění
 
+    @NotBlank(message = "Název nesmí být prázdná")
+    @Size(min = 1, max = 50, message = "Název musí mít délku mezi 2 a 50 znaky")
+    @Pattern(regexp = "^[a-zA-Zá-žÁ-Ž ]+$", message = "Název může obsahovat pouze písmena a mezery, bez čísel a speciálních znaků")
+    private String predmet;        // Název či předmět pojištění
+
+    private String popis;          // Text pojištění
+
+    //region GETTERS & SETTERS
 
     public Long getId() {
         return id;
@@ -30,20 +38,11 @@ public class EvidencePojisteniDTO {
         return popis;
     }
 
-    public void setPopis(String popis) {this.popis = popis;}
-
-
-    public String getCastka() {
-        return castka;
+    public void setPopis(String popis) {
+        this.popis = popis;
     }
 
-    public void setCastka(String castka) {
-        this.castka = castka;
-    }
+    //endregion
+
+
 }
-
-
-/*
-
-
- */

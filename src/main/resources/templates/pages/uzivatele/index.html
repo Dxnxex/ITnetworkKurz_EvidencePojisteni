@@ -9,9 +9,9 @@
         <!--HEADER-->
         <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
 
+        <section class="px-2 my-5">
 
-        <section class="container px-2 my-5">
-
+            <!--Flash messages-->
             <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
 
             <!--Vytvořit pojištěného-->
@@ -19,44 +19,44 @@
                 <a th:href="@{/uzivatele/create}" ><button class="btn btn-success">Vytvořit pojištěného</button> </a>
             </div>
 
+            <!-- Tabulka pojištěných -->
+            <div class="container mb-5">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
 
-            <!--Tabulka pojištěných-->
-            <table class="pojistenciTable mb-5">
-                <thead>
-                <tr>
-                    <th>Jméno</th>
-                    <th>Bydliště</th>
-                    <th></th>
-                </tr>
-                </thead>
+                        <thead class="table-dark">
+                        <tr>
+                            <th>Jméno</th>
+                            <th>Bydliště</th>
+                            <th>Akce</th>
+                        </tr>
+                        </thead>
 
-                <tbody>
+                        <tbody>
+                        <tr th:each="uzivatel : ${vypsatVsechnyUzivatele}">
+                            <td th:text="${uzivatel.jmeno} + ' ' + ${uzivatel.prijmeni}"></td>
+                            <td th:text="${uzivatel.uliceACislo} + ', ' + ${uzivatel.mesto}"></td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <form th:action="@{/uzivatele/delete/{id}(id=${uzivatel.id})}" method="post">
+                                        <button type="submit" class="btn btn-danger btn-sm">Smazat</button>
+                                    </form>
+                                    <form th:action="@{/uzivatele/{id}(id=${uzivatel.id})}" method="get">
+                                        <button type="submit" class="btn btn-warning btn-sm">Detail</button>
+                                    </form>
+                                    <form th:action="@{/uzivatele/edit/{id}(id=${uzivatel.id})}" method="get">
+                                        <button type="submit" class="btn btn-info btn-sm">Editovat</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
 
-
-                <tr th:each="uzivatel : ${vypsatVsechnyUzivatele}">
-                    <td th:text="${uzivatel.jmeno} + ' ' + ${uzivatel.prijmeni}"></td>
-                    <td th:text="${uzivatel.uliceACislo} + ',' + ${uzivatel.mesto}"></td>
-
-                    <td>
-                        <div class="d-flex">
-                            <form th:action="@{/uzivatele/delete/{id}(id=${uzivatel.id})}" method="post" class="px-1">
-                                <button type="submit" class="btn btn-danger">Smazat</button>
-                            </form>
-                            <form th:action="@{/uzivatele/{id}(id=${uzivatel.id})}" method="get" class="px-1">
-                                <button type="submit" class="btn btn-warning">Detail</button>
-                            </form>
-                            <form th:action="@{/uzivatele/edit/{id}(id=${uzivatel.id})}" method="get" class="px-1">
-                                <button type="submit" class="btn btn-info">Editovat</button>
-                            </form>
-                        </div>
-                    </td>
-
-                </tr>
-
+                    </table>
+                </div>
+            </div>
 
 
-                </tbody>
-            </table>
 
         </section>
 

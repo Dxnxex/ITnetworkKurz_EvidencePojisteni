@@ -14,24 +14,16 @@
     <section class="container px-2">
         <article class="container | borders ">
 
+            <!--Flash messages-->
+            <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
+
             <h4 class="my-4 PojistenciFont">Nový pojištěnec</h4>
 
             <form th:object="${evidencePojisteniDTO}" action="/pojisteni/create" method="post">
-                <div class="row mb-3">
 
-                        <div class="col-md-12">
-                            <label for="predmet">Předmět:</label>
-                            <input type="text" id="predmet" th:field="*{predmet}" class="form-control" placeholder="Název pojištění"/>
-                        </div>
+                <!--FRAGMENT INSURANCE CREATE / EDIT FORM-->
+                <div th:replace="~{fragments/fragmentFormInsurance.html :: fragmentCreateInsuranceForm}"></div>
 
-                        <div class="col-md-12">
-                            <label for="popis">Popis:</label>
-                            <input type="text" id="popis" th:field="*{popis}" class="form-control" placeholder="Popis pojištění"/>
-                        </div>
-
-                    <button class="my-3" type="submit">Uložit</button>
-
-                </div>
             </form>
 
 
