@@ -1,16 +1,25 @@
-package cz.dxnxex.evidencepojisteni.dto;
+package cz.dxnxex.evidencepojisteni.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class EvidenceUzivatelPojisteniEntity {
 
 
-import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
-import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;               // Unikátní identifikátor
 
-public class EvidenceUzivatelPojisteniDTO {
+    @ManyToOne
+    @JoinColumn(name = "uzivatel_id")
+    private EvidenceUzivatelEntity uzivatel;
 
+    @ManyToOne
+    @JoinColumn(name = "pojisteni_id")
+    private EvidencePojisteniEntity pojisteni;
 
-    private Long id;                                    // Unikátní identifikátor
-    private EvidenceUzivatelEntity uzivatel;            // Entita uživatele
-    private EvidencePojisteniEntity pojisteni;          // Entita pojištění
-    private int castka;                                 // Částka pojištění
+    private int castka;
+
 
     //region GETTERS & SETTERS
 
@@ -38,6 +47,7 @@ public class EvidenceUzivatelPojisteniDTO {
         this.pojisteni = pojisteni;
     }
 
+
     public int getCastka() {
         return castka;
     }
@@ -49,4 +59,6 @@ public class EvidenceUzivatelPojisteniDTO {
     //endregion
 
 
+
 }
+

@@ -10,6 +10,7 @@
     --mainColorBlack: rgb(0, 0, 0);
 
     --mainBackgroundColorDark: rgb(56, 56, 56);
+    --mainBackgroundColorDark2: rgba(56, 56, 56, 0.208);
     --mainBackgroundColorLight: #0077ff;
     --mainBackgroundColorWhite: #ffffff;
 
@@ -73,4 +74,12 @@ html, body {
     background-color: #db6b6b;
     color: #020202;
     border: 3px solid #00000030;
+}
+
+.nadpis {
+
+    background-color: var(--mainBackgroundColorDark2);
+    color: var(--mainColorDark);
+    padding: 5px;
+
 }

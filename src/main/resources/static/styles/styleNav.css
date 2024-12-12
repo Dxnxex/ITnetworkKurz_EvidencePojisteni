@@ -28,6 +28,15 @@
        color: inherit;
    }
 
+    .navigace .btn {
+        color: var(--mainColorDark);
+        background-color: transparent;
+        border: none;
+    }
+
+    .navigace .btn:hover {
+        color: var(--mainColorBlack);
+    }
 
 /*NAVIGACE - BOOTSTRAP*/
 .navbar-nav .nav-link {
@@ -36,12 +45,12 @@
 }
 
     .navbar-nav .nav-link:hover {
-        background-color: #00ff11;
+        background-color: var(--mainBackgroundColorLight);
         color: var(--mainColorBlack);
     }
 
     .navbar-nav .nav-link.active {
-        background-color: #00ff11;
+        background-color: var(--mainBackgroundColorLight);
         color: var(--mainColorBlack);
     }
 

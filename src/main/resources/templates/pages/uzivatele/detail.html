@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:replace="~{fragments/layout.html :: fragmentHead}"></head>
+    <head title="Pojištovna" th:replace="~{fragments/layout.html :: fragmentHead}"></head>
 
     <body>
     <div class="main-content">
@@ -12,7 +12,10 @@
         <section class="container px-2 my-5">
 
 
+            <!--Flash messages-->
+            <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
 
+            <h5 class="nadpis">Detaily uživatele</h5>
 
             <div class="container mt-4">
                 <table class="table ">
@@ -44,31 +47,44 @@
                 </table>
             </div>
 
+            <br>
 
+
+            <h5 class="nadpis my-2">Pojištění uživatele:</h5>
+            <tr th:each="item : ${uzivatelovaPojisteni}">
+                <td th:text="${item.pojisteni.predmet} + ': ' +  ${item.castka} + ' Kč'"></td>
+
+                <td>
+                    <div class="d-flex mb-4">
+                        <form th:action="@{/uzivatele/pojisteni/delete/{id} (id=${item.id}) }" method="post" class="px-1">
+                            <button type="submit" class="btn btn-danger">Smazat</button>
+                        </form>
+                        <form th:action="@{/uzivatele/pojisteni/edit/{id} (id=${item.id}) }" method="get" class="px-1">
+                            <button type="submit" class="btn btn-info">Editovat</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
 
             <div>
-
-                <h3>Přidat nové pojištění</h3>
-                <form th:action="@{/pojisteni/priradit}" method="post">
-                    <input type="hidden" name="uzivatelId" th:value="${uzivatel.id}" />
-
-                    <div class="mb-3">
-                        <label for="pojisteniId">Typ pojištění:</label>
-                        <select id="pojisteniId" name="pojisteniId" class="form-control" required>
-                            <option th:each="pojisteni : ${pojisteni}"
-                                    th:value="${pojisteni.id}"
-                                    th:text="${pojisteni.predmet}"></option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="castka">Částka:</label>
-                        <input type="number" id="castka" name="castka" class="form-control" placeholder="Např. 5000" required />
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Přiřadit pojištění</button>
+                <p></p>
+                <h5 class="nadpis my-2">Přidat nové pojištění:</h5>
+                <form th:action="@{'/uzivatele/' + ${uzivatel.id}}" method="post">
+                    <label for="pojisteni">Vyberte pojištění:</label>
+                    <select id="pojisteni" name="pojisteniId" required>
+                        <option th:each="pojisteni : ${pojisteni}"
+                                th:value="${pojisteni.id}"
+                                th:text="${pojisteni.predmet}">
+                        </option>
+                    </select>
+                    <br>
+                    <label for="castka">Částka pojištění:</label>
+                    <input id="castka" name="castka" type="number" step="1" min="0" placeholder="Zadejte částku" required>
+                    <br>
+                    <button type="submit">Přiřadit pojištění</button>
                 </form>
             </div>
+
 
 
         </section>

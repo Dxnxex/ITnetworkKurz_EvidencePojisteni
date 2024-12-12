@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:fragment="fragmentHead">
     <meta charset="UTF-8">
-    <meta jmeno="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Modrá pojišťovna</title>
 
@@ -16,109 +16,62 @@
 
 
 
-
-<!--CREATE / EDIT (UŽIVATEL)-->
-<div th:fragment="fragmentFormCreate">
-    <div class="row mb-3">
-
-    <div class="col-md-6">
-        <label for="jmeno">Jméno:</label>
-        <input type="text" id="jmeno" th:field="*{jmeno}" class="form-control" placeholder="Jan"/>
-        <div class="py-2 flash-message message-error" th:text="${jmeno}" th:if="${jmeno}"></div>
-    </div>
-
-    <div class="col-md-6">
-        <label for="prijmeni">Příjmení:</label>
-        <input type="text" id="prijmeni" th:field="*{prijmeni}" class="form-control" placeholder="Novák"/>
-        <div class="py-2 flash-message message-error" th:text="${prijmeni}" th:if="${prijmeni}"></div>
-    </div>
-
-    </div>
-
-    <div class="row mb-3">
-
-        <div class="col-md-6">
-            <label for="email">Email:</label>
-            <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="jannovak68@gmail.com"/>
-            <div class="py-2 flash-message message-error" th:text="${email}" th:if="${email}"></div>
-        </div>
-
-        <div class="col-md-6">
-            <label for="telefon">Telefon:</label>
-            <input type="text" id="telefon" th:field="*{telefon}" class="form-control" placeholder="731 584 972"/>
-            <div class="py-2 flash-message message-error" th:text="${telefon}" th:if="${telefon}"></div>
-        </div>
-
-    </div>
-
-    <div class="row mb-3">
-
-        <div class="col-md-6">
-            <label for="uliceACislo">Ulice a číslo popisné:</label>
-            <input type="text" id="uliceACislo" th:field="*{uliceACislo}" class="form-control" placeholder="Ve Svahu 3"/>
-            <div class="py-2 flash-message message-error" th:text="${uliceACislo}" th:if="${uliceACislo}"></div>
-        </div>
-
-        <div class="col-md-6">
-            <label for="mesto">Město:</label>
-            <input type="text" id="mesto" th:field="*{mesto}" class="form-control" placeholder="Praha 1"/>
-            <div class="py-2 flash-message message-error" th:text="${mesto}" th:if="${mesto}"></div>
-        </div>
-
-    </div>
-
-
-    <div class="row mb-3 justify-content-end">
-
-        <div class="col-md-6 ">
-            <label for="psc">PSČ:</label>
-            <input type="text" id="psc" th:field="*{psc}" class="form-control" placeholder="100 00"/>
-            <div class="py-2 flash-message message-error" th:text="${psc}" th:if="${psc}"></div>
-        </div>
-
-    </div>
-
-
-</div>
-
-<!--Footer-->
+<!--NAVIGACE-->
 <header th:fragment="fragmentNavigace">
     <div class="navigace">
         <nav class="navbar navbar-expand-lg | container">
-            <div class="container-fluid">
 
-                <!--Název-->
-                <div>
-                    <a class="nav-link" th:href="@{/}"><span class="fw-bold fs-4">Modrá pojišťovna</span></a>
-                </div>
+                <div class="container-fluid">
 
-                <!--Tlačítko-->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <!--Název-->
+                    <div>
+                        <a class="nav-link" th:href="@{/}"><span class="fw-bold fs-4">Modrá pojišťovna</span></a>
+                    </div>
 
-
-                <!--Menu-->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/uzivatele}">Pojištěnci</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/pojisteni}">Pojištění</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">O aplikaci...</a>
-                        </li>
+                    <!--Tlačítko-->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
 
-                    </ul>
+                    <!--Menu-->
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <div class="mx-auto d-flex justify-content-center">
+
+                            <ul class="navbar-nav">
+                                <li sec:authorize="isAuthenticated()" class="nav-item">
+                                    <a class="nav-link" th:href="@{/uzivatele}">Pojištěnci</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/pojisteni}">Pojištění</a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item" sec:authorize="isAnonymous()">
+                                <a class="nav-link" th:href="@{/account/login}">Přihlásit se</a>
+                            </li>
+                            <li class="nav-item" sec:authorize="isAnonymous()">
+                                <a class="nav-link" th:href="@{/account/register}">Registrovat</a>
+                            </li>
+
+
+                            <li class="nav-item" sec:authorize="isAuthenticated()">
+                                <form method="post" th:action="@{/account/logout}" class="d-inline">
+                                    <button class="btn btn-link nav-link">Odhlásit se</button>
+                                </form>
+                            </li>
+
+                            <li class="nav-item btn btn-link nav-link " sec:authorize="isAuthenticated()"> UŽIVATEL </li>
+                            <li class="nav-item btn btn-link nav-link " sec:authorize="hasRole('ADMIN')"> ADMIN </li>
+
+                        </ul>
                 </div>
 
             </div>
+
         </nav>
     </div>
 </header>
