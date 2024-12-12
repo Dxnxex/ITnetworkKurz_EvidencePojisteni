@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:fragment="fragmentHead">
     <meta charset="UTF-8">
@@ -21,40 +21,57 @@
     <div class="navigace">
         <nav class="navbar navbar-expand-lg | container">
 
-            <div class="container-fluid">
+                <div class="container-fluid">
 
-                <!--Název-->
-                <div>
-                    <a class="nav-link" th:href="@{/}"><span class="fw-bold fs-4">Modrá pojišťovna</span></a>
-                </div>
+                    <!--Název-->
+                    <div>
+                        <a class="nav-link" th:href="@{/}"><span class="fw-bold fs-4">Modrá pojišťovna</span></a>
+                    </div>
 
-                <!--Tlačítko-->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-
-                <!--Menu-->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/uzivatele}">Pojištěnci</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/pojisteni}">Pojištění</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">O aplikaci...</a>
-                        </li>
+                    <!--Tlačítko-->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
 
-                    </ul>
+                    <!--Menu-->
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <div class="mx-auto d-flex justify-content-center">
+
+                            <ul class="navbar-nav">
+                                <li sec:authorize="isAuthenticated()" class="nav-item">
+                                    <a class="nav-link" th:href="@{/uzivatele}">Pojištěnci</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/pojisteni}">Pojištění</a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item" sec:authorize="isAnonymous()">
+                                <a class="nav-link" th:href="@{/account/login}">Přihlásit se</a>
+                            </li>
+                            <li class="nav-item" sec:authorize="isAnonymous()">
+                                <a class="nav-link" th:href="@{/account/register}">Registrovat</a>
+                            </li>
+
+
+                            <li class="nav-item" sec:authorize="isAuthenticated()">
+                                <form method="post" th:action="@{/account/logout}" class="d-inline">
+                                    <button class="btn btn-link nav-link">Odhlásit se</button>
+                                </form>
+                            </li>
+
+                            <li class="nav-item btn btn-link nav-link " sec:authorize="isAuthenticated()"> UŽIVATEL </li>
+                            <li class="nav-item btn btn-link nav-link " sec:authorize="hasRole('ADMIN')"> ADMIN </li>
+
+                        </ul>
                 </div>
 
             </div>
+
         </nav>
     </div>
 </header>

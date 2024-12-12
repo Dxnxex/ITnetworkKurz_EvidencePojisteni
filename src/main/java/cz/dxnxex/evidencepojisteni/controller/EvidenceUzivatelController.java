@@ -9,6 +9,8 @@ import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelMapper;
 import cz.dxnxex.evidencepojisteni.service.EvidenceUzivatelService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +41,7 @@ public class EvidenceUzivatelController  {
      * @param model
      * @return
      */
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("")
         public String renderPerson(Model model) {
 
@@ -52,6 +55,7 @@ public class EvidenceUzivatelController  {
      * @param uzivatel
      * @return
      */
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
         public String renderPersonCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO uzivatel) {
 
@@ -67,6 +71,7 @@ public class EvidenceUzivatelController  {
      * @param redirectAttributes
      * @return
      */
+    @PreAuthorize("isAuthenticated()")
         @PostMapping("/create")
         public String createPerson(@Valid @ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
 
@@ -94,6 +99,7 @@ public class EvidenceUzivatelController  {
      * @param uzivatelData
      * @return
      */
+    @Secured("ROLE_ADMIN")
     @GetMapping("/{id}")
     public String renderPersonDetail(@PathVariable Long id, Model model, EvidenceUzivatelDTO uzivatelData) {
 
@@ -134,13 +140,14 @@ public class EvidenceUzivatelController  {
      * @param model
      * @return
      */
-        @GetMapping("edit/{id}")
-        public String renderEditPerson(@PathVariable Long id, Model model) {
+    @Secured("ROLE_ADMIN")
+    @GetMapping("edit/{id}")
+    public String renderEditPerson(@PathVariable Long id, Model model) {
 
-            model.addAttribute("uzivatel", service.userGetID(id));
-            return returnPage + "edit";
+        model.addAttribute("uzivatel", service.userGetID(id));
+        return returnPage + "edit";
 
-        }
+    }
 
     /**
      * ÚPRAVA POJIŠTĚNÉHO
@@ -150,23 +157,24 @@ public class EvidenceUzivatelController  {
      * @param redirectAttributes
      * @return
      */
-        @PostMapping("edit/{id}")
-        public String editPerson(@PathVariable long id,@Valid EvidenceUzivatelDTO evidence,BindingResult result, RedirectAttributes redirectAttributes) {
+    @Secured("ROLE_ADMIN")
+    @PostMapping("edit/{id}")
+    public String editPerson(@PathVariable long id,@Valid EvidenceUzivatelDTO evidence,BindingResult result, RedirectAttributes redirectAttributes) {
 
-            if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
+        if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
-                redirectAttributes.addFlashAttribute("uzivatel", evidence);
-                return redirectPage + "edit/{id}";
+            redirectAttributes.addFlashAttribute("uzivatel", evidence);
+            return redirectPage + "edit/{id}";
 
-            } else {
+        } else {
 
-                service.userCreate(evidence);
-                redirectAttributes.addFlashAttribute("success", "Uživatel upraven");
-                return redirectPage + "";
-            }
-
-
+            service.userCreate(evidence);
+            redirectAttributes.addFlashAttribute("success", "Uživatel upraven");
+            return redirectPage + "";
         }
+
+
+    }
 
     /**
      * SMAZÁNÍ POJIŠTĚNÉHO
@@ -174,15 +182,16 @@ public class EvidenceUzivatelController  {
      * @param redirectAttributes
      * @return
      */
-        @PostMapping("/delete/{id}")
-        public String deletePerson(@PathVariable Long id, RedirectAttributes redirectAttributes){
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/delete/{id}")
+    public String deletePerson(@PathVariable Long id, RedirectAttributes redirectAttributes){
 
-            service.userDelete(id);
-            redirectAttributes.addFlashAttribute("delete", "Uživatel smazán.");
-            return redirectPage + "";
+        service.userDelete(id);
+        redirectAttributes.addFlashAttribute("delete", "Uživatel smazán.");
+        return redirectPage + "";
 
 
-        }
+    }
 
 
 

@@ -4,37 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="Uživatelská Pojištění - Edit, delete&#10;Returny">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUzivatelPojisteniController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragmentFormInsurance.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragmentFormUser.html" afterDir="false" />
+    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="BEST PRACTICES, UI, BOOTSTRAP">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/configuration/ApplicationSecurityConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceControllerAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceAccountDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceAccountEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/models/DuplicateEmailException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/models/PasswordsDoNotEqualException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/repository/EvidenceAccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/account/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/account/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/EvidencePojisteniRedirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/EvidencePojisteniRedirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidencePojisteniController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidencePojisteniController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUzivatelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUzivatelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojisteniDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidencePojisteniDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelPojisteniDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUzivatelPojisteniDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidencePojisteniEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidencePojisteniEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelPojisteniEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUzivatelPojisteniEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidencePojisteniMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidencePojisteniMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceUzivatelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceUzivatelMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceUzivatelPojisteniMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceUzivatelPojisteniMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/repository/EvidencePojisteniRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/repository/EvidencePojisteniRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidencePojisteniService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidencePojisteniService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUzivatelPojisteniController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUzivatelPojisteniController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceUzivatelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceUzivatelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/styles/styleNav.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/styles/styleNav.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragmentFormInsurance.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragmentFormInsurance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragmentFormUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragmentFormUser.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/home/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/pojisteni/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/uzivatele/pojisteniDetail.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +40,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -99,7 +95,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/GitHub/EvidencePojisteni/src/main/resources/templates/fragments",
+    "last_opened_file_path": "D:/GitHub/EvidencePojisteni/src/main/resources/templates/pages/account",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -113,6 +109,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GitHub\EvidencePojisteni\src\main\resources\templates\pages\account" />
       <recent name="D:\GitHub\EvidencePojisteni\src\main\resources\templates\fragments" />
       <recent name="D:\GitHub\EvidencePojisteni\src\main\resources\templates\pages\uzivatele" />
     </key>
@@ -268,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733778680579</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="BEST PRACTICES, UI, BOOTSTRAP">
+      <option name="closed" value="true" />
+      <created>1733858608792</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733858608792</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,6 +309,7 @@
     <MESSAGE value="TEST #7" />
     <MESSAGE value="Spojovací databáze." />
     <MESSAGE value="Uživatelská Pojištění - Edit, delete&#10;Returny" />
-    <option name="LAST_COMMIT_MESSAGE" value="Uživatelská Pojištění - Edit, delete&#10;Returny" />
+    <MESSAGE value="BEST PRACTICES, UI, BOOTSTRAP" />
+    <option name="LAST_COMMIT_MESSAGE" value="BEST PRACTICES, UI, BOOTSTRAP" />
   </component>
 </project>

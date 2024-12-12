@@ -7,6 +7,7 @@ import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
 import cz.dxnxex.evidencepojisteni.service.EvidencePojisteniService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,6 +44,7 @@ public class EvidencePojisteniController {
      * @param evidence
      * @return
      */
+    @Secured("ROLE_ADMIN")
     @GetMapping("/create")
         public String renderCreateInsurance(@ModelAttribute EvidencePojisteniDTO evidence) {
 
@@ -57,6 +59,7 @@ public class EvidencePojisteniController {
      * @param redirectAttributes
      * @return
      */
+    @Secured("ROLE_ADMIN")
     @PostMapping("/create")
     public String createInsurance(@Valid @ModelAttribute EvidencePojisteniDTO pojisteni, BindingResult result, RedirectAttributes redirectAttributes) {
 
@@ -94,6 +97,7 @@ public class EvidencePojisteniController {
      * @param model
      * @return
      */
+    @Secured("ROLE_ADMIN")
     @GetMapping("edit/{id}")
     public String renderEditInsurance(@PathVariable Long id, Model model) {
 
@@ -109,6 +113,7 @@ public class EvidencePojisteniController {
      * @param result
      * @return
      */
+    @Secured("ROLE_ADMIN")
     @PostMapping("edit/{id}")
     public String editInsurance(@PathVariable long id, @Valid EvidencePojisteniDTO pojisteni, BindingResult result, RedirectAttributes redirectAttributes) {
 
@@ -131,14 +136,15 @@ public class EvidencePojisteniController {
      * @param id
      * @return
      */
-        @PostMapping("/delete/{id}")
-        public String deleteInsurance(@PathVariable Long id, RedirectAttributes redirectAttributes){
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/delete/{id}")
+    public String deleteInsurance(@PathVariable Long id, RedirectAttributes redirectAttributes){
 
-            service.insuranceDelete(id);
-            redirectAttributes.addFlashAttribute("delete", "Pojištění smazáno");
-            return redirectPage + "";
+        service.insuranceDelete(id);
+        redirectAttributes.addFlashAttribute("delete", "Pojištění smazáno");
+        return redirectPage + "";
 
-        }
+    }
 
 
 

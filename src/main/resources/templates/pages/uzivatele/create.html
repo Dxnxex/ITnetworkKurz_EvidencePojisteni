@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
     <head th:replace="~{fragments/layout.html :: fragmentHead}"></head>
 
@@ -13,7 +13,7 @@
             <!--Flash messages-->
             <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
 
-            <article class="container | borders ">
+            <article class="container | borders "  >
 
                 <h4 class="my-4 PojistenciFont">Nový pojištěnec</h4>
 
@@ -22,7 +22,7 @@
                     <!--FRAGMENT USER CREATE / EDIT FORM-->
                     <div th:replace="~{fragments/fragmentFormUser.html :: fragmentFormCreate}"></div>
 
-                    <button type="submit">Uložit</button>
+                    <button  type="submit">Uložit</button>
                 </form>
 
 

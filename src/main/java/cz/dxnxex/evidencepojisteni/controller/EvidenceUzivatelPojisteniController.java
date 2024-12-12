@@ -5,6 +5,7 @@ import cz.dxnxex.evidencepojisteni.EvidencePojisteniRedirect;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelPojisteniEntity;
 import cz.dxnxex.evidencepojisteni.service.EvidenceUzivatelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,7 @@ public class EvidenceUzivatelPojisteniController {
      * @param model
      * @return
      */
+    @Secured("ROLE_ADMIN")
     @GetMapping("edit/{id}")
     public String renderEditPersonInsurance(@PathVariable Long id, Model model) {
 
@@ -47,6 +49,7 @@ public class EvidenceUzivatelPojisteniController {
      * @param castka
      * @return
      */
+    @Secured("ROLE_ADMIN")
     @PostMapping("edit/{id}")
     public String editPersonInsurance(@PathVariable Long id, @RequestParam int castka, RedirectAttributes redirectAttributes)  {
 
@@ -67,6 +70,7 @@ public class EvidenceUzivatelPojisteniController {
      * @param redirectAttributes
      * @return
      */
+    @Secured("ROLE_ADMIN")
     @PostMapping("delete/{id}")
     public String deletePersonInsurance(@PathVariable Long id, RedirectAttributes redirectAttributes){
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
     <head th:replace="~{fragments/layout.html :: fragmentHead}"></head>
 
@@ -16,7 +16,7 @@
 
             <!--Vytvořit pojištěného-->
             <div class="my-5 px-2 justify-content-end align-items-center text-center">
-                <a th:href="@{/uzivatele/create}" ><button class="btn btn-success">Vytvořit pojištěného</button> </a>
+                <a th:href="@{/uzivatele/create}" ><button class="btn btn-success"  sec:authorize="isAuthenticated()">Vytvořit pojištěného</button> </a>
             </div>
 
             <!-- Tabulka pojištěných -->
@@ -32,20 +32,20 @@
                         </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody sec:authorize="isAuthenticated()">
                         <tr th:each="uzivatel : ${vypsatVsechnyUzivatele}">
                             <td th:text="${uzivatel.jmeno} + ' ' + ${uzivatel.prijmeni}"></td>
                             <td th:text="${uzivatel.uliceACislo} + ', ' + ${uzivatel.mesto}"></td>
                             <td>
                                 <div class="d-flex flex-wrap gap-2">
                                     <form th:action="@{/uzivatele/delete/{id}(id=${uzivatel.id})}" method="post">
-                                        <button type="submit" class="btn btn-danger btn-sm">Smazat</button>
+                                        <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-danger btn-sm">Smazat</button>
                                     </form>
                                     <form th:action="@{/uzivatele/{id}(id=${uzivatel.id})}" method="get">
-                                        <button type="submit" class="btn btn-warning btn-sm">Detail</button>
+                                        <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-warning btn-sm">Detail</button>
                                     </form>
                                     <form th:action="@{/uzivatele/edit/{id}(id=${uzivatel.id})}" method="get">
-                                        <button type="submit" class="btn btn-info btn-sm">Editovat</button>
+                                        <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-info btn-sm">Editovat</button>
                                     </form>
                                 </div>
                             </td>

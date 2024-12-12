@@ -1,24 +1,34 @@
 package cz.dxnxex.evidencepojisteni.service;
 
 
+import cz.dxnxex.evidencepojisteni.dto.EvidenceAccountDTO;
 import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelDTO;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceAccountEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelPojisteniEntity;
 import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelMapper;
 import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelPojisteniMapper;
+import cz.dxnxex.evidencepojisteni.models.DuplicateEmailException;
+import cz.dxnxex.evidencepojisteni.models.PasswordsDoNotEqualException;
+import cz.dxnxex.evidencepojisteni.repository.EvidenceAccountRepository;
 import cz.dxnxex.evidencepojisteni.repository.EvidencePojisteniRepository;
 import cz.dxnxex.evidencepojisteni.repository.EvidenceUzivatelPojisteniRepository;
 import cz.dxnxex.evidencepojisteni.repository.EvidenceUzivatelRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EvidenceUzivatelService  {
+public class EvidenceUzivatelService implements UserDetailsService {
 
     @Autowired
     private EvidenceUzivatelRepository repositoryUzivatel;
@@ -30,12 +40,16 @@ public class EvidenceUzivatelService  {
     private EvidenceUzivatelPojisteniRepository repositoryUzivatelPojisteni;
 
     @Autowired
+    private EvidenceAccountRepository repositoryAccount;
+
+    @Autowired
     private EvidenceUzivatelMapper mapper;
 
     @Autowired
     private EvidenceUzivatelPojisteniMapper mapperUzivatelPojisteni;
 
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     /** VYTVOŘENÍ POJIŠTĚNÉHO DO DATABÁZE
      */
@@ -51,6 +65,25 @@ public class EvidenceUzivatelService  {
             //endregion
 
         repositoryUzivatel.saveAndFlush(uzivatel);
+    }
+
+    /** VYTVOŘENÍ POJIŠTĚNÉHO DO DATABÁZE (REGISTERED)
+     */
+    public void userCreate2(EvidenceAccountDTO user, boolean isAdmin) {
+        if (!user.getPassword().equals(user.getConfirmPassword()))
+            throw new PasswordsDoNotEqualException();
+
+        EvidenceAccountEntity userEntity = new EvidenceAccountEntity();
+
+        userEntity.setEmail(user.getEmail());
+        userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
+        userEntity.setAdmin(isAdmin);
+
+        try {
+            repositoryAccount.save(userEntity);
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateEmailException();
+        }
     }
 
 
@@ -216,6 +249,13 @@ public class EvidenceUzivatelService  {
         //endregion
 
         repositoryUzivatelPojisteni.deleteById(id);
+
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        return repositoryAccount.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Username, " + username + " not found"));
 
     }
 
