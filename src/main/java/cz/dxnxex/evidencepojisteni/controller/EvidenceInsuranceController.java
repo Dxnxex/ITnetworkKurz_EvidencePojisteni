@@ -36,6 +36,7 @@ public class EvidenceInsuranceController {
         public String renderInsurance(Model model) {
 
             model.addAttribute("vypsatVsechnyPojisteni", service.insuranceGetAllList());
+
             return returnPage + "index";
 
         }

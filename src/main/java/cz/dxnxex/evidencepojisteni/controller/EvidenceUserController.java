@@ -25,8 +25,8 @@ import java.util.List;
 @RequestMapping("user")
 public class EvidenceUserController {
 
-    private final String returnPage = "pages/" + EvidenceConfiguration.getPathUser() + "/" ;
-    private final String redirectPage = "redirect:/" + EvidenceConfiguration.getPathUser();
+    private final String returnPage = "pages/" +        EvidenceConfiguration.getPathUser() + "/" ;
+    private final String redirectPage = "redirect:/" +  EvidenceConfiguration.getPathUser();
 
     private final EvidenceRedirect redirect = new EvidenceRedirect();
 
@@ -168,7 +168,7 @@ public class EvidenceUserController {
         if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
             redirectAttributes.addFlashAttribute("uzivatel", evidence);
-            return redirectPage + "edit/{id}";
+            return redirectPage + "/edit/{id}";
 
         } else {
 

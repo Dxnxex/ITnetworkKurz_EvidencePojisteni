@@ -7,10 +7,10 @@ import cz.dxnxex.evidencepojisteni.entity.EvidenceAccountEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceInsuranceEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUserEntity;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUserInsuranceEntity;
-import cz.dxnxex.evidencepojisteni.mapper.EvidenceUserInsuranceMapper;
-import cz.dxnxex.evidencepojisteni.mapper.EvidenceUserMapper;
 import cz.dxnxex.evidencepojisteni.exeption.DuplicateEmailException;
 import cz.dxnxex.evidencepojisteni.exeption.PasswordsDoNotEqualException;
+import cz.dxnxex.evidencepojisteni.mapper.EvidenceUserInsuranceMapper;
+import cz.dxnxex.evidencepojisteni.mapper.EvidenceUserMapper;
 import cz.dxnxex.evidencepojisteni.repository.EvidenceAccountRepository;
 import cz.dxnxex.evidencepojisteni.repository.EvidenceInsuranceRepository;
 import cz.dxnxex.evidencepojisteni.repository.EvidenceUserInsuranceRepository;
@@ -43,7 +43,7 @@ public class EvidenceUserService implements UserDetailsService {
     private EvidenceAccountRepository accountRepository;
 
     @Autowired
-    private EvidenceUserMapper evidenceUserMapper;
+    private EvidenceUserMapper userMapper;
 
     @Autowired
     private EvidenceUserInsuranceMapper evidenceUserInsuranceMapper;
@@ -55,7 +55,7 @@ public class EvidenceUserService implements UserDetailsService {
      */
     public void userCreate(EvidenceUserDTO data) {
 
-        EvidenceUserEntity uzivatel = evidenceUserMapper.toEntity(data);
+        EvidenceUserEntity uzivatel = userMapper.toEntity(data);
 
             //region Vypsání do konzole
 
@@ -91,21 +91,23 @@ public class EvidenceUserService implements UserDetailsService {
      */
     public List<EvidenceUserDTO> userGetAllList() {
 
-        List<EvidenceUserDTO> user = userRepository.findAll().stream().map(entity -> evidenceUserMapper.toDTO(entity)).toList();
+        List<EvidenceUserDTO> uzivatele = userRepository.findAll().stream().map(entita -> userMapper.toDTO(entita)).toList();
 
-            //region Vypsání do konzole
+        //region Vypsání do konzole
 
-            System.out.println();
-            System.out.println("Výpis všech uživatelů:");
+        System.out.println();
+        System.out.println(uzivatele);
+        System.out.println("Výpis všech uživatelů:");
 
-            for(EvidenceUserDTO vypis : user){
-                System.out.println("ID:" + vypis.getId() + " '" + vypis.getName() + " " + vypis.getSurname()+"' - " + vypis);
-            }
+        for(EvidenceUserDTO vypis : uzivatele){
+            System.out.println("ID:" + vypis.getId() + " '" + vypis.getName() + " " + vypis.getSurname()+"' - " + vypis);
+        }
 
-            //endregion
+        //endregion
 
-        return user;
+        return uzivatele;
     }
+
 
     /** VYMAZÁNÍ POJIŠTĚNÉHO Z DATABÁZE
      */
