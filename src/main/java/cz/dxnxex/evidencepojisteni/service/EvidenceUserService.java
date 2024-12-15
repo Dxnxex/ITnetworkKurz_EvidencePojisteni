@@ -91,20 +91,20 @@ public class EvidenceUserService implements UserDetailsService {
      */
     public List<EvidenceUserDTO> userGetAllList() {
 
-        List<EvidenceUserDTO> uzivatele = repositoryUzivatel.findAll().stream().map(entita -> mapper.toDTO(entita)).toList();
+        List<EvidenceUserDTO> user = repositoryUzivatel.findAll().stream().map(entita -> mapper.toDTO(entita)).toList();
 
             //region Vypsání do konzole
 
             System.out.println();
             System.out.println("Výpis všech uživatelů:");
 
-            for(EvidenceUserDTO vypis : uzivatele){
+            for(EvidenceUserDTO vypis : user){
                 System.out.println("ID:" + vypis.getId() + " '" + vypis.getName() + " " + vypis.getSurname()+"' - " + vypis);
             }
 
             //endregion
 
-        return uzivatele;
+        return user;
     }
 
     /** VYMAZÁNÍ POJIŠTĚNÉHO Z DATABÁZE

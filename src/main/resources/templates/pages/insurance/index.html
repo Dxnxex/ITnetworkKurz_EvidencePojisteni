@@ -35,7 +35,7 @@
 
                     <tbody>
                     <tr th:each="insurance : ${vypsatVsechnyPojisteni}">
-                        <td th:text="${insurance.predmet}"></td>
+                        <td th:text="${insurance.name}"></td>
                         <td>
                             <div class="d-flex flex-wrap gap-2">
                                 <form sec:authorize="hasRole('ADMIN')" th:action="@{/insurance/delete/{id}(id=${insurance.id})}" method="post">

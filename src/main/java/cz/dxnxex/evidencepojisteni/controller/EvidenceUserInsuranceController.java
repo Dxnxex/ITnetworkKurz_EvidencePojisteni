@@ -1,6 +1,7 @@
 package cz.dxnxex.evidencepojisteni.controller;
 
 
+import cz.dxnxex.evidencepojisteni.EvidenceConfiguration;
 import cz.dxnxex.evidencepojisteni.EvidenceRedirect;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceUserInsuranceEntity;
 import cz.dxnxex.evidencepojisteni.service.EvidenceUserService;
@@ -16,8 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("user/insurance")
 public class EvidenceUserInsuranceController {
 
-    private final String returnPage = "pages/user/";
-    private final String redirectPage = "redirect:/user/";
+    private final String returnPage = "pages/" + EvidenceConfiguration.getPathUser() + "/" ;
+    private final String redirectPage = "redirect:/" + EvidenceConfiguration.getPathUser();
 
     private final EvidenceRedirect redirect = new EvidenceRedirect();
 
@@ -37,7 +38,7 @@ public class EvidenceUserInsuranceController {
 
         // Získání uživatele a seznamu pojištění
         EvidenceUserInsuranceEntity user = service.userInsuranceGetID(id);
-        model.addAttribute("pojisteni",user);
+        model.addAttribute("insurance",user);
 
         return returnPage + "pojisteniEdit";
 
@@ -59,7 +60,7 @@ public class EvidenceUserInsuranceController {
         service.userEditInsurance(insuranceID, value);
 
         redirectAttributes.addFlashAttribute("success", "Uživatelovo pojištění upraveno");
-        return redirectPage + userID;
+        return redirectPage + "/" + + userID;
     }
 
 
@@ -80,7 +81,8 @@ public class EvidenceUserInsuranceController {
         service.userDeleteUzivatelPojisteni(id);
         redirectAttributes.addFlashAttribute("delete", "Uživatelovo pojištění smazáno");
 
-        return redirectPage + userID;
+
+        return redirectPage + "/" + userID;
 
 
     }

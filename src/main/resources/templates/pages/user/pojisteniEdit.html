@@ -22,13 +22,13 @@
                     <div>
 
                         <h3>Upravit pojištění</h3>
-                        <form th:action="@{'/uzivatele/insurance/edit/' + ${id}}" method="post">
+                        <form th:action="@{'/user/insurance/edit/' + ${id}}" method="post">
 
                             <label for="insurance">Vybrané pojištění:</label>
-                            <select id="insurance" name="pojisteniId" required>
+                            <select id="insurance" name="insuranceID" required>
                                 <option th:each="insurance : ${insurance}"
                                         th:value="${insurance.insurance.id}"
-                                        th:text="${insurance.insurance.predmet}">
+                                        th:text="${insurance.insurance.name}">
                                 </option>
                             </select>
 
@@ -62,16 +62,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </html>
-
-
-<!--
-
-                   <div class="mb-3">
-                        <label for="pojisteniId">Typ pojištění:</label>
-                        <select id="pojisteniId" name="pojisteniId" class="form-control" required>
-                            <option th:each="insurance : ${insurance}"
-                                    th:value="${insurance.id}"
-                                    th:text="${insurance.predmet}"></option>
-                        </select>
-                    </div>
--->

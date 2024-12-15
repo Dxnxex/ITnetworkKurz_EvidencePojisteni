@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-public class EvidencePojisteniMain {
+public class EvidenceMain {
 
     public static void main(String[] args) {
-        SpringApplication.run(EvidencePojisteniMain.class, args);
+
+        SpringApplication.run(EvidenceMain.class, args);
 
     }
 }

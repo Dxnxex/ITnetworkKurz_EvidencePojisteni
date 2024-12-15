@@ -1,6 +1,7 @@
 package cz.dxnxex.evidencepojisteni.controller;
 
 
+import cz.dxnxex.evidencepojisteni.EvidenceConfiguration;
 import cz.dxnxex.evidencepojisteni.EvidenceRedirect;
 import cz.dxnxex.evidencepojisteni.dto.EvidenceUserDTO;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceInsuranceEntity;
@@ -24,8 +25,8 @@ import java.util.List;
 @RequestMapping("user")
 public class EvidenceUserController {
 
-    private final String returnPage = "pages/user/";
-    private final String redirectPage = "redirect:/user";
+    private final String returnPage = "pages/" + EvidenceConfiguration.getPathUser() + "/" ;
+    private final String redirectPage = "redirect:/" + EvidenceConfiguration.getPathUser();
 
     private final EvidenceRedirect redirect = new EvidenceRedirect();
 
@@ -52,8 +53,8 @@ public class EvidenceUserController {
 
     /**
      * ZOBRAZENÍ VYTVOŘENÍ POJIŠTĚNCE
-     * @param user
-     * @return
+     * @param user uživatelská data
+     * @return vrácení na stránku
      */
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
@@ -108,10 +109,10 @@ public class EvidenceUserController {
         EvidenceUserEntity user = service.userGetID(id);
         List<EvidenceInsuranceEntity> insurance = service.insuranceFindAllList();
 
-        model.addAttribute("uzivatel",              user);
-        model.addAttribute("pojisteni",             insurance);
-        model.addAttribute("castka",                null);
-        model.addAttribute("uzivatelovaPojisteni",  service.userInsuranceGetIDList(id));
+        model.addAttribute("user",          user);
+        model.addAttribute("insurance",     insurance);
+        model.addAttribute("value",         null);
+        model.addAttribute("userInsurance",  service.userInsuranceGetIDList(id));
 
 
         return returnPage + "detail";
@@ -145,7 +146,7 @@ public class EvidenceUserController {
     @GetMapping("edit/{id}")
     public String renderEditPerson(@PathVariable Long id, Model model) {
 
-        model.addAttribute("uzivatel", service.userGetID(id));
+        model.addAttribute("user", service.userGetID(id));
         return returnPage + "edit";
 
     }
@@ -171,7 +172,7 @@ public class EvidenceUserController {
 
             service.userCreate(evidence);
             redirectAttributes.addFlashAttribute("success", "Uživatel upraven");
-            return redirectPage + "";
+            return redirectPage;
         }
 
 

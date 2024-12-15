@@ -1,6 +1,7 @@
 package cz.dxnxex.evidencepojisteni.controller;
 
 
+import cz.dxnxex.evidencepojisteni.EvidenceConfiguration;
 import cz.dxnxex.evidencepojisteni.EvidenceRedirect;
 import cz.dxnxex.evidencepojisteni.dto.EvidenceInsuranceDTO;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceInsuranceEntity;
@@ -18,8 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("insurance")
 public class EvidenceInsuranceController {
 
-    private final String returnPage = "pages/insurance/";
-    private final String redirectPage = "redirect:/insurance";
+    private final String returnPage = "pages/" + EvidenceConfiguration.getPathInsurance() + "/" ;
+    private final String redirectPage = "redirect:/" + EvidenceConfiguration.getPathInsurance();
 
     private final EvidenceRedirect redirect = new EvidenceRedirect();
 
@@ -46,7 +47,7 @@ public class EvidenceInsuranceController {
      */
     @Secured("ROLE_ADMIN")
     @GetMapping("/create")
-        public String renderCreateInsurance(@ModelAttribute EvidenceInsuranceDTO evidence) {
+        public String renderCreateInsurance(@ModelAttribute("createInsurance")  EvidenceInsuranceDTO evidence) {
 
         return returnPage + "create";
 
@@ -61,7 +62,7 @@ public class EvidenceInsuranceController {
      */
     @Secured("ROLE_ADMIN")
     @PostMapping("/create")
-    public String createInsurance(@Valid @ModelAttribute EvidenceInsuranceDTO insurance, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String createInsurance(@Valid @ModelAttribute("createInsurance") EvidenceInsuranceDTO insurance, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
@@ -86,7 +87,7 @@ public class EvidenceInsuranceController {
     public String renderDetailInsurance(@PathVariable Long id, Model model) {
 
         EvidenceInsuranceEntity insurance = service.insuranceGetID(id);
-        model.addAttribute("pojisteni", insurance);
+        model.addAttribute("insurance", insurance);
 
         return returnPage + "detail";
     }
@@ -101,7 +102,7 @@ public class EvidenceInsuranceController {
     @GetMapping("edit/{id}")
     public String renderEditInsurance(@PathVariable Long id, Model model) {
 
-        model.addAttribute("pojisteni", service.insuranceGetID(id));
+        model.addAttribute("insurance", service.insuranceGetID(id));
         return returnPage + "edit";
 
     }

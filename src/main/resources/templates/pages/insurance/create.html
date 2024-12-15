@@ -19,7 +19,7 @@
 
             <h4 class="my-4 PojistenciFont">Nový pojištěnec</h4>
 
-            <form th:object="${evidenceInsuranceDTO}" action="/insurance/create" method="post">
+            <form th:object="${createInsurance}" th:action="@{/insurance/create}" method="post">
 
                 <!--FRAGMENT INSURANCE CREATE / EDIT FORM-->
                 <div th:replace="~{fragments/fragmentFormInsurance.html :: fragmentCreateInsuranceForm}"></div>
