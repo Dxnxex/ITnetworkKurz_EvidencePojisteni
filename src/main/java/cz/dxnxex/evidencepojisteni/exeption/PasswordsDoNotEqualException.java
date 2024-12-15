@@ -1,4 +1,4 @@
-package cz.dxnxex.evidencepojisteni.models;
+package cz.dxnxex.evidencepojisteni.exeption;
 
 public class PasswordsDoNotEqualException extends RuntimeException {
 }

@@ -31,10 +31,10 @@ public class EvidenceUserController {
     private final EvidenceRedirect redirect = new EvidenceRedirect();
 
     @Autowired
-    private EvidenceUserService service;
+    private EvidenceUserService serviceUser;
 
     @Autowired
-    private EvidenceUserMapper mapper;
+    private EvidenceUserMapper mapperUser;
 
 
     /**
@@ -46,7 +46,7 @@ public class EvidenceUserController {
     @GetMapping("")
         public String renderPerson(Model model) {
 
-            model.addAttribute("vypsatVsechnyUzivatele", service.userGetAllList());
+            model.addAttribute("vypsatVsechnyUzivatele", serviceUser.userGetAllList());
             return returnPage + "index";
 
         }
@@ -67,7 +67,7 @@ public class EvidenceUserController {
 
     /**
      * ZOBRAZENÍ FORMULÁŘE PRO VYTVOŘENÍ POJIŠTĚNCE
-     * @param evidence
+     * @param data
      * @param result
      * @param redirectAttributes
      * @return
@@ -75,17 +75,17 @@ public class EvidenceUserController {
 
     @PreAuthorize("isAuthenticated()")
         @PostMapping("/create")
-        public String createPerson(@Valid @ModelAttribute("vytvoreniUzivatele") EvidenceUserDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
+        public String createPerson(@Valid @ModelAttribute("vytvoreniUzivatele") EvidenceUserDTO data, BindingResult result, RedirectAttributes redirectAttributes) {
 
             if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
-                redirectAttributes.addFlashAttribute("vytvoreniUzivatele", evidence);
+                redirectAttributes.addFlashAttribute("vytvoreniUzivatele", data);
                 return redirectPage + "/" + "create";
 
 
             } else {
 
-                service.userCreate(evidence);
+                serviceUser.userCreate(data);
                 redirectAttributes.addFlashAttribute("success", "Uživatel vytvořen.");
 
                 return redirectPage;
@@ -93,6 +93,8 @@ public class EvidenceUserController {
 
 
         }
+
+        // TODO: Dodělat (TEST)
 
     /**
      * ZOBRAZENÍ DETAILU POJIŠTĚNCE
@@ -106,13 +108,13 @@ public class EvidenceUserController {
     public String renderPersonDetail(@PathVariable Long id, Model model, EvidenceUserDTO userData) {
 
         // Získání uživatele a seznamu pojištění
-        EvidenceUserEntity user = service.userGetID(id);
-        List<EvidenceInsuranceEntity> insurance = service.insuranceFindAllList();
+        EvidenceUserEntity user = serviceUser.userGetID(id);
+        List<EvidenceInsuranceEntity> insurance = serviceUser.insuranceFindAllList();
 
         model.addAttribute("user",          user);
         model.addAttribute("insurance",     insurance);
         model.addAttribute("value",         null);
-        model.addAttribute("userInsurance",  service.userInsuranceGetIDList(id));
+        model.addAttribute("userInsurance",  serviceUser.userInsuranceGetIDList(id));
 
 
         return returnPage + "detail";
@@ -128,7 +130,7 @@ public class EvidenceUserController {
     @PostMapping("/{id}")
     public String createPersonInsurance(@PathVariable Long id, @RequestParam Long insuranceID, @RequestParam int value, RedirectAttributes redirectAttributes) {
 
-        service.userAddInsurance(id, insuranceID, value);
+        serviceUser.userAddInsurance(id, insuranceID, value);
         redirectAttributes.addFlashAttribute("success", "Uživatelovo pojištění vytvořeno");
         return redirectPage + "/" + id;
     }
@@ -146,7 +148,7 @@ public class EvidenceUserController {
     @GetMapping("edit/{id}")
     public String renderEditPerson(@PathVariable Long id, Model model) {
 
-        model.addAttribute("user", service.userGetID(id));
+        model.addAttribute("user", serviceUser.userGetID(id));
         return returnPage + "edit";
 
     }
@@ -170,7 +172,7 @@ public class EvidenceUserController {
 
         } else {
 
-            service.userCreate(evidence);
+            serviceUser.userCreate(evidence);
             redirectAttributes.addFlashAttribute("success", "Uživatel upraven");
             return redirectPage;
         }
@@ -188,7 +190,7 @@ public class EvidenceUserController {
     @PostMapping("/delete/{id}")
     public String deletePerson(@PathVariable Long id, RedirectAttributes redirectAttributes){
 
-        service.userDelete(id);
+        serviceUser.userDelete(id);
         redirectAttributes.addFlashAttribute("delete", "Uživatel smazán.");
         return redirectPage + "";
 

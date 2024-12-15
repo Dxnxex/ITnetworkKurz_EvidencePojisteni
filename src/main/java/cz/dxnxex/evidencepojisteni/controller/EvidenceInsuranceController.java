@@ -19,8 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("insurance")
 public class EvidenceInsuranceController {
 
-    private final String returnPage = "pages/" + EvidenceConfiguration.getPathInsurance() + "/" ;
-    private final String redirectPage = "redirect:/" + EvidenceConfiguration.getPathInsurance();
+    private final String returnPage =   "pages/" +      EvidenceConfiguration.getPathInsurance() + "/" ;
+    private final String redirectPage = "redirect:/" +  EvidenceConfiguration.getPathInsurance();
 
     private final EvidenceRedirect redirect = new EvidenceRedirect();
 

@@ -13,7 +13,7 @@ public class EvidenceAccountEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private Long userId;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -26,11 +26,11 @@ public class EvidenceAccountEntity implements UserDetails {
 
     // region: GETTERS AND SETTERS
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -42,6 +42,7 @@ public class EvidenceAccountEntity implements UserDetails {
         this.email = email;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -57,6 +58,7 @@ public class EvidenceAccountEntity implements UserDetails {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+
 
     // endregion
 

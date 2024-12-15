@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Size;
 
 public class EvidenceUserDTO {
 
-
         private Long id;               // Unikátní identifikátor
 
         @NotBlank(message = "Jméno nesmí být prázdné")
