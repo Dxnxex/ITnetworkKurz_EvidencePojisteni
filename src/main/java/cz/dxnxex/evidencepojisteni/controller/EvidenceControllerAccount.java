@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/account")
+@RequestMapping("account")
 public class EvidenceControllerAccount {
 
-    private final String returnPage = "pages/";
+    private final String returnPage = "pages/account/";
     private final String redirectPage = "redirect:/account";
 
     @Autowired
     private EvidenceUserService service;
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public String renderLogin() {
 
         return "/pages/account/login.html";
@@ -33,12 +33,12 @@ public class EvidenceControllerAccount {
     }
 
 
-    @GetMapping("register")
+    @GetMapping("/register")
     public String renderRegister(@ModelAttribute("userRegistration") EvidenceAccountDTO account) {
-        return returnPage + "/register";
+        return returnPage + "register";
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public String register(
             @Valid @ModelAttribute("userRegistration") EvidenceAccountDTO account,
             BindingResult result,

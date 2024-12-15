@@ -17,13 +17,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.util.List;
 
 
 @Controller
 @RequestMapping("user")
 public class EvidenceUserController {
+
 
     private final String returnPage = "pages/" +        EvidenceConfiguration.getPathUser() + "/" ;
     private final String redirectPage = "redirect:/" +  EvidenceConfiguration.getPathUser();
@@ -60,7 +60,7 @@ public class EvidenceUserController {
     @GetMapping("/create")
         public String renderPersonCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUserDTO user) {
 
-        return returnPage + "create";
+        return returnPage+ "create";
 
         }
 
@@ -94,8 +94,6 @@ public class EvidenceUserController {
 
         }
 
-        // TODO: Dodělat (TEST)
-
     /**
      * ZOBRAZENÍ DETAILU POJIŠTĚNCE
      * @param id
@@ -108,14 +106,13 @@ public class EvidenceUserController {
     public String renderPersonDetail(@PathVariable Long id, Model model, EvidenceUserDTO userData) {
 
         // Získání uživatele a seznamu pojištění
-        EvidenceUserEntity user = serviceUser.userGetID(id);
-        List<EvidenceInsuranceEntity> insurance = serviceUser.insuranceFindAllList();
+        EvidenceUserEntity                          user =                serviceUser.getUserByID(id);
+        List<EvidenceInsuranceEntity>         insurance =       serviceUser.getAllInsurancesList();
 
-        model.addAttribute("user",          user);
+        model.addAttribute("user",     user);
         model.addAttribute("insurance",     insurance);
         model.addAttribute("value",         null);
         model.addAttribute("userInsurance",  serviceUser.userInsuranceGetIDList(id));
-
 
         return returnPage + "detail";
     }
@@ -148,7 +145,7 @@ public class EvidenceUserController {
     @GetMapping("edit/{id}")
     public String renderEditPerson(@PathVariable Long id, Model model) {
 
-        model.addAttribute("user", serviceUser.userGetID(id));
+        model.addAttribute("user", serviceUser.getUserByID(id));
         return returnPage + "edit";
 
     }

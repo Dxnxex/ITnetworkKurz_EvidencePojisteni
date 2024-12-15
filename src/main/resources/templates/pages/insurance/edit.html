@@ -20,7 +20,7 @@
             <form th:action="@{'/insurance/edit/' + ${id}}" method="post" th:object="${insurance}">
 
                 <!--FRAGMENT INSURANCE CREATE / EDIT FORM-->
-                <div th:replace="~{fragments/fragmentFormInsurance.html :: fragmentCreateInsuranceForm}"></div>
+                <div th:replace="~{fragments/fragment-Form-Insurance.html :: fragmentCreateInsuranceForm}"></div>
 
                 <button type="submit">Uložit</button>
             </form>

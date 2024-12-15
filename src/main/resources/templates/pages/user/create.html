@@ -20,7 +20,7 @@
                 <form th:object="${vytvoreniUzivatele}" th:action="@{/user/create}" method="post">
 
                     <!--FRAGMENT USER CREATE / EDIT FORM-->
-                    <div th:replace="~{fragments/fragmentFormUser.html :: fragmentFormCreate}"></div>
+                    <div th:replace="~{fragments/fragment-Form-User.html :: fragmentFormCreate}"></div>
 
                     <button  type="submit">Uložit</button>
                 </form>

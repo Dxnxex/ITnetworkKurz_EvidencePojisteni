@@ -22,7 +22,7 @@
                 <form th:action="@{'/user/edit/' + ${id}}" method="post" th:object="${user}">
 
                     <!--FRAGMENT USER CREATE / EDIT FORM-->
-                    <div th:replace="~{fragments/fragmentFormUser.html :: fragmentFormCreate}"></div>
+                    <div th:replace="~{fragments/fragment-Form-User.html :: fragmentFormCreate}"></div>
 
                     <button type="submit">Uložit</button>
                 </form>

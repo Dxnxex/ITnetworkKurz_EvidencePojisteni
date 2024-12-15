@@ -78,7 +78,7 @@ public class EvidenceUserInsuranceController {
         //INIT
         Long userID = service.userInsuranceGetID(id).getUser().getId();
 
-        service.userDeleteUzivatelPojisteni(id);
+        service.deleteUserInsurance(id);
         redirectAttributes.addFlashAttribute("delete", "Uživatelovo pojištění smazáno");
 
 
