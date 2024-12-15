@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<body>
+
+
+
+
+
+<!--CREATE / EDIT (UŽIVATEL)-->
+<div  th:fragment="fragmentFormCreate">
+    <div class="row mb-3">
+
+        <div class="col-md-6">
+            <label for="name">Jméno:</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Jan"/>
+            <div class="py-2 flash-message message-error" th:text="${name}" th:if="${name}"></div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="surname">Příjmení:</label>
+            <input type="text" id="surname" th:field="*{surname}" class="form-control" placeholder="Novák"/>
+            <div class="py-2 flash-message message-error" th:text="${surname}" th:if="${surname}"></div>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-md-6">
+            <label for="email">Email:</label>
+            <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="jannovak68@gmail.com"/>
+            <div class="py-2 flash-message message-error" th:text="${email}" th:if="${email}"></div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="telephone">Telefon:</label>
+            <input type="text" id="telephone" th:field="*{telephone}" class="form-control" placeholder="731 584 972"/>
+            <div class="py-2 flash-message message-error" th:text="${telephone}" th:if="${telephone}"></div>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-md-6">
+            <label for="streetAndNumber">Ulice a číslo popisné:</label>
+            <input type="text" id="streetAndNumber" th:field="*{streetAndNumber}" class="form-control" placeholder="Ve Svahu 3"/>
+            <div class="py-2 flash-message message-error" th:text="${streetAndNumber}" th:if="${streetAndNumber}"></div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="city">Město:</label>
+            <input type="text" id="city" th:field="*{city}" class="form-control" placeholder="Praha 1"/>
+            <div class="py-2 flash-message message-error" th:text="${city}" th:if="${city}"></div>
+        </div>
+
+    </div>
+
+
+    <div class="row mb-3 justify-content-end">
+
+        <div class="col-md-6 ">
+            <label for="postalCode">PSČ:</label>
+            <input type="text" id="postalCode" th:field="*{postalCode}" class="form-control" placeholder="100 00"/>
+            <div class="py-2 flash-message message-error" th:text="${postalCode}" th:if="${postalCode}"></div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+
+<div th:fragment="fragmentCreateInsuranceForm">
+
+    <div class="row mb-3 " >
+
+        <div class="col-md-12">
+            <label for="name">Název:</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Název pojištění"/>
+            <div class="py-2 flash-message message-error" th:text="${name}" th:if="${name}"></div>
+        </div>
+
+        <div class="col-md-12">
+            <label for="description">Popis:</label>
+            <input type="text" id="description" th:field="*{description}" class="form-control" placeholder="Popis pojištění"/>
+        </div>
+
+        <button class="my-3" type="submit">Uložit</button>
+
+    </div>
+
+</div>
+
+
+
+</body>
+
+</html>

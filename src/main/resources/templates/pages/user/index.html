@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+    <head th:replace="~{fragments/layout.html :: fragmentHead}"></head>
+
+    <body>
+    <div class="main-content">
+
+        <!--HEADER-->
+        <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
+
+        <section class="px-2 my-5">
+
+            <!--Flash messages-->
+            <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
+
+            <!--Vytvořit pojištěného-->
+            <div class="my-5 px-2 justify-content-end align-items-center text-center">
+                <a th:href="@{/user/create}" ><button class="btn btn-success"  sec:authorize="isAuthenticated()">Vytvořit pojištěného</button> </a>
+            </div>
+
+            <!-- Tabulka pojištěných -->
+            <div class="container mb-5">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+
+                        <thead class="table-dark">
+                        <tr>
+                            <th>Jméno</th>
+                            <th>Bydliště</th>
+                            <th>Akce</th>
+                        </tr>
+                        </thead>
+
+                        <tbody sec:authorize="isAuthenticated()">
+                        <tr th:each="user : ${vypsatVsechnyUzivatele}">
+                            <td th:text="${user.name} + ' ' + ${user.surname}"></td>
+                            <td th:text="${user.streetAndNumber} + ', ' + ${user.city}"></td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <form th:action="@{/user/delete/{id}(id=${user.id})}" method="post">
+                                        <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-danger btn-sm">Smazat</button>
+                                    </form>
+                                    <form th:action="@{/user/{id}(id=${user.id})}" method="get">
+                                        <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-warning btn-sm">Detail</button>
+                                    </form>
+                                    <form th:action="@{/user/edit/{id}(id=${user.id})}" method="get">
+                                        <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-info btn-sm">Editovat</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+
+
+        </section>
+
+    </div>
+    </body>
+
+
+    <!--Footer-->
+    <footer th:replace="~{fragments/layout.html :: fragmentFooter}"></footer>
+
+    <!--Scripty-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+</html>

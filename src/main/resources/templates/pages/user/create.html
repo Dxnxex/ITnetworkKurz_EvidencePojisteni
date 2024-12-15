@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+    <head th:replace="~{fragments/layout.html :: fragmentHead}"></head>
+
+    <body>
+    <div class="main-content">
+
+        <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
+
+        <section class="container px-2">
+
+            <!--Flash messages-->
+            <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
+
+            <article class="container | borders "  >
+
+                <h4 class="my-4 PojistenciFont">Nový pojištěnec</h4>
+
+                <form th:object="${vytvoreniUzivatele}" th:action="@{/user/create}" method="post">
+
+                    <!--FRAGMENT USER CREATE / EDIT FORM-->
+                    <div th:replace="~{fragments/fragment-Form-User.html :: fragmentFormCreate}"></div>
+
+                    <button  type="submit">Uložit</button>
+                </form>
+
+
+
+
+
+
+
+
+
+            </article>
+        </section>
+
+    </div>
+    </body>
+
+
+    <footer th:replace="~{fragments/layout.html :: fragmentFooter}"></footer>
+
+    <!--Scripty-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</html>
