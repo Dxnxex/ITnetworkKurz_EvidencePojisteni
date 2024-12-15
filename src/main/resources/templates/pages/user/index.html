@@ -33,18 +33,18 @@
                         </thead>
 
                         <tbody sec:authorize="isAuthenticated()">
-                        <tr th:each="uzivatel : ${vypsatVsechnyUzivatele}">
-                            <td th:text="${uzivatel.jmeno} + ' ' + ${uzivatel.prijmeni}"></td>
-                            <td th:text="${uzivatel.uliceACislo} + ', ' + ${uzivatel.mesto}"></td>
+                        <tr th:each="user : ${vypsatVsechnyUzivatele}">
+                            <td th:text="${user.name} + ' ' + ${user.surname}"></td>
+                            <td th:text="${user.streetAndNumber} + ', ' + ${user.city}"></td>
                             <td>
                                 <div class="d-flex flex-wrap gap-2">
-                                    <form th:action="@{/uzivatele/delete/{id}(id=${uzivatel.id})}" method="post">
+                                    <form th:action="@{/uzivatele/delete/{id}(id=${user.id})}" method="post">
                                         <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-danger btn-sm">Smazat</button>
                                     </form>
-                                    <form th:action="@{/uzivatele/{id}(id=${uzivatel.id})}" method="get">
+                                    <form th:action="@{/uzivatele/{id}(id=${user.id})}" method="get">
                                         <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-warning btn-sm">Detail</button>
                                     </form>
-                                    <form th:action="@{/uzivatele/edit/{id}(id=${uzivatel.id})}" method="get">
+                                    <form th:action="@{/uzivatele/edit/{id}(id=${user.id})}" method="get">
                                         <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-info btn-sm">Editovat</button>
                                     </form>
                                 </div>

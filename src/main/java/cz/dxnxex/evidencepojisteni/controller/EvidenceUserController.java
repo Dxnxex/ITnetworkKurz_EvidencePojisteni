@@ -1,12 +1,12 @@
 package cz.dxnxex.evidencepojisteni.controller;
 
 
-import cz.dxnxex.evidencepojisteni.EvidencePojisteniRedirect;
-import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelDTO;
-import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
-import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
-import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelMapper;
-import cz.dxnxex.evidencepojisteni.service.EvidenceUzivatelService;
+import cz.dxnxex.evidencepojisteni.EvidenceRedirect;
+import cz.dxnxex.evidencepojisteni.dto.EvidenceUserDTO;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceInsuranceEntity;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceUserEntity;
+import cz.dxnxex.evidencepojisteni.mapper.EvidenceUserMapper;
+import cz.dxnxex.evidencepojisteni.service.EvidenceUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -21,19 +21,19 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("uzivatele")
-public class EvidenceUzivatelController  {
+@RequestMapping("user")
+public class EvidenceUserController {
 
-    private final String returnPage = "pages/uzivatele/";
-    private final String redirectPage = "redirect:/uzivatele";
+    private final String returnPage = "pages/user/";
+    private final String redirectPage = "redirect:/user";
 
-    private final EvidencePojisteniRedirect redirect = new EvidencePojisteniRedirect();
-
-    @Autowired
-    private EvidenceUzivatelService service;
+    private final EvidenceRedirect redirect = new EvidenceRedirect();
 
     @Autowired
-    private EvidenceUzivatelMapper mapper;
+    private EvidenceUserService service;
+
+    @Autowired
+    private EvidenceUserMapper mapper;
 
 
     /**
@@ -52,12 +52,12 @@ public class EvidenceUzivatelController  {
 
     /**
      * ZOBRAZENÍ VYTVOŘENÍ POJIŠTĚNCE
-     * @param uzivatel
+     * @param user
      * @return
      */
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
-        public String renderPersonCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO uzivatel) {
+        public String renderPersonCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUserDTO user) {
 
         return returnPage + "create";
 
@@ -71,9 +71,10 @@ public class EvidenceUzivatelController  {
      * @param redirectAttributes
      * @return
      */
+
     @PreAuthorize("isAuthenticated()")
         @PostMapping("/create")
-        public String createPerson(@Valid @ModelAttribute("vytvoreniUzivatele") EvidenceUzivatelDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
+        public String createPerson(@Valid @ModelAttribute("vytvoreniUzivatele") EvidenceUserDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
 
             if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
@@ -86,7 +87,7 @@ public class EvidenceUzivatelController  {
                 service.userCreate(evidence);
                 redirectAttributes.addFlashAttribute("success", "Uživatel vytvořen.");
 
-                return redirectPage + "";
+                return redirectPage;
             }
 
 
@@ -96,19 +97,19 @@ public class EvidenceUzivatelController  {
      * ZOBRAZENÍ DETAILU POJIŠTĚNCE
      * @param id
      * @param model
-     * @param uzivatelData
+     * @param userData
      * @return
      */
     @Secured("ROLE_ADMIN")
     @GetMapping("/{id}")
-    public String renderPersonDetail(@PathVariable Long id, Model model, EvidenceUzivatelDTO uzivatelData) {
+    public String renderPersonDetail(@PathVariable Long id, Model model, EvidenceUserDTO userData) {
 
         // Získání uživatele a seznamu pojištění
-        EvidenceUzivatelEntity uzivatel = service.userGetID(id);
-        List<EvidencePojisteniEntity> pojisteni = service.insuranceFindAllList();
+        EvidenceUserEntity user = service.userGetID(id);
+        List<EvidenceInsuranceEntity> insurance = service.insuranceFindAllList();
 
-        model.addAttribute("uzivatel",              uzivatel);
-        model.addAttribute("pojisteni",             pojisteni);
+        model.addAttribute("uzivatel",              user);
+        model.addAttribute("pojisteni",             insurance);
         model.addAttribute("castka",                null);
         model.addAttribute("uzivatelovaPojisteni",  service.userInsuranceGetIDList(id));
 
@@ -119,14 +120,14 @@ public class EvidenceUzivatelController  {
     /**
      * VYTVOŘENÍ POJIŠTĚNÍ A NÁSLEDNÉ PŘÍŘAZENÍ K POJIŠTĚNCI
      * @param id
-     * @param pojisteniId
-     * @param castka
+     * @param insuranceID
+     * @param value
      * @return
      */
     @PostMapping("/{id}")
-    public String createPersonInsurance(@PathVariable Long id, @RequestParam Long pojisteniId, @RequestParam int castka, RedirectAttributes redirectAttributes) {
+    public String createPersonInsurance(@PathVariable Long id, @RequestParam Long insuranceID, @RequestParam int value, RedirectAttributes redirectAttributes) {
 
-        service.userAddInsurance(id, pojisteniId, castka);
+        service.userAddInsurance(id, insuranceID, value);
         redirectAttributes.addFlashAttribute("success", "Uživatelovo pojištění vytvořeno");
         return redirectPage + "/" + id;
     }
@@ -159,7 +160,7 @@ public class EvidenceUzivatelController  {
      */
     @Secured("ROLE_ADMIN")
     @PostMapping("edit/{id}")
-    public String editPerson(@PathVariable long id,@Valid EvidenceUzivatelDTO evidence,BindingResult result, RedirectAttributes redirectAttributes) {
+    public String editPerson(@PathVariable long id, @Valid EvidenceUserDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 

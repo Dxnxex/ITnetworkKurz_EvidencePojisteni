@@ -1,30 +1,30 @@
 package cz.dxnxex.evidencepojisteni.service;
 
-import cz.dxnxex.evidencepojisteni.dto.EvidencePojisteniDTO;
-import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
-import cz.dxnxex.evidencepojisteni.repository.EvidencePojisteniRepository;
-import cz.dxnxex.evidencepojisteni.mapper.EvidencePojisteniMapper;
+import cz.dxnxex.evidencepojisteni.dto.EvidenceInsuranceDTO;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceInsuranceEntity;
+import cz.dxnxex.evidencepojisteni.mapper.EvidenceInsuranceMapper;
+import cz.dxnxex.evidencepojisteni.repository.EvidenceInsuranceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EvidencePojisteniService {
+public class EvidenceInsuranceService {
 
     @Autowired
-    private EvidencePojisteniRepository repository;
+    private EvidenceInsuranceRepository repository;
 
     @Autowired
-    private EvidencePojisteniMapper mapper;
+    private EvidenceInsuranceMapper mapper;
 
 
     /**
      * VYTVOŘENÍ POJIŠTĚNÍ
      * @param data
      */
-    public void insuranceCreate(EvidencePojisteniDTO data) {
-        EvidencePojisteniEntity newItem = mapper.toEntity(data);
+    public void insuranceCreate(EvidenceInsuranceDTO data) {
+        EvidenceInsuranceEntity newItem = mapper.toEntity(data);
         repository.saveAndFlush(newItem);
     }
 
@@ -33,21 +33,21 @@ public class EvidencePojisteniService {
      * VRÁTÍ LIST VŠECH POJIŠTĚNÍ
      * @return
      */
-    public List<EvidencePojisteniDTO> insuranceGetAllList() {
+    public List<EvidenceInsuranceDTO> insuranceGetAllList() {
 
-        List<EvidencePojisteniDTO> pojisteni = repository.findAll().stream().map(entita -> mapper.toDTO(entita)).toList();
+        List<EvidenceInsuranceDTO> insurance = repository.findAll().stream().map(entity -> mapper.toDTO(entity)).toList();
 
         //region Vypsání do konzole
 
         System.out.println();
         System.out.println("Výpis všech pojištění:");
-        for(EvidencePojisteniDTO vypis : pojisteni){
-            System.out.println("ID:" + vypis.getId() + " '" + vypis.getPredmet() + "' - " + vypis);
+        for(EvidenceInsuranceDTO list : insurance){
+            System.out.println("ID:" + list.getId() + " '" + list.getName() + "' - " + list);
         }
 
         //endregion
 
-        return pojisteni;
+        return insurance;
     }
 
 
@@ -55,7 +55,7 @@ public class EvidencePojisteniService {
      * VRÁTÍ LIST VŠECH POJIŠTĚNÍ - STREAM
      * @return
      */
-    public List<EvidencePojisteniDTO> insuranceGetAllListStream() {
+    public List<EvidenceInsuranceDTO> insuranceGetAllListStream() {
         return repository.findAll().stream().map(entita -> mapper.toDTO(entita)).toList();
     }
 
@@ -65,7 +65,7 @@ public class EvidencePojisteniService {
      * @param pojisteni
      * @return
      */
-    public EvidencePojisteniEntity insuranceGetID(Long pojisteni) {
+    public EvidenceInsuranceEntity insuranceGetID(Long pojisteni) {
 
         //region Vypsání do konzole
 

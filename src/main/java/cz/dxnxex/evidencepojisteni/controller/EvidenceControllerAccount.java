@@ -1,16 +1,14 @@
 package cz.dxnxex.evidencepojisteni.controller;
 
 
-import cz.dxnxex.evidencepojisteni.EvidencePojisteniRedirect;
+import cz.dxnxex.evidencepojisteni.EvidenceRedirect;
 import cz.dxnxex.evidencepojisteni.dto.EvidenceAccountDTO;
 import cz.dxnxex.evidencepojisteni.models.DuplicateEmailException;
 import cz.dxnxex.evidencepojisteni.models.PasswordsDoNotEqualException;
-import cz.dxnxex.evidencepojisteni.service.EvidencePojisteniService;
-import cz.dxnxex.evidencepojisteni.service.EvidenceUzivatelService;
+import cz.dxnxex.evidencepojisteni.service.EvidenceUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,10 +23,10 @@ public class EvidenceControllerAccount {
     private final String returnPage = "pages/";
     private final String redirectPage = "redirect:/account";
 
-    private final EvidencePojisteniRedirect redirect = new EvidencePojisteniRedirect();
+    private final EvidenceRedirect redirect = new EvidenceRedirect();
 
     @Autowired
-    private EvidenceUzivatelService service;
+    private EvidenceUserService service;
 
     @GetMapping("login")
     public String renderLogin() {
@@ -37,13 +35,13 @@ public class EvidenceControllerAccount {
 
 
     @GetMapping("register")
-    public String renderRegister(@ModelAttribute("registraceUzivatele") EvidenceAccountDTO account) {
+    public String renderRegister(@ModelAttribute("userRegistration") EvidenceAccountDTO account) {
         return "/pages/account/register";
     }
 
     @PostMapping("register")
     public String register(
-            @Valid @ModelAttribute("registraceUzivatele") EvidenceAccountDTO account,
+            @Valid @ModelAttribute("userRegistration") EvidenceAccountDTO account,
             BindingResult result,
             RedirectAttributes redirectAttributes
     ) {

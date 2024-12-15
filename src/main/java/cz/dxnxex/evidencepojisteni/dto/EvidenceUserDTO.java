@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class EvidenceUzivatelDTO {
+public class EvidenceUserDTO {
 
 
         private Long id;               // Unikátní identifikátor
@@ -13,12 +13,12 @@ public class EvidenceUzivatelDTO {
         @NotBlank(message = "Jméno nesmí být prázdné")
         @Size(min = 2, max = 50, message = "Jméno musí mít délku mezi 2 a 50 znaky")
         @Pattern(regexp = "^[a-zA-Zá-žÁ-Ž]+$", message = "Jméno může obsahovat pouze písmena bez čísel a speciálních znaků")
-        private String jmeno;  // Jméno osoby
+        private String name;  // Jméno osoby
 
         @NotBlank(message = "Příjmení nesmí být prázdné")
         @Size(min = 2, max = 50, message = "Příjmení musí mít délku mezi 2 a 50 znaky")
         @Pattern(regexp = "^[a-zA-Zá-žÁ-Ž]+$", message = "Příjmení může obsahovat pouze písmena bez čísel a speciálních znaků")
-        private String prijmeni;  // Příjmení osoby
+        private String surname;  // Příjmení osoby
 
         @NotBlank(message = "Email nesmí být prázdný")
         @Email(message = "Email musí mít správný formát")
@@ -26,19 +26,19 @@ public class EvidenceUzivatelDTO {
 
         @NotBlank(message = "Telefonní číslo nesmí být prázdné")
         @Pattern(regexp = "^\\d{3} \\d{3} \\d{3}$", message = "Telefonní číslo musí být ve formátu 123 456 789")
-        private String telefon;  // Telefonní číslo
+        private String telephone;  // Telefonní číslo
 
         @NotBlank(message = "Ulice a číslo popisné nesmí být prázdné")
         @Size(max = 100, message = "Ulice a číslo popisné nesmí být delší než 100 znaků")
-        private String uliceACislo;  // Ulice a číslo popisné
+        private String streetAndNumber;  // Ulice a číslo popisné
 
         @NotBlank(message = "Město nesmí být prázdné")
         @Size(max = 50, message = "Název města nesmí být delší než 50 znaků")
-        private String mesto;  // Město
+        private String city;  // Město
 
         @NotBlank(message = "PSČ nesmí být prázdné")
         @Pattern(regexp = "^\\d{3} \\d{2}$", message = "PSČ musí být ve formátu 123 45")
-        private String psc;  // Poštovní směrovací číslo (PSČ)
+        private String postalCode;  // Poštovní směrovací číslo (PSČ)
 
         //region GETTERS & SETTERS
 
@@ -50,20 +50,20 @@ public class EvidenceUzivatelDTO {
                 this.id = id;
         }
 
-        public String getJmeno() {
-                return jmeno;
+        public String getName() {
+                return name;
         }
 
-        public void setJmeno(String jmeno) {
-                this.jmeno = jmeno;
+        public void setName(String name) {
+                this.name = name;
         }
 
-        public String getPrijmeni() {
-                return prijmeni;
+        public String getSurname() {
+                return surname;
         }
 
-        public void setPrijmeni(String prijmeni) {
-                this.prijmeni = prijmeni;
+        public void setSurname(String surname) {
+                this.surname = surname;
         }
 
         public String getEmail() {
@@ -74,36 +74,36 @@ public class EvidenceUzivatelDTO {
                 this.email = email;
         }
 
-        public String getTelefon() {
-                return telefon;
+        public String getTelephone() {
+                return telephone;
         }
 
-        public void setTelefon(String telefon) {
-                this.telefon = telefon;
+        public void setTelephone(String telephone) {
+                this.telephone = telephone;
         }
 
-        public String getUliceACislo() {
-                return uliceACislo;
+        public String getStreetAndNumber() {
+                return streetAndNumber;
         }
 
-        public void setUliceACislo(String uliceACislo) {
-                this.uliceACislo = uliceACislo;
+        public void setStreetAndNumber(String streetAndNumber) {
+                this.streetAndNumber = streetAndNumber;
         }
 
-        public String getMesto() {
-                return mesto;
+        public String getCity() {
+                return city;
         }
 
-        public void setMesto(String mesto) {
-                this.mesto = mesto;
+        public void setCity(String city) {
+                this.city = city;
         }
 
-        public String getPsc() {
-                return psc;
+        public String getPostalCode() {
+                return postalCode;
         }
 
-        public void setPsc(String psc) {
-                this.psc = psc;
+        public void setPostalCode(String postalCode) {
+                this.postalCode = postalCode;
         }
 
         //endregion

@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/layout.html :: fragmentHead}"></head>
+<head th:replace="~{fragments/layout.html :: fragmentHead}"><title>Jooooo</title></head>
 
 <body>
 <div class="main-content">
 
     <header th:replace="~{fragments/layout.html :: fragmentNavigace}"></header>
+
+
 
 
     <section class="container px-2">
@@ -15,16 +17,14 @@
             <!--Flash messages-->
             <div th:replace="~{fragments/layout.html :: fragmentFlash}"></div>
 
-            <h4 class="my-4 PojistenciFont">Úprava hodnot</h4>
+            <h4 class="my-4 PojistenciFont">Nový pojištěnec</h4>
 
-            <form th:action="@{'/pojisteni/edit/' + ${id}}" method="post" th:object="${pojisteni}">
+            <form th:object="${evidenceInsuranceDTO}" action="/insurance/create" method="post">
 
                 <!--FRAGMENT INSURANCE CREATE / EDIT FORM-->
                 <div th:replace="~{fragments/fragmentFormInsurance.html :: fragmentCreateInsuranceForm}"></div>
 
-                <button type="submit">Uložit</button>
             </form>
-
 
 
 
@@ -32,6 +32,11 @@
 
         </article>
     </section>
+
+
+
+
+
 
 
 </div>

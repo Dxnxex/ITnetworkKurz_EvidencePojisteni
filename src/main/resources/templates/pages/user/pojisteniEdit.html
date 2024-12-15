@@ -22,19 +22,19 @@
                     <div>
 
                         <h3>Upravit pojištění</h3>
-                        <form th:action="@{'/uzivatele/pojisteni/edit/' + ${id}}" method="post">
+                        <form th:action="@{'/uzivatele/insurance/edit/' + ${id}}" method="post">
 
-                            <label for="pojisteni">Vybrané pojištění:</label>
-                            <select id="pojisteni" name="pojisteniId" required>
-                                <option th:each="pojisteni : ${pojisteni}"
-                                        th:value="${pojisteni.pojisteni.id}"
-                                        th:text="${pojisteni.pojisteni.predmet}">
+                            <label for="insurance">Vybrané pojištění:</label>
+                            <select id="insurance" name="pojisteniId" required>
+                                <option th:each="insurance : ${insurance}"
+                                        th:value="${insurance.insurance.id}"
+                                        th:text="${insurance.insurance.predmet}">
                                 </option>
                             </select>
 
                             <br>
-                            <label for="castka">Částka pojištění:</label>
-                            <input id="castka" name="castka" type="number" step="1" min="0" placeholder="Zadejte částku" required>
+                            <label for="value">Částka pojištění:</label>
+                            <input id="value" name="value" type="number" step="1" min="0" placeholder="Zadejte částku" required>
                             <br>
                             <button type="submit">Upravit pojištění</button>
                         </form>
@@ -69,9 +69,9 @@
                    <div class="mb-3">
                         <label for="pojisteniId">Typ pojištění:</label>
                         <select id="pojisteniId" name="pojisteniId" class="form-control" required>
-                            <option th:each="pojisteni : ${pojisteni}"
-                                    th:value="${pojisteni.id}"
-                                    th:text="${pojisteni.predmet}"></option>
+                            <option th:each="insurance : ${insurance}"
+                                    th:value="${insurance.id}"
+                                    th:text="${insurance.predmet}"></option>
                         </select>
                     </div>
 -->

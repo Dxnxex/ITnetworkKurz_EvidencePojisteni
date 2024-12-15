@@ -23,24 +23,24 @@
                     <thead>
                     <tr>
                         <th class="tableBorders">
-                            <div th:text="${uzivatel.jmeno} +' '+ ${uzivatel.prijmeni}"></div>
+                            <div th:text="${user.name} +' '+ ${user.surname}"></div>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
 
                     <tr>
-                        <td class="tableBorders"><div th:text="${uzivatel.mesto}"></div></td>
-                        <td class="tableBorders"><div th:text="${uzivatel.email}"></div></td>
+                        <td class="tableBorders"><div th:text="${user.city}"></div></td>
+                        <td class="tableBorders"><div th:text="${user.email}"></div></td>
                     </tr>
 
                     <tr>
-                        <td  class="tableBorders"><div th:text="${uzivatel.uliceACislo}"></div></td>
-                        <td  class="tableBorders"><div th:text="${uzivatel.telefon}"></div></td>
+                        <td  class="tableBorders"><div th:text="${user.streetAndNumber}"></div></td>
+                        <td  class="tableBorders"><div th:text="${user.telephone}"></div></td>
                     </tr>
 
                     <tr>
-                        <td  class="tableBorders"><div th:text="${uzivatel.psc}"></div></td>
+                        <td  class="tableBorders"><div th:text="${user.postalCode}"></div></td>
                     </tr>
 
                     </tbody>
@@ -51,15 +51,15 @@
 
 
             <h5 class="nadpis my-2">Pojištění uživatele:</h5>
-            <tr th:each="item : ${uzivatelovaPojisteni}">
-                <td th:text="${item.pojisteni.predmet} + ': ' +  ${item.castka} + ' Kč'"></td>
+            <tr th:each="item : ${userInsurances}">
+                <td th:text="${item.insurance.predmet} + ': ' +  ${item.value} + ' Kč'"></td>
 
                 <td>
                     <div class="d-flex mb-4">
-                        <form th:action="@{/uzivatele/pojisteni/delete/{id} (id=${item.id}) }" method="post" class="px-1">
+                        <form th:action="@{/uzivatele/insurance/delete/{id} (id=${item.id}) }" method="post" class="px-1">
                             <button type="submit" class="btn btn-danger">Smazat</button>
                         </form>
-                        <form th:action="@{/uzivatele/pojisteni/edit/{id} (id=${item.id}) }" method="get" class="px-1">
+                        <form th:action="@{/uzivatele/insurance/edit/{id} (id=${item.id}) }" method="get" class="px-1">
                             <button type="submit" class="btn btn-info">Editovat</button>
                         </form>
                     </div>
@@ -69,17 +69,17 @@
             <div>
                 <p></p>
                 <h5 class="nadpis my-2">Přidat nové pojištění:</h5>
-                <form th:action="@{'/uzivatele/' + ${uzivatel.id}}" method="post">
-                    <label for="pojisteni">Vyberte pojištění:</label>
-                    <select id="pojisteni" name="pojisteniId" required>
-                        <option th:each="pojisteni : ${pojisteni}"
-                                th:value="${pojisteni.id}"
-                                th:text="${pojisteni.predmet}">
+                <form th:action="@{'/uzivatele/' + ${user.id}}" method="post">
+                    <label for="insurance">Vyberte pojištění:</label>
+                    <select id="insurance" name="pojisteniId" required>
+                        <option th:each="insurance : ${insurance}"
+                                th:value="${insurance.id}"
+                                th:text="${insurance.predmet}">
                         </option>
                     </select>
                     <br>
-                    <label for="castka">Částka pojištění:</label>
-                    <input id="castka" name="castka" type="number" step="1" min="0" placeholder="Zadejte částku" required>
+                    <label for="value">Částka pojištění:</label>
+                    <input id="value" name="value" type="number" step="1" min="0" placeholder="Zadejte částku" required>
                     <br>
                     <button type="submit">Přiřadit pojištění</button>
                 </form>

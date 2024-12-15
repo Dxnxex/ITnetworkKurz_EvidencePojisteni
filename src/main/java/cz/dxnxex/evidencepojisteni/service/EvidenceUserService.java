@@ -2,19 +2,19 @@ package cz.dxnxex.evidencepojisteni.service;
 
 
 import cz.dxnxex.evidencepojisteni.dto.EvidenceAccountDTO;
-import cz.dxnxex.evidencepojisteni.dto.EvidenceUzivatelDTO;
+import cz.dxnxex.evidencepojisteni.dto.EvidenceUserDTO;
 import cz.dxnxex.evidencepojisteni.entity.EvidenceAccountEntity;
-import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
-import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelEntity;
-import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelPojisteniEntity;
-import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelMapper;
-import cz.dxnxex.evidencepojisteni.mapper.EvidenceUzivatelPojisteniMapper;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceInsuranceEntity;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceUserEntity;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceUserInsuranceEntity;
+import cz.dxnxex.evidencepojisteni.mapper.EvidenceUserInsuranceMapper;
+import cz.dxnxex.evidencepojisteni.mapper.EvidenceUserMapper;
 import cz.dxnxex.evidencepojisteni.models.DuplicateEmailException;
 import cz.dxnxex.evidencepojisteni.models.PasswordsDoNotEqualException;
 import cz.dxnxex.evidencepojisteni.repository.EvidenceAccountRepository;
-import cz.dxnxex.evidencepojisteni.repository.EvidencePojisteniRepository;
-import cz.dxnxex.evidencepojisteni.repository.EvidenceUzivatelPojisteniRepository;
-import cz.dxnxex.evidencepojisteni.repository.EvidenceUzivatelRepository;
+import cz.dxnxex.evidencepojisteni.repository.EvidenceInsuranceRepository;
+import cz.dxnxex.evidencepojisteni.repository.EvidenceUserInsuranceRepository;
+import cz.dxnxex.evidencepojisteni.repository.EvidenceUserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -28,34 +28,34 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EvidenceUzivatelService implements UserDetailsService {
+public class EvidenceUserService implements UserDetailsService {
 
     @Autowired
-    private EvidenceUzivatelRepository repositoryUzivatel;
+    private EvidenceUserRepository repositoryUzivatel;
 
     @Autowired
-    private EvidencePojisteniRepository repositoryPojisteni;
+    private EvidenceInsuranceRepository repositoryPojisteni;
 
     @Autowired
-    private EvidenceUzivatelPojisteniRepository repositoryUzivatelPojisteni;
+    private EvidenceUserInsuranceRepository repositoryUzivatelPojisteni;
 
     @Autowired
     private EvidenceAccountRepository repositoryAccount;
 
     @Autowired
-    private EvidenceUzivatelMapper mapper;
+    private EvidenceUserMapper mapper;
 
     @Autowired
-    private EvidenceUzivatelPojisteniMapper mapperUzivatelPojisteni;
+    private EvidenceUserInsuranceMapper mapperUzivatelPojisteni;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     /** VYTVOŘENÍ POJIŠTĚNÉHO DO DATABÁZE
      */
-    public void userCreate(EvidenceUzivatelDTO data) {
+    public void userCreate(EvidenceUserDTO data) {
 
-        EvidenceUzivatelEntity uzivatel = mapper.toEntity(data);
+        EvidenceUserEntity uzivatel = mapper.toEntity(data);
 
             //region Vypsání do konzole
 
@@ -89,17 +89,17 @@ public class EvidenceUzivatelService implements UserDetailsService {
 
     /** VÝPIS VŠECH POJIŠTĚNÝCH V DATABÁZI
      */
-    public List<EvidenceUzivatelDTO> userGetAllList() {
+    public List<EvidenceUserDTO> userGetAllList() {
 
-        List<EvidenceUzivatelDTO> uzivatele = repositoryUzivatel.findAll().stream().map(entita -> mapper.toDTO(entita)).toList();
+        List<EvidenceUserDTO> uzivatele = repositoryUzivatel.findAll().stream().map(entita -> mapper.toDTO(entita)).toList();
 
             //region Vypsání do konzole
 
             System.out.println();
             System.out.println("Výpis všech uživatelů:");
 
-            for(EvidenceUzivatelDTO vypis : uzivatele){
-                System.out.println("ID:" + vypis.getId() + " '" + vypis.getJmeno() + " " + vypis.getPrijmeni()+"' - " + vypis);
+            for(EvidenceUserDTO vypis : uzivatele){
+                System.out.println("ID:" + vypis.getId() + " '" + vypis.getName() + " " + vypis.getSurname()+"' - " + vypis);
             }
 
             //endregion
@@ -124,7 +124,7 @@ public class EvidenceUzivatelService implements UserDetailsService {
 
     /** ZÍSKÁNÍ ID POJIŠTĚNÉHO
      */
-    public EvidenceUzivatelEntity userGetID(Long uzivatel) {
+    public EvidenceUserEntity userGetID(Long uzivatel) {
 
         //region Vypsání do konzole
 
@@ -139,15 +139,15 @@ public class EvidenceUzivatelService implements UserDetailsService {
 
     /** VRÁCENÍ LISTU VŠECH POJIŠTĚNÍ
      */
-    public List<EvidencePojisteniEntity> insuranceFindAllList() {
+    public List<EvidenceInsuranceEntity> insuranceFindAllList() {
 
-        List<EvidencePojisteniEntity> pojisteni = repositoryPojisteni.findAll();
+        List<EvidenceInsuranceEntity> pojisteni = repositoryPojisteni.findAll();
 
         //region Vypsání do konzole
 
             System.out.println("DOSTUPNÁ POJIŠTĚNÍ");
-            for(EvidencePojisteniEntity vypis : pojisteni){
-                System.out.println("ID:" + vypis.getId() + " '" + vypis.getPredmet()+"' - " + vypis);
+            for(EvidenceInsuranceEntity vypis : pojisteni){
+                System.out.println("ID:" + vypis.getId() + " '" + vypis.getName()+"' - " + vypis);
             }
 
             //endregion
@@ -157,7 +157,7 @@ public class EvidenceUzivatelService implements UserDetailsService {
 
     /** VRÁTÍ ID POJIŠTĚNÍ
      */
-    public EvidencePojisteniEntity insuranceGetID(Long pojisteni) {
+    public EvidenceInsuranceEntity insuranceGetID(Long pojisteni) {
 
         //region Vypsání do konzole
 
@@ -175,20 +175,20 @@ public class EvidenceUzivatelService implements UserDetailsService {
     public void userAddInsurance(Long uzivatelId, Long pojisteniId, int castka) {
 
         //IDčka uživatele a vybraného pojištění
-        EvidenceUzivatelEntity uzivatel = userGetID(uzivatelId);
-        EvidencePojisteniEntity pojisteni = insuranceGetID(pojisteniId);
+        EvidenceUserEntity uzivatel = userGetID(uzivatelId);
+        EvidenceInsuranceEntity pojisteni = insuranceGetID(pojisteniId);
 
         //Nová instance pro spojení
-        EvidenceUzivatelPojisteniEntity uzivatelPojisteni = new EvidenceUzivatelPojisteniEntity();
+        EvidenceUserInsuranceEntity uzivatelPojisteni = new EvidenceUserInsuranceEntity();
 
         //Nastavení hodnot
-        uzivatelPojisteni.setUzivatel(uzivatel);
-        uzivatelPojisteni.setPojisteni(pojisteni);
-        uzivatelPojisteni.setCastka(castka);
+        uzivatelPojisteni.setUser(uzivatel);
+        uzivatelPojisteni.setInsurance(pojisteni);
+        uzivatelPojisteni.setValue(castka);
 
 
         //Přidání pojištění uživateli
-        uzivatel.getUzivatelovaPojisteni().add(uzivatelPojisteni);
+        uzivatel.getUserInsurances().add(uzivatelPojisteni);
 
         // Uložení uživatele
         repositoryUzivatel.save(uzivatel);
@@ -200,13 +200,13 @@ public class EvidenceUzivatelService implements UserDetailsService {
     public void userEditInsurance(Long uzivatelPojisteniId, int castka) {
 
         // Najdi záznam v tabulce spojení
-        Optional<EvidenceUzivatelPojisteniEntity> optionalUzivatelPojisteni = repositoryUzivatelPojisteni.findById(uzivatelPojisteniId);
+        Optional<EvidenceUserInsuranceEntity> optionalUzivatelPojisteni = repositoryUzivatelPojisteni.findById(uzivatelPojisteniId);
 
         if (optionalUzivatelPojisteni.isPresent()) {
-            EvidenceUzivatelPojisteniEntity uzivatelPojisteni = optionalUzivatelPojisteni.get();
+            EvidenceUserInsuranceEntity uzivatelPojisteni = optionalUzivatelPojisteni.get();
 
             // Aktualizace částky
-            uzivatelPojisteni.setCastka(castka);
+            uzivatelPojisteni.setValue(castka);
 
             // Uložení změn
             repositoryUzivatelPojisteni.save(uzivatelPojisteni);
@@ -218,13 +218,13 @@ public class EvidenceUzivatelService implements UserDetailsService {
 
     /** VRÁTÍ LIST POJIŠTĚNÍ POJIŠTĚNÉHO
      */
-    public List<EvidenceUzivatelPojisteniEntity> userInsuranceGetIDList(Long id) {
-        return repositoryUzivatelPojisteni.findAll().stream().filter(entity -> entity.getUzivatel().getId() == id).toList();
+    public List<EvidenceUserInsuranceEntity> userInsuranceGetIDList(Long id) {
+        return repositoryUzivatelPojisteni.findAll().stream().filter(entity -> entity.getUser().getId() == id).toList();
     }
 
     /** VRÁTÍ ID POJIŠTĚNÍ POJIŠTĚNÉHO
      */
-    public EvidenceUzivatelPojisteniEntity userInsuranceGetID(Long uzivatelPojisteni) {
+    public EvidenceUserInsuranceEntity userInsuranceGetID(Long uzivatelPojisteni) {
 
         //region Vypsání do konzole
 

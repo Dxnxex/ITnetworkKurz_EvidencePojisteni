@@ -12,15 +12,15 @@
     <div class="row mb-3">
 
         <div class="col-md-6">
-            <label for="jmeno">Jméno:</label>
-            <input type="text" id="jmeno" th:field="*{jmeno}" class="form-control" placeholder="Jan"/>
-            <div class="py-2 flash-message message-error" th:text="${jmeno}" th:if="${jmeno}"></div>
+            <label for="name">Jméno:</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Jan"/>
+            <div class="py-2 flash-message message-error" th:text="${name}" th:if="${name}"></div>
         </div>
 
         <div class="col-md-6">
-            <label for="prijmeni">Příjmení:</label>
-            <input type="text" id="prijmeni" th:field="*{prijmeni}" class="form-control" placeholder="Novák"/>
-            <div class="py-2 flash-message message-error" th:text="${prijmeni}" th:if="${prijmeni}"></div>
+            <label for="surname">Příjmení:</label>
+            <input type="text" id="surname" th:field="*{surname}" class="form-control" placeholder="Novák"/>
+            <div class="py-2 flash-message message-error" th:text="${surname}" th:if="${surname}"></div>
         </div>
 
     </div>
@@ -34,9 +34,9 @@
         </div>
 
         <div class="col-md-6">
-            <label for="telefon">Telefon:</label>
-            <input type="text" id="telefon" th:field="*{telefon}" class="form-control" placeholder="731 584 972"/>
-            <div class="py-2 flash-message message-error" th:text="${telefon}" th:if="${telefon}"></div>
+            <label for="telephone">Telefon:</label>
+            <input type="text" id="telephone" th:field="*{telephone}" class="form-control" placeholder="731 584 972"/>
+            <div class="py-2 flash-message message-error" th:text="${telephone}" th:if="${telephone}"></div>
         </div>
 
     </div>
@@ -44,15 +44,15 @@
     <div class="row mb-3">
 
         <div class="col-md-6">
-            <label for="uliceACislo">Ulice a číslo popisné:</label>
-            <input type="text" id="uliceACislo" th:field="*{uliceACislo}" class="form-control" placeholder="Ve Svahu 3"/>
-            <div class="py-2 flash-message message-error" th:text="${uliceACislo}" th:if="${uliceACislo}"></div>
+            <label for="streetAndNumber">Ulice a číslo popisné:</label>
+            <input type="text" id="streetAndNumber" th:field="*{streetAndNumber}" class="form-control" placeholder="Ve Svahu 3"/>
+            <div class="py-2 flash-message message-error" th:text="${streetAndNumber}" th:if="${streetAndNumber}"></div>
         </div>
 
         <div class="col-md-6">
-            <label for="mesto">Město:</label>
-            <input type="text" id="mesto" th:field="*{mesto}" class="form-control" placeholder="Praha 1"/>
-            <div class="py-2 flash-message message-error" th:text="${mesto}" th:if="${mesto}"></div>
+            <label for="city">Město:</label>
+            <input type="text" id="city" th:field="*{city}" class="form-control" placeholder="Praha 1"/>
+            <div class="py-2 flash-message message-error" th:text="${city}" th:if="${city}"></div>
         </div>
 
     </div>
@@ -61,9 +61,9 @@
     <div class="row mb-3 justify-content-end">
 
         <div class="col-md-6 ">
-            <label for="psc">PSČ:</label>
-            <input type="text" id="psc" th:field="*{psc}" class="form-control" placeholder="100 00"/>
-            <div class="py-2 flash-message message-error" th:text="${psc}" th:if="${psc}"></div>
+            <label for="postalCode">PSČ:</label>
+            <input type="text" id="postalCode" th:field="*{postalCode}" class="form-control" placeholder="100 00"/>
+            <div class="py-2 flash-message message-error" th:text="${postalCode}" th:if="${postalCode}"></div>
         </div>
 
     </div>

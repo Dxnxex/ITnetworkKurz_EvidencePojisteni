@@ -19,7 +19,7 @@
 
                 <h4 class="my-4 PojistenciFont">Úprava hodnot</h4>
 
-                <form th:action="@{'/uzivatele/edit/' + ${id}}" method="post" th:object="${uzivatel}">
+                <form th:action="@{'/uzivatele/edit/' + ${id}}" method="post" th:object="${user}">
 
                     <!--FRAGMENT USER CREATE / EDIT FORM-->
                     <div th:replace="~{fragments/fragmentFormUser.html :: fragmentFormCreate}"></div>

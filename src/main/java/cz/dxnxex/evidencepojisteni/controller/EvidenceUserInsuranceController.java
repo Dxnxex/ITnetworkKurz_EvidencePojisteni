@@ -1,9 +1,9 @@
 package cz.dxnxex.evidencepojisteni.controller;
 
 
-import cz.dxnxex.evidencepojisteni.EvidencePojisteniRedirect;
-import cz.dxnxex.evidencepojisteni.entity.EvidenceUzivatelPojisteniEntity;
-import cz.dxnxex.evidencepojisteni.service.EvidenceUzivatelService;
+import cz.dxnxex.evidencepojisteni.EvidenceRedirect;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceUserInsuranceEntity;
+import cz.dxnxex.evidencepojisteni.service.EvidenceUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -13,16 +13,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("uzivatele/pojisteni")
-public class EvidenceUzivatelPojisteniController {
+@RequestMapping("user/insurance")
+public class EvidenceUserInsuranceController {
 
-    private final String returnPage = "pages/uzivatele/";
-    private final String redirectPage = "redirect:/uzivatele/";
+    private final String returnPage = "pages/user/";
+    private final String redirectPage = "redirect:/user/";
 
-    private final EvidencePojisteniRedirect redirect = new EvidencePojisteniRedirect();
+    private final EvidenceRedirect redirect = new EvidenceRedirect();
 
     @Autowired
-    private EvidenceUzivatelService service;
+    private EvidenceUserService service;
 
 
     /**
@@ -36,8 +36,8 @@ public class EvidenceUzivatelPojisteniController {
     public String renderEditPersonInsurance(@PathVariable Long id, Model model) {
 
         // Získání uživatele a seznamu pojištění
-        EvidenceUzivatelPojisteniEntity uzivatel = service.userInsuranceGetID(id);
-        model.addAttribute("pojisteni",uzivatel);
+        EvidenceUserInsuranceEntity user = service.userInsuranceGetID(id);
+        model.addAttribute("pojisteni",user);
 
         return returnPage + "pojisteniEdit";
 
@@ -46,20 +46,20 @@ public class EvidenceUzivatelPojisteniController {
     /**
      * ÚPRAVA POJIŠTĚNÍ POJIŠTENÉMU
      * @param id
-     * @param castka
+     * @param value
      * @return
      */
     @Secured("ROLE_ADMIN")
     @PostMapping("edit/{id}")
-    public String editPersonInsurance(@PathVariable Long id, @RequestParam int castka, RedirectAttributes redirectAttributes)  {
+    public String editPersonInsurance(@PathVariable Long id, @RequestParam int value, RedirectAttributes redirectAttributes)  {
 
-        Long uzivatelID = service.userInsuranceGetID(id).getUzivatel().getId();
-        Long pojisteniID = service.userInsuranceGetID(id).getId();
+        Long userID = service.userInsuranceGetID(id).getUser().getId();
+        Long insuranceID = service.userInsuranceGetID(id).getId();
 
-        service.userEditInsurance(pojisteniID, castka);
+        service.userEditInsurance(insuranceID, value);
 
         redirectAttributes.addFlashAttribute("success", "Uživatelovo pojištění upraveno");
-        return redirectPage + uzivatelID;
+        return redirectPage + userID;
     }
 
 
@@ -75,12 +75,12 @@ public class EvidenceUzivatelPojisteniController {
     public String deletePersonInsurance(@PathVariable Long id, RedirectAttributes redirectAttributes){
 
         //INIT
-        Long uzivatelID = service.userInsuranceGetID(id).getUzivatel().getId();
+        Long userID = service.userInsuranceGetID(id).getUser().getId();
 
         service.userDeleteUzivatelPojisteni(id);
         redirectAttributes.addFlashAttribute("delete", "Uživatelovo pojištění smazáno");
 
-        return redirectPage + uzivatelID;
+        return redirectPage + userID;
 
 
     }

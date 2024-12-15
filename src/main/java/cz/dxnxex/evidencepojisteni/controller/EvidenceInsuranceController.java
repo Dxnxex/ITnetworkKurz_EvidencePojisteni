@@ -1,10 +1,10 @@
 package cz.dxnxex.evidencepojisteni.controller;
 
 
-import cz.dxnxex.evidencepojisteni.EvidencePojisteniRedirect;
-import cz.dxnxex.evidencepojisteni.dto.EvidencePojisteniDTO;
-import cz.dxnxex.evidencepojisteni.entity.EvidencePojisteniEntity;
-import cz.dxnxex.evidencepojisteni.service.EvidencePojisteniService;
+import cz.dxnxex.evidencepojisteni.EvidenceRedirect;
+import cz.dxnxex.evidencepojisteni.dto.EvidenceInsuranceDTO;
+import cz.dxnxex.evidencepojisteni.entity.EvidenceInsuranceEntity;
+import cz.dxnxex.evidencepojisteni.service.EvidenceInsuranceService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("pojisteni")
-public class EvidencePojisteniController {
+@RequestMapping("insurance")
+public class EvidenceInsuranceController {
 
-    private final String returnPage = "pages/pojisteni/";
-    private final String redirectPage = "redirect:/pojisteni";
+    private final String returnPage = "pages/insurance/";
+    private final String redirectPage = "redirect:/insurance";
 
-    private final EvidencePojisteniRedirect redirect = new EvidencePojisteniRedirect();
+    private final EvidenceRedirect redirect = new EvidenceRedirect();
 
     @Autowired
-    private EvidencePojisteniService service;
+    private EvidenceInsuranceService service;
 
     /**
      * ZOBRAZENÍ VŠECH POJIŠTĚNÍ
@@ -46,7 +46,7 @@ public class EvidencePojisteniController {
      */
     @Secured("ROLE_ADMIN")
     @GetMapping("/create")
-        public String renderCreateInsurance(@ModelAttribute EvidencePojisteniDTO evidence) {
+        public String renderCreateInsurance(@ModelAttribute EvidenceInsuranceDTO evidence) {
 
         return returnPage + "create";
 
@@ -54,14 +54,14 @@ public class EvidencePojisteniController {
 
     /**
      * VYTVOŘENÍ POJIŠTĚNÍ
-     * @param pojisteni
+     * @param insurance
      * @param result
      * @param redirectAttributes
      * @return
      */
     @Secured("ROLE_ADMIN")
     @PostMapping("/create")
-    public String createInsurance(@Valid @ModelAttribute EvidencePojisteniDTO pojisteni, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String createInsurance(@Valid @ModelAttribute EvidenceInsuranceDTO insurance, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
@@ -69,9 +69,9 @@ public class EvidencePojisteniController {
 
         } else {
 
-            service.insuranceCreate(pojisteni);
+            service.insuranceCreate(insurance);
             redirectAttributes.addFlashAttribute("success", "Pojištění upraveno");
-            return redirectPage + "";
+            return redirectPage;
         }
 
     }
@@ -85,8 +85,8 @@ public class EvidencePojisteniController {
     @GetMapping("/{id}")
     public String renderDetailInsurance(@PathVariable Long id, Model model) {
 
-        EvidencePojisteniEntity pojisteni = service.insuranceGetID(id);
-        model.addAttribute("pojisteni", pojisteni);
+        EvidenceInsuranceEntity insurance = service.insuranceGetID(id);
+        model.addAttribute("pojisteni", insurance);
 
         return returnPage + "detail";
     }
@@ -109,13 +109,13 @@ public class EvidencePojisteniController {
     /**
      * ÚPRAVA POJIŠTĚNÍ
      * @param id
-     * @param pojisteni
+     * @param insurance
      * @param result
      * @return
      */
     @Secured("ROLE_ADMIN")
     @PostMapping("edit/{id}")
-    public String editInsurance(@PathVariable long id, @Valid EvidencePojisteniDTO pojisteni, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String editInsurance(@PathVariable long id, @Valid EvidenceInsuranceDTO insurance, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
 
@@ -123,7 +123,7 @@ public class EvidencePojisteniController {
 
         } else {
 
-            service.insuranceCreate(pojisteni);
+            service.insuranceCreate(insurance);
             redirectAttributes.addFlashAttribute("success", "Pojištění upraveno");
             return redirectPage + "";
         }
