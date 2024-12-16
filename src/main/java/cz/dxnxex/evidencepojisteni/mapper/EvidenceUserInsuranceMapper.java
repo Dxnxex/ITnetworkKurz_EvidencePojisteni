@@ -7,7 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface EvidenceUserInsuranceMapper {
 
-    //Přepravky
     EvidenceUserInsuranceDTO toDTO(EvidenceUserInsuranceEntity source);
     EvidenceUserInsuranceEntity toEntity(EvidenceUserInsuranceDTO source);
 

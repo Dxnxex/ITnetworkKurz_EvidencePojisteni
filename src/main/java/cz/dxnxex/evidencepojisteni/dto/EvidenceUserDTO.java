@@ -1,5 +1,6 @@
 package cz.dxnxex.evidencepojisteni.dto;
 
+import cz.dxnxex.evidencepojisteni.EvidenceConfiguration;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -11,36 +12,36 @@ import lombok.Setter;
 @Getter
 public class EvidenceUserDTO {
 
-        private Long id;               // Unikátní identifikátor
+        private Long id;
 
-        @NotBlank(message = "Jméno nesmí být prázdné")
-        @Size(min = 2, max = 50, message = "Jméno musí mít délku mezi 2 a 50 znaky")
-        @Pattern(regexp = "^[a-zA-Zá-žÁ-Ž]+$", message = "Jméno může obsahovat pouze písmena bez čísel a speciálních znaků")
-        private String name;  // Jméno osoby
+        @NotBlank                              (message = "Jméno nesmí být prázdné")
+        @Size                                       (min = EvidenceConfiguration.SIZE_MIN_NAME, max = EvidenceConfiguration.SIZE_MAX_NAME, message = "Jméno musí mít délku mezi " + EvidenceConfiguration.SIZE_MIN_NAME + "  a " + EvidenceConfiguration.SIZE_MAX_NAME + " znaky")
+        @Pattern                                 (regexp = EvidenceConfiguration.CZECH_ALPHABET_REGEX, message = EvidenceConfiguration.CZECH_ALPHABET_REGEX_MESSAGE)
+        private String name;
 
-        @NotBlank(message = "Příjmení nesmí být prázdné")
-        @Size(min = 2, max = 50, message = "Příjmení musí mít délku mezi 2 a 50 znaky")
-        @Pattern(regexp = "^[a-zA-Zá-žÁ-Ž]+$", message = "Příjmení může obsahovat pouze písmena bez čísel a speciálních znaků")
-        private String surname;  // Příjmení osoby
+        @NotBlank                              (message = "Příjmení nesmí být prázdné")
+        @Size                                      (min = EvidenceConfiguration.SIZE_MIN_NAME, max = EvidenceConfiguration.SIZE_MAX_NAME, message = "Příjmení musí mít délku mezi " + EvidenceConfiguration.SIZE_MIN_NAME + "  a " + EvidenceConfiguration.SIZE_MAX_NAME + " znaky")
+        @Pattern                                (regexp = EvidenceConfiguration.CZECH_ALPHABET_REGEX, message = EvidenceConfiguration.CZECH_ALPHABET_REGEX_MESSAGE)
+        private String surname;
 
-        @NotBlank(message = "Email nesmí být prázdný")
-        @Email(message = "Email musí mít správný formát")
-        private String email;  // Emailová adresa
+        @NotBlank                             (message = "Email nesmí být prázdný")
+        @Email                                  (message = "Email musí mít správný formát")
+        private String email;
 
-        @NotBlank(message = "Telefonní číslo nesmí být prázdné")
-        @Pattern(regexp = "^\\d{3} \\d{3} \\d{3}$", message = "Telefonní číslo musí být ve formátu 123 456 789")
-        private String telephone;  // Telefonní číslo
+        @NotBlank                             (message = "Telefonní číslo nesmí být prázdné")
+        @Pattern                                (regexp = "^\\d{3} \\d{3} \\d{3}$", message = "Telefonní číslo musí být ve formátu 123 456 789")
+        private String telephone;
 
-        @NotBlank(message = "Ulice a číslo popisné nesmí být prázdné")
-        @Size(max = 100, message = "Ulice a číslo popisné nesmí být delší než 100 znaků")
-        private String streetAndNumber;  // Ulice a číslo popisné
+        @NotBlank                              (message = "Ulice a číslo popisné nesmí být prázdné")
+        @Size                                       (max = 100, message = "Ulice a číslo popisné nesmí být delší než 100 znaků")
+        private String streetAndNumber;
 
-        @NotBlank(message = "Město nesmí být prázdné")
-        @Size(max = 50, message = "Název města nesmí být delší než 50 znaků")
-        private String city;  // Město
+        @NotBlank                               (message = "Město nesmí být prázdné")
+        @Size                                        (min = EvidenceConfiguration.SIZE_MIN_NAME, max = EvidenceConfiguration.SIZE_MAX_NAME, message = "Název města musí mít délku mezi " + EvidenceConfiguration.SIZE_MIN_NAME + "  a " + EvidenceConfiguration.SIZE_MAX_NAME + " znaky")
+        private String city;
 
-        @NotBlank(message = "PSČ nesmí být prázdné")
-        @Pattern(regexp = "^\\d{3} \\d{2}$", message = "PSČ musí být ve formátu 123 45")
-        private String postalCode;  // Poštovní směrovací číslo (PSČ)
+        @NotBlank                               (message = "PSČ nesmí být prázdné")
+        @Pattern                                  (regexp = "^\\d{3} \\d{2}$", message = "PSČ musí být ve formátu 123 45")
+        private String postalCode;
 
 }

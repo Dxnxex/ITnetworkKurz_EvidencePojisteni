@@ -7,20 +7,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EvidenceRedirect {
 
 
-    //Vytvoření chybové hlášky #OLD
-    public boolean checkForErrors(BindingResult result) {
-        if (result.hasErrors()) {
-            System.out.println("Chyba: " + result.getFieldError());
-            return true;
-        }
-        return false;
-    }
-
-
-    //BOHUŽEL CHAT-GPT
-
-    // Zkontroluje chyby a přidá flash zprávy do RedirectAttributes
-    public boolean checkForErrorsGPT(BindingResult result, RedirectAttributes redirectAttributes) {
+    /**
+     * Kontroluje chyby v datech formuláře obsažených v poskytnutém {@code BindingResult}.
+     * Pokud jsou přítomny chyby, přidají se jako flash atributy do poskytnutého {@code RedirectAttributes}.
+     * Přidává také obecnou chybovou zprávu pro označení přítomnosti chyb na úrovni formuláře.
+     *
+     * @param result             {@code BindingResult} obsahující výsledky validace a chyby zpracovávaného formuláře
+     * @param redirectAttributes {@code RedirectAttributes} pro přidání flash atributů na cílovou stránku
+     * @return {@code true}, pokud jsou při validaci zjištěny chyby, jinak {@code false}
+     */
+    public boolean checkForErrors(BindingResult result, RedirectAttributes redirectAttributes) {
         boolean hasErrors = false;
 
         // Iterace přes všechny FieldError v BindingResult
@@ -40,9 +36,6 @@ public class EvidenceRedirect {
 
         return hasErrors;
     }
-
-
-
 
 
 

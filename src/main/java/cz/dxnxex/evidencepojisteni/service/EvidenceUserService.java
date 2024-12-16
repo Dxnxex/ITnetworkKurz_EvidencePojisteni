@@ -52,7 +52,7 @@ public class EvidenceUserService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
 
-    /**
+    /** 
      * Vytvoří nového uživatele a uloží ho do databáze.
      *
      * @param data Data nového uživatele ve formátu ENTITY
@@ -63,14 +63,21 @@ public class EvidenceUserService implements UserDetailsService {
         EvidenceUserEntity entity =userRepository.saveAndFlush(userMapper.toEntity(data));
 
         //LOG
-        System.out.printf("\n"+entity);
+        System.out.printf("\nVytvoření nového uživavatele: "+entity);
 
         return entity;
 
     }
 
 
-    /** VYTVOŘENÍ POJIŠTĚNÉHO DO DATABÁZE (REGISTERED)
+    /** 
+     * Metoda vytvoří nového uživatele na základě zadaných dat, zašifruje heslo
+     * a nastaví, zda má být uživatelský účet administrátorský.
+     *
+     * @param user    Data nového uživatele ve formě DTO.
+     * @param isAdmin Určuje, zda má mít uživatel administrátorská práva.
+     * @throws PasswordsDoNotEqualException Pokud zadané heslo a jeho potvrzení nejsou stejné.
+     * @throws DuplicateEmailException      Pokud již existuje uživatel se stejným e-mailem.
      */
     public void userCreate2(EvidenceAccountDTO user, boolean isAdmin) {
         if (!user.getPassword().equals(user.getConfirmPassword()))
@@ -90,45 +97,41 @@ public class EvidenceUserService implements UserDetailsService {
     }
 
 
-    /** VÝPIS VŠECH POJIŠTĚNÝCH V DATABÁZI
+    /** 
+     * VÝPIS VŠECH POJIŠTĚNÝCH V DATABÁZI
+     * Metoda získá seznam všech pojištěných osob v databázi a vrátí jej ve formě DTO objektů.
+     *
+     * @return Seznam všech uživatelů jako EvidenceUserDTO.
      */
     public List<EvidenceUserDTO> userGetAllList() {
 
+        //Logic
         List<EvidenceUserDTO> allUsers = userRepository.findAll().stream().map(entity -> userMapper.toDTO(entity)).toList();
 
-        //region Vypsání do konzole
-
-        System.out.println();
-        System.out.println(allUsers);
-        System.out.println("Výpis všech uživatelů:");
-
-        for(EvidenceUserDTO vypis : allUsers){
-            System.out.println("ID:" + vypis.getId() + " '" + vypis.getName() + " " + vypis.getSurname()+"' - " + vypis);
-        }
-
-        //endregion
+        //LOG
+        System.out.println("\nVýpis všech uživatelů:");
+            for(EvidenceUserDTO vypis : allUsers){
+                System.out.println("ID:" + vypis.getId() + " '" + vypis.getName() + " " + vypis.getSurname()+"' - " + vypis);
+            }
 
         return allUsers;
     }
 
 
-    /** VYMAZÁNÍ POJIŠTĚNÉHO Z DATABÁZE
+    /** 
+     * Vymaže uživatele na základě ID.
+     *
+     * @param userID ID uživatele, které se má smazat.
      */
     public void userDelete(Long userID) {
 
-        //region Vypsání do konzole
-
-        System.out.println();
-        System.out.println("Vymazání uživatele s ID: " + userID);
-
-        //endregion
-
-            userRepository.deleteById(userID);
+        System.out.println("\nVymazání uživatele s ID: " + userID);
+        userRepository.deleteById(userID);
 
     }
 
 
-    /**
+    /** 
      * Získá uživatele podle jeho ID.
      *
      * @param userID ID uživatele, kterého chceme získat
@@ -146,41 +149,47 @@ public class EvidenceUserService implements UserDetailsService {
 
     }
 
-    /** VRÁCENÍ LISTU VŠECH POJIŠTĚNÍ
+    /** 
+     * VRÁCENÍ SEZNAMU VŠECH POJIŠTĚNÍ
+     * Metoda získá seznam všech pojištění v databázi a zobrazí je v konzoli.
+     *
+     * @return Seznam všech pojištění jako EvidenceInsuranceEntity.
      */
     public List<EvidenceInsuranceEntity> getAllInsurancesList() {
 
+        //Logic
         List<EvidenceInsuranceEntity> insurances = insuranceRepository.findAll();
 
-        //region Vypsání do konzole
-
+        //LOG
             System.out.println("\nDostupná pojištění: " );
-
             for(EvidenceInsuranceEntity vypis : insurances){
                 System.out.println("ID:" + vypis.getId() + " - " + vypis.getName());
             }
 
-            //endregion
-
         return insurances;
     }
 
-    /** VRÁTÍ ID POJIŠTĚNÍ
+    /** 
+     * VRÁTÍ DETAILY POJIŠTĚNÍ PODLE ID
+     * Metoda vrátí detail pojištění na základě zadaného ID.
+     *
+     * @param insuranceID ID pojištění, které má být načteno.
+     * @return Entita pojištění, pokud existuje; jinak null.
      */
     public EvidenceInsuranceEntity insuranceGetID(Long insuranceID) {
 
-        //region Vypsání do konzole
-
-        System.out.println();
-        System.out.println("Zobrazení detailu pojištění ID: " + insuranceID);
-
-        //endregion
-
+        System.out.println("\nZobrazení detailu pojištění ID: " + insuranceID);
         return insuranceRepository.findById(insuranceID).orElse(null);
 
     }
 
-    /** PŘÍDÁ POJIŠTĚNÍ POJIŠTĚNÉMU
+    /** 
+     * PŘIDÁNÍ POJIŠTĚNÍ UŽIVATELI
+     * Metoda připojí konkrétní pojištění k uživateli na základě jejich ID.
+     *
+     * @param userID      ID uživatele, ke kterému bude připojeno pojištění.
+     * @param insuranceID ID pojištění, které bude připojeno k uživateli.
+     * @param value       Hodnota (např. limit nebo částka) spojená s pojištěním.
      */
     public void userAddInsurance(Long userID, Long insuranceID, int value) {
 
@@ -204,13 +213,13 @@ public class EvidenceUserService implements UserDetailsService {
 
     }
 
-    /**
-     * Updates the insurance value for a specific user by finding the corresponding
-     * insurance record and updating its value.
+
+    /** 
+     * Upraví hodnotu pojištění uživatele na základě ID pojištění.
      *
-     * @param userInsuranceID the ID of the user insurance entity to be modified
-     * @param value the new value to update in the user insurance record
-     * @throws EntityNotFoundException if the user insurance record with the given ID is not found
+     * @param userInsuranceID ID pojištění uživatele, které má být upraveno.
+     * @param value           Nová hodnota, která má být nastavena.
+     * @throws EntityNotFoundException Pokud spojení uživatel-pojištění nebylo nalezeno.
      */
     public void userEditInsurance(Long userInsuranceID, int value) {
 
@@ -230,60 +239,55 @@ public class EvidenceUserService implements UserDetailsService {
 
     }
 
-    /**
-     * Retrieves a list of EvidenceUserInsuranceEntity objects associated with the specified user ID.
+
+    /** 
+     * Získá seznam všech pojištění uživatele na základě jeho ID.
      *
-     * @param userID The ID of the user for whom the insurance entities are to be retrieved.
-     * @return A list of EvidenceUserInsuranceEntity objects linked to the given user ID.
+     * @param userID ID uživatele, jehož pojištění mají být získána.
+     * @return Seznam entit EvidenceUserInsuranceEntity spojených s uživatelem.
      */
     public List<EvidenceUserInsuranceEntity> userInsuranceGetIDList(Long userID) {
         return userInsuranceRepository.findAll().stream().filter(entity -> entity.getUser().getId().equals(userID)).toList();
     }
 
-    /**
-     * Retrieves a user's insurance details based on their insurance ID.
+    /** 
+     * Vrátí detail pojištění uživatele na základě jeho ID.
      *
-     * @param userInsuranceID The unique identifier of the user's insurance.
-     * @return The user's insurance entity if found, or null if no entity is found with the given ID.
+     * @param userInsuranceID ID pojištění uživatele, které má být vráceno.
+     * @return Entita pojištění uživatele EvidenceUserInsuranceEntity, pokud existuje; jinak null.
      */
     public EvidenceUserInsuranceEntity userInsuranceGetID(Long userInsuranceID) {
 
-                //region Vypsání do konzole
-
-                System.out.println();
-                System.out.println("Zobrazení detailu pojištění uživatele ID: " + userInsuranceID);
-
-                //endregion
-
-        return userInsuranceRepository.findById(userInsuranceID).orElse(null);
+                System.out.println("\nZobrazení detailu pojištění uživatele ID: " + userInsuranceID);
+                return userInsuranceRepository.findById(userInsuranceID).orElse(null);
 
     }
 
 
-
-    /**
-     * Deletes user insurance associated with the given user ID.
+    /** 
+     * Vymaže pojištění uživatele spojené s daným ID uživatele.
      *
-     * @param userID The unique identifier of the user whose insurance is to be deleted.
+     * @param userID Jedinečný identifikátor uživatele, jehož pojištění má být smazáno.
      */
     public void deleteUserInsurance(Long userID) {
 
-            //region [Vymazání uživatele s ID:]
-
-            System.out.println();
-            System.out.println("Vymazání uživatelského pojištění s ID: " + userID);
-
-            //endregion
-
-        userInsuranceRepository.deleteById(userID);
+            System.out.println("\nVymazání uživatelského pojištění s ID: " + userID);
+            userInsuranceRepository.deleteById(userID);
 
     }
 
+    /** 
+     * Načte uživatele podle uživatelského jména (emailu) z databáze.
+     *
+     * @param username Uživatelské jméno (email), podle kterého se bude uživatel vyhledávat.
+     * @return Instance UserDetails s informacemi o nalezeném uživateli.
+     * @throws UsernameNotFoundException Pokud uživatel s daným uživatelským jménem (email) nebyl nalezen.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        return accountRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Username, " + username + " not found"));
-
+        
+        return accountRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Uživatelské jméno " + username + " nebylo nalezeno."));
     }
 
 }

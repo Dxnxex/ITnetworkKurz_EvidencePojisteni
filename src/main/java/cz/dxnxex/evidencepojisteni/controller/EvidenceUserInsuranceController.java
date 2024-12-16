@@ -17,10 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("user/insurance")
 public class EvidenceUserInsuranceController {
 
-    private final String returnPage = "pages/" + EvidenceConfiguration.getPathUser() + "/" ;
-    private final String redirectPage = "redirect:/" + EvidenceConfiguration.getPathUser();
-
-    private final EvidenceRedirect redirect = new EvidenceRedirect();
+    private final String returnPage =   "pages/" +      EvidenceConfiguration.PATH_USER;
+    private final String redirectPage = "redirect:/" +  EvidenceConfiguration.PATH_USER;
 
     @Autowired
     private EvidenceUserService service;
@@ -40,7 +38,7 @@ public class EvidenceUserInsuranceController {
         EvidenceUserInsuranceEntity user = service.userInsuranceGetID(id);
         model.addAttribute("insurance",user);
 
-        return returnPage + "pojisteniEdit";
+        return returnPage + "/pojisteniEdit";
 
     }
 

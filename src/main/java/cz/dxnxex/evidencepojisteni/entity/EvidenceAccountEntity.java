@@ -28,38 +28,38 @@ public class EvidenceAccountEntity implements UserDetails {
     @Column(nullable = false)
     private boolean admin;
 
-    // region: UserDetails Methods
+        // region: UserDetails Methods
 
-        public Collection<? extends GrantedAuthority> getAuthorities() {
-            SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + (admin ? "ADMIN" : "USER"));
-            return List.of(authority);
-        }
+            public Collection<? extends GrantedAuthority> getAuthorities() {
+                SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + (admin ? "ADMIN" : "USER"));
+                return List.of(authority);
+            }
 
-        @Override
-        public String getUsername() {
-            return "";
-        }
+            @Override
+            public String getUsername() {
+                return "";
+            }
 
-        public boolean isAccountNonExpired() {
-            return true;
-        }
-
-
-        public boolean isAccountNonLocked() {
-            return true;
-        }
+            public boolean isAccountNonExpired() {
+                return true;
+            }
 
 
-        public boolean isCredentialsNonExpired() {
-            return true;
-        }
+            public boolean isAccountNonLocked() {
+                return true;
+            }
 
 
-        public boolean isEnabled() {
-            return true;
-        }
+            public boolean isCredentialsNonExpired() {
+                return true;
+            }
 
-        // endregion
+
+            public boolean isEnabled() {
+                return true;
+            }
+
+            // endregion
 
 
 }

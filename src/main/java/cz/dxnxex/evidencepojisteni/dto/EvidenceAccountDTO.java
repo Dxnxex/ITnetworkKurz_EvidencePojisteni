@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 public class EvidenceAccountDTO {
 
-    @Email(message = "Vyplňte validní email")
+    @Email(message = "Vyplňte správně email")
     @NotBlank(message = "Vyplňte uživatelský email")
     private String email;
 

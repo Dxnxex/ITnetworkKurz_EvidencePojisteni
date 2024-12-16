@@ -11,15 +11,10 @@ import lombok.Setter;
 public class EvidenceUserInsuranceDTO {
 
 
-    private Long id;                                    // Unikátní identifikátor
-    private EvidenceUserEntity user;                    // Entita uživatele
-    private EvidenceInsuranceEntity insurance;          // Entita pojištění
-    private int value;                                 // Částka pojištění
-
-    //region GETTERS & SETTERS
-
-
-    //endregion
+    private Long id;
+    private EvidenceUserEntity user;
+    private EvidenceInsuranceEntity insurance;
+    private int value;
 
 
 }

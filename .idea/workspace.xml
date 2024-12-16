@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b391130a-6cc2-4db3-98e7-ffb8bc5b5267" name="Changes" comment="Lombok, Refractoring, Komentáře">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/EvidenceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/EvidenceConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/EvidenceRedirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/EvidenceRedirect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceControllerAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceControllerAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceInsuranceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceInsuranceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUserInsuranceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/controller/EvidenceUserInsuranceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceAccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceAccountDTO.java" afterDir="false" />
@@ -20,16 +17,11 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUserInsuranceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/dto/EvidenceUserInsuranceDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceAccountEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceAccountEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceInsuranceEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceInsuranceEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUserInsuranceEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/entity/EvidenceUserInsuranceEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceInsuranceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceInsuranceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceUserInsuranceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceUserInsuranceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/mapper/EvidenceUserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceInsuranceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceInsuranceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/dxnxex/evidencepojisteni/service/EvidenceUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragmentFormInsurance.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragment-Form-Insurance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragmentFormUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/fragment-Form-User.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/insurance/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/insurance/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/insurance/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/insurance/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/user/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/user/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/user/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/user/edit.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="english" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -84,40 +76,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.EvidencePojisteniMain.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.TodoAppApplication.executor": "Run",
-    "LombokPluginIS_LOMBOK_JPS_FIX_ENABLED": "false",
-    "Maven.evidencepojisteni [clean].executor": "Run",
-    "Maven.evidencepojisteni [install].executor": "Run",
-    "Maven.evidencepojisteni [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
-    "Maven.evidencepojisteni [org.apache.maven.plugins:maven-install-plugin:3.0.1:install].executor": "Run",
-    "Maven.todoapp [clean].executor": "Run",
-    "Maven.todoapp [install].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.EvidenceMain.executor": "Run",
-    "git-widget-placeholder": "english",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/GitHub/EvidencePojisteni/src/main/resources/templates/pages/account",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.EvidencePojisteniMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TodoAppApplication.executor&quot;: &quot;Run&quot;,
+    &quot;LombokPluginIS_LOMBOK_JPS_FIX_ENABLED&quot;: &quot;false&quot;,
+    &quot;Maven.evidencepojisteni [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.evidencepojisteni [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.evidencepojisteni [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.evidencepojisteni [org.apache.maven.plugins:maven-install-plugin:3.0.1:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.todoapp [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.todoapp [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.EvidenceMain.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GitHub/EvidencePojisteni/src/main/resources/templates/pages/account&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\GitHub\EvidencePojisteni\src\main\resources\templates\pages\account" />
@@ -145,10 +137,17 @@
       <command value="mvn install" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.EvidenceMain">
     <configuration name="EvidenceMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="evidencepojisteni" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cz.dxnxex.evidencepojisteni.EvidenceMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EvidencePojisteniMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="evidencepojisteni" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cz.dxnxex.evidencepojisteni.EvidencePojisteniMain" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -175,6 +174,7 @@
       <updated>1730710023695</updated>
       <workItem from="1734292530014" duration="121000" />
       <workItem from="1734292660184" duration="10012000" />
+      <workItem from="1734341647079" duration="6975000" />
     </task>
     <task id="LOCAL-00001" summary="- Zobrazení pojištěných z databáze&#10;- Vytvoření pojištěného&#10;- Propojení DB&#10;- Smazání pojištěného&#10;- Základí kostra stránky">
       <option name="closed" value="true" />

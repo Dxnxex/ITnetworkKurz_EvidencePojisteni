@@ -25,8 +25,8 @@ import java.util.List;
 public class EvidenceUserController {
 
 
-    private final String returnPage = "pages/" +        EvidenceConfiguration.getPathUser() + "/" ;
-    private final String redirectPage = "redirect:/" +  EvidenceConfiguration.getPathUser();
+    private final String returnPage =   "pages/" +      EvidenceConfiguration.PATH_USER;
+    private final String redirectPage = "redirect:/" +  EvidenceConfiguration.PATH_USER;
 
     private final EvidenceRedirect redirect = new EvidenceRedirect();
 
@@ -47,7 +47,7 @@ public class EvidenceUserController {
         public String renderPerson(Model model) {
 
             model.addAttribute("vypsatVsechnyUzivatele", serviceUser.userGetAllList());
-            return returnPage + "index";
+            return returnPage + "/index";
 
         }
 
@@ -60,7 +60,7 @@ public class EvidenceUserController {
     @GetMapping("/create")
         public String renderPersonCreate(@ModelAttribute("vytvoreniUzivatele") EvidenceUserDTO user) {
 
-        return returnPage+ "create";
+        return returnPage+ "/create";
 
         }
 
@@ -77,7 +77,7 @@ public class EvidenceUserController {
         @PostMapping("/create")
         public String createPerson(@Valid @ModelAttribute("vytvoreniUzivatele") EvidenceUserDTO data, BindingResult result, RedirectAttributes redirectAttributes) {
 
-            if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
+            if (redirect.checkForErrors(result, redirectAttributes)) {
 
                 redirectAttributes.addFlashAttribute("vytvoreniUzivatele", data);
                 return redirectPage + "/" + "create";
@@ -114,7 +114,7 @@ public class EvidenceUserController {
         model.addAttribute("value",         null);
         model.addAttribute("userInsurance",  serviceUser.userInsuranceGetIDList(id));
 
-        return returnPage + "detail";
+        return returnPage + "/detail";
     }
 
     /**
@@ -146,7 +146,7 @@ public class EvidenceUserController {
     public String renderEditPerson(@PathVariable Long id, Model model) {
 
         model.addAttribute("user", serviceUser.getUserByID(id));
-        return returnPage + "edit";
+        return returnPage + "/edit";
 
     }
 
@@ -162,7 +162,7 @@ public class EvidenceUserController {
     @PostMapping("edit/{id}")
     public String editPerson(@PathVariable long id, @Valid EvidenceUserDTO evidence, BindingResult result, RedirectAttributes redirectAttributes) {
 
-        if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
+        if (redirect.checkForErrors(result, redirectAttributes)) {
 
             redirectAttributes.addFlashAttribute("uzivatel", evidence);
             return redirectPage + "/edit/{id}";
@@ -189,7 +189,7 @@ public class EvidenceUserController {
 
         serviceUser.userDelete(id);
         redirectAttributes.addFlashAttribute("delete", "Uživatel smazán.");
-        return redirectPage + "";
+        return redirectPage;
 
 
     }

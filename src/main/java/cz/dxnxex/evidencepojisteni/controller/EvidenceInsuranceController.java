@@ -19,8 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("insurance")
 public class EvidenceInsuranceController {
 
-    private final String returnPage =   "pages/" +      EvidenceConfiguration.getPathInsurance() + "/" ;
-    private final String redirectPage = "redirect:/" +  EvidenceConfiguration.getPathInsurance();
+    private final String returnPage =   "pages/" +      EvidenceConfiguration.PATH_INSURANCE;
+    private final String redirectPage = "redirect:/" +  EvidenceConfiguration.PATH_INSURANCE;
 
     private final EvidenceRedirect redirect = new EvidenceRedirect();
 
@@ -37,7 +37,7 @@ public class EvidenceInsuranceController {
 
             model.addAttribute("vypsatVsechnyPojisteni", service.insuranceGetAllList());
 
-            return returnPage + "index";
+            return returnPage + "/index";
 
         }
 
@@ -50,7 +50,7 @@ public class EvidenceInsuranceController {
     @GetMapping("/create")
         public String renderCreateInsurance(@ModelAttribute("createInsurance")  EvidenceInsuranceDTO evidence) {
 
-        return returnPage + "create";
+        return returnPage + "/create";
 
         }
 
@@ -65,7 +65,7 @@ public class EvidenceInsuranceController {
     @PostMapping("/create")
     public String createInsurance(@Valid @ModelAttribute("createInsurance") EvidenceInsuranceDTO insurance, BindingResult result, RedirectAttributes redirectAttributes) {
 
-        if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
+        if (redirect.checkForErrors(result, redirectAttributes)) {
 
             return redirectPage + "/" + "create";
 
@@ -90,7 +90,7 @@ public class EvidenceInsuranceController {
         EvidenceInsuranceEntity insurance = service.insuranceGetID(id);
         model.addAttribute("insurance", insurance);
 
-        return returnPage + "detail";
+        return returnPage + "/detail";
     }
 
     /**
@@ -104,7 +104,7 @@ public class EvidenceInsuranceController {
     public String renderEditInsurance(@PathVariable Long id, Model model) {
 
         model.addAttribute("insurance", service.insuranceGetID(id));
-        return returnPage + "edit";
+        return returnPage + "/edit";
 
     }
 
@@ -119,7 +119,7 @@ public class EvidenceInsuranceController {
     @PostMapping("edit/{id}")
     public String editInsurance(@PathVariable long id, @Valid EvidenceInsuranceDTO insurance, BindingResult result, RedirectAttributes redirectAttributes) {
 
-        if (redirect.checkForErrorsGPT(result, redirectAttributes)) {
+        if (redirect.checkForErrors(result, redirectAttributes)) {
 
             return redirectPage + "/edit/" + id;
 
@@ -127,7 +127,7 @@ public class EvidenceInsuranceController {
 
             service.insuranceCreate(insurance);
             redirectAttributes.addFlashAttribute("success", "Pojištění upraveno");
-            return redirectPage + "";
+            return redirectPage;
         }
 
     }
@@ -144,7 +144,7 @@ public class EvidenceInsuranceController {
 
         service.insuranceDelete(id);
         redirectAttributes.addFlashAttribute("delete", "Pojištění smazáno");
-        return redirectPage + "";
+        return redirectPage;
 
     }
 

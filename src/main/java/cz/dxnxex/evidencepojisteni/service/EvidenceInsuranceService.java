@@ -19,79 +19,60 @@ public class EvidenceInsuranceService {
     private EvidenceInsuranceMapper mapper;
 
 
-    /**
-     * VYTVOŘENÍ POJIŠTĚNÍ
-     * @param data
+    /** 
+     * Vytvoří nové pojištění z dat v HTML
+     *
+     * @param data Data pojištění, které ze kterých má být vytvořeno.
      */
     public void insuranceCreate(EvidenceInsuranceDTO data) {
-        EvidenceInsuranceEntity newItem = mapper.toEntity(data);
-        repository.saveAndFlush(newItem);
+        repository.saveAndFlush(mapper.toEntity(data));
     }
 
 
-    /**
-     * VRÁTÍ LIST VŠECH POJIŠTĚNÍ
-     * @return
+    /** 
+     * Získá seznam všech pojištění.
+     *
+     * @return Seznam objektů EvidenceInsuranceDTO představující všechna pojištění.
      */
     public List<EvidenceInsuranceDTO> insuranceGetAllList() {
 
+        //Logic
         List<EvidenceInsuranceDTO> insurance = repository.findAll().stream().map(entity -> mapper.toDTO(entity)).toList();
 
-        //region Vypsání do konzole
-
-        System.out.println();
-        System.out.println("Výpis všech pojištění:");
-        for(EvidenceInsuranceDTO list : insurance){
+        //LOG
+        System.out.println("\nVýpis všech pojištění:");
+        for (EvidenceInsuranceDTO list : insurance) {
             System.out.println("ID:" + list.getId() + " '" + list.getName() + "' - " + list);
         }
-
-        //endregion
 
         return insurance;
     }
 
 
-    /**
-     * VRÁTÍ LIST VŠECH POJIŠTĚNÍ - STREAM
-     * @return
+    /** 
+     * Získá pojištění na základě ID.
+     *
+     * @param insurance ID pojištění, které se má načíst.
+     * @return EvidenceInsuranceEntity odpovídající zadanému ID.
+     * @throws IllegalArgumentException pokud pojištění s daným ID nebylo nalezeno.
      */
-    public List<EvidenceInsuranceDTO> insuranceGetAllListStream() {
-        return repository.findAll().stream().map(entita -> mapper.toDTO(entita)).toList();
+    public EvidenceInsuranceEntity insuranceGetID(Long insurance) {
+
+        System.out.println("\nZobrazení detailu pojištění ID: " + insurance);
+
+        return repository.findById(insurance)
+                .orElseThrow(() -> new IllegalArgumentException("Pojištění s ID " + insurance + " nebylo nalezeno."));
     }
 
-
-    /**
-     * VRÁTÍ ID POJIŠTĚNÍ
-     * @param pojisteni
-     * @return
+    /** 
+     * Vymaže pojištění na základě ID.
+     *
+     * @param insuranceID ID pojištění, které se má smazat.
      */
-    public EvidenceInsuranceEntity insuranceGetID(Long pojisteni) {
+    public void insuranceDelete(Long insuranceID) {
 
-        //region Vypsání do konzole
-
-        System.out.println();
-        System.out.println("Zobrazení detailu pojištění ID: " + pojisteni);
-
-        //endregion
-
-        return repository.findById(pojisteni).orElse(null);
-
-    }
-
-    /**
-     * VYMAZÁNÍ POJIŠTĚNÍ
-     * @param id
-     */
-    public void insuranceDelete(Long id) {
-
-        //region Vypsání do konzole
-
-        System.out.println();
-        System.out.println("Vymazání pojištění s ID: " + id);
-
-        //endregion
-
-        repository.deleteById(id);
+        System.out.println("\nVymazání pojištění s ID: " + insuranceID);
+        repository.deleteById(insuranceID);
 
     }
 
