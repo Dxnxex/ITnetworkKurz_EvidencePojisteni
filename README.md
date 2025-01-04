@@ -24,6 +24,6 @@ Projekt je napsán v programovacím jazyce **Java** a zaměřuje se na správu e
 
 ### Ukázka
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <img src=".gitImages/obr1.png" alt="obrázek1" style="width: 30%;">
-  <img src=".gitImages/obr2.png" alt="obrázek2" style="width: 30%;">
+  <img src=".gitImages/obr1.png" alt="obrázek1" style="width: 50%;">
+  <img src=".gitImages/obr2.png" alt="obrázek2" style="width: 50%;">
 </div>
